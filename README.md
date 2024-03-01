@@ -19,44 +19,50 @@
 
 ### 1. IDENTIFICACIÓN <a name="id1"></a>
 
-| Aspecto              | Detalle                         |
-|----------------------|---------------------------------|
-| Nombre del proyecto  | SportsEvent                     |
-| Alumnos del grupo:   | - Badel Bonilla Simón          |
-|                      | - Miguel Carballo Gonzalez      |
-|                      | - Afellay Ramos Luís            |
-| Curso                | 2º Desarrollo de Aplicaciones Web |
-| Tutor                | Alejandro Martín Zarza          |
++ **Nombre del proyecto:** SportsEvent
++ **Alumnos del grupo:** 
+    - Badel Bonilla Simón
+    - Miguel Carballo Gonzalez
+    - Afellay Ramos Luís
++ **Curso:** 2º Desarrollo de Aplicaciones Web
++ **Tutor:** Alejandro Martín Zarza
 
 ### 2. OBJETIVOS <a name="id2"></a>
 
-El principal objetivo de `SportsEvent` es proporcionar a otras empresas, servicios de organización para sus eventos deportivos. Gracias a esto permitiría a muchas de ellas agilizar el proceso de reserva de locales, pistas, etc. Como se ha mencionado anteriormente estos servicios serán utilizados diariamente para realizar la gestión de canchas, locales, eventos dentro de las empresas tanto para los propietarios, como los clientes que desean realizar una actividad.
+El objetivo principal de `SportsEvent` es proporcionar a otras empresas servicios de organización para sus eventos deportivos, agilizando el proceso de reserva de locales, pistas, etc. Se pretende mejorar la eficiencia en la gestión de eventos deportivos, tanto para los propietarios de las instalaciones como para los clientes que deseen realizar actividades.
+
+---
 
 ### 3. PREANÁLISIS DE LO EXISTENTE <a name="id3"></a>
 
-A día de hoy muchas empresas siguen gestionando instalaciones de su centro deportivo de forma manual, lo que puede ocasionar muchas confusiones e incomodidades tanto en el cliente como la persona que se encarga de realizar la gestión, a la hora de reservar ya sea un evento, sala o cualquier tipo de instalación deportiva. Nuestro propósito es aligerar la carga de trabajo de ambas partes ya que con este proyecto vamos a automatizar todo este proceso de reservas. 
+Muchas empresas gestionan manualmente la reserva de instalaciones deportivas, lo que puede ocasionar confusiones e incomodidades tanto para el cliente como para el personal encargado de la gestión. Con el sistema actual, pueden surgir problemas como la asignación duplicada de instalaciones, confusiones en los horarios de reserva y falta de disponibilidad actualizada.
 
-El hecho de gestionar las instalaciones de un centro deportivo de forma manual puede llevar a errores y malentendidos, lo que puede afectar tanto a los clientes como al personal encargado de la gestión. Por ejemplo, la asignación duplicada de instalaciones, confusiones en los horarios de reserva, o la falta de disponibilidad actualizada, pueden generar inconvenientes y frustraciones. Automatizar este proceso de reservas, nuestro objetivo es mejorar la eficiencia, reducir los errores y proporcionar una experiencia más fluida para los clientes. Al aligerar la carga de trabajo tanto para el personal como para los usuarios, buscamos facilitar la gestión y promover un entorno más organizado y satisfactorio para todos los involucrados.
+---
 
 ### 4. PRE-ANÁLISIS DEL SISTEMA <a name="id4"></a>
 
-El análisis detallado del sistema se centra en las siguientes áreas fundamentales:
+El sistema "SportsEvent" se centrará en automatizar la reserva de instalaciones deportivas, incluyendo la gestión de eventos, salas y otros espacios relacionados con actividades deportivas. Se identificarán los siguientes requisitos:
 
-| Áreas de Enfoque        | Descripción                                                                                     |
-|-------------------------|-------------------------------------------------------------------------------------------------|
-| Automatización de Reservas | El sistema se enfoca en la automatización de las reservas de instalaciones deportivas, abarcando la gestión de eventos, salas y otras instalaciones deportivas relevantes. Este enfoque busca eliminar los procesos manuales, reducir errores y mejorar la eficiencia en la gestión de las reservas. |
-| Gestión de Disponibilidad | El sistema garantiza la disponibilidad actualizada de las instalaciones deportivas, permitiendo tanto a clientes como al personal verificar la disponibilidad en tiempo real. Esta funcionalidad asegura que las reservas se realicen con precisión y eficiencia. |
-| Experiencia del Usuario | Se prioriza la mejora de la experiencia del usuario mediante una interfaz intuitiva y fácil de usar. La plataforma permitirá a los usuarios visualizar instalaciones disponibles, realizar reservas sin complicaciones y recibir confirmaciones instantáneas. |
-| Chat con Gestor        | Se implementará una función de chat 24/7 para que los clientes puedan comunicarse con los gestores de eventos. Esta característica promueve una comunicación fluida y una atención personalizada durante el proceso de reserva. |
+| Requisito                                     | Descripción                                                                                                                                                                           |
+|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Automatización de Reservas                    | El sistema automatizará la reserva de instalaciones deportivas, eliminando los procesos manuales y reduciendo errores.                                                                 |
+| Gestión de Disponibilidad en Tiempo Real      | Se garantizará la disponibilidad actualizada de las instalaciones deportivas, permitiendo verificar la disponibilidad en tiempo real tanto a clientes como al personal.            |
+| Mejora de la Experiencia del Usuario          | Se implementará una interfaz intuitiva y fácil de usar, permitiendo a los usuarios visualizar instalaciones disponibles y realizar reservas de forma sencilla.                      |
+| Implementación de un Chat con Gestores       | Se incluirá una función de chat 24/7 para que los clientes puedan comunicarse con los gestores de eventos, promoviendo una comunicación fluida durante el proceso de reserva.      |
+
+---
 
 ### 5. PRE-DISEÑO DEL SISTEMA <a name="id5"></a>
 
-El sistema se diseñará utilizando tecnologías modernas que incluyen:
+Para el desarrollo del sistema "SportsEvent", se requerirá nuevo material y software, que incluirá:
 
-- **Backend con Django**: Utilizaremos Django, un framework de alto nivel para Python, para el desarrollo del backend. Django ofrece una estructura sólida y segura para la creación de aplicaciones web escalables y robustas.
-- **Frontend con React**: Para el desarrollo del frontend, emplearemos React, una biblioteca de JavaScript de código abierto mantenida por Facebook. React facilita la creación de interfaces de usuario interactivas y dinámicas.
-- **DigitalOcean para Alojamiento**: Utilizaremos DigitalOcean para el alojamiento del dominio y la creación de una máquina virtual. DigitalOcean ofrece opciones flexibles y escalables para el alojamiento de aplicaciones web, lo que garantiza un rendimiento confiable y una escalabilidad fácil.
+| Componente         | Descripción                                                                                       |
+|--------------------|---------------------------------------------------------------------------------------------------|
+| Backend con Django | Utilizaremos Django, un framework de alto nivel para Python, para el desarrollo del backend.    |
+| Frontend con React | Emplearemos React, una biblioteca de JavaScript de código abierto mantenida por Facebook.        |
+| DigitalOcean       | Utilizaremos DigitalOcean para el alojamiento del dominio y la creación de una máquina virtual.  |
 
+---
 ### 6. ESTIMACIÓN DE COSTES <a name="id6"></a>
 
 #### Temporal:
