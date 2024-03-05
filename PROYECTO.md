@@ -5,16 +5,22 @@
 ### MÓDULO PROYECTO (PRW)
 ### C.F.G.S. Desarrollo de Aplicaciones Web (DAW) 
 
-TÍTULO DEL PROYECTO 
+<img src="logo.png" alt="drawing" style="width:300px;"/>
 
+[![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com) [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/) [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) [![DigitalOcean](https://img.shields.io/badge/DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white)](https://www.digitalocean.com/) 
 </center>
 
 <right>
 
 
-***Autor/es:***  
-***Fecha:***  
-***Tutor:***
++ ***Autor/es:***  
+    - Badel Bonilla Simón
+    - Faybezrdt Ramos Luis
+    - Miguel Carballo González
++ ***Fecha:***  
+    - 05/03/2024
++ ***Tutor:*** 
+    - Alejandro Martín Zarza
 
 
 
