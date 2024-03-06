@@ -4,11 +4,17 @@
 ***
 ### MÓDULO PROYECTO (PRW)
 ### C.F.G.S. Desarrollo de Aplicaciones Web (DAW) 
-
-<img src="logo.png" alt="drawing" style="width:300px;"/>
-
-[![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com) [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/) [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) [![DigitalOcean](https://img.shields.io/badge/DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white)](https://www.digitalocean.com/) 
 </center>
+<p align="center">
+    <img src="logo.png" alt="drawing" style="width:300px;"/>    
+
+
+</p>
+<div align="center">
+    
+[![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com) [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/) [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/) [![DigitalOcean](https://img.shields.io/badge/DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white)](https://www.digitalocean.com/) 
+</div>
+
 
 <right>
 
@@ -55,11 +61,9 @@
 ### 2. ORIGEN, CONTEXTUALIZACIÓN Y JUSTIFICACIÓN DEL PROYECTO. <a name="id2"></a>
 
 <div style="overflow: auto;">
-    <img src="https://octodex.github.com/images/agendacat.png" alt="calendar" style="width:300px; float:left; margin-right: 20px;" /> 
+    <img src="https://octodex.github.com/images/agendacat.png" alt="calendar" align="left" width="100" height="100" /> 
     <p style="text-align: justify;">La idea de este proyecto surge ante la necesidad de proporcionar a otras empresas una solución integral para la organización de eventos deportivos. Se ha detectado que muchas empresas todavía gestionan manualmente las reservas de instalaciones deportivas, lo que puede generar confusiones y problemas de gestión. Esta problemática motiva la búsqueda de una solución automatizada y eficiente que simplifique y mejore este proceso.</p>
 </div>
-
-
 
 ### 3. OBJETIVO GENERAL DEL PROYECTO. <a name="id3"></a>
 <p style="text-align: justify">
@@ -71,7 +75,7 @@
     <p style="text-align: justify; float: left;">
 SportsEvent será una aplicación web compuesta por un backend desarrollado con Django y un frontend implementado con React. La aplicación permitirá a los usuarios visualizar y reservar instalaciones deportivas disponibles, así como gestionar eventos deportivos. Se implementarán características como la gestión de disponibilidad en tiempo real, validación de datos, y un chat con gestores de eventos para resolver cualquier duda o problema. La arquitectura estará basada en microservicios para garantizar la escalabilidad y modularidad del sistema.
 </p>
-    <img src="URL MAP.png" alt="calendar" style="float: right; margin-left: 20px;" /> 
+    <img src="URL MAP.png" alt="calendar" align="right"  /> 
 </div>
 
 
