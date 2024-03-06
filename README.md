@@ -112,6 +112,10 @@ A partir de esta información, RELLENAR LAS TAREAS EN EL TEAM-GANTT (o similar)
 
 Este apartado nos servirá como resumen de alcance, temporalización y coste. Utilizar la información anterior de las tareas, para establecer un resumen de los principales aspectos del proyecto (debería bastar con las tareas principales, y evitar un excesivo detalle de las subtareas). Se puede reflejar con un diagrama de Gantt que podemos sacar de los **PROJECTS** de **GitHub** ( adjuntamos capturas de pantalla )
 
+> [!IMPORTANT]
+> ¡RECORDAR QUE ESTO SE DEBE EDITAR CADA SEMANA!.
+
+ 
 El cronograma del proyecto se muestra a continuación, reflejando las tareas principales y su duración estimada:
 
 | Tareas                           | Duración (horas) | Fecha de Inicio | Fecha de Fin |
@@ -168,6 +172,9 @@ Implementación de pruebas exhaustivas tanto en el desarrollo como en el desplie
 Establecimiento de métricas de calidad y revisión periódica para garantizar el cumplimiento de los estándares establecidos.
 
 ### 10.  CLAUSULAS. <a name="id10"></a>
+
+
+
 Se establece que en caso de retraso en la entrega del proyecto, se aplicará una penalización del 1% del coste total del proyecto por cada día de retraso. Los pagos se realizarán de acuerdo con los hitos del proyecto y estarán sujetos a la aprobación de los entregables por parte del cliente. El control de calidad se llevará a cabo mediante revisiones regulares por parte del equipo de desarrollo y la aceptación final del cliente.
 ### 11.  BIBLIOGRAFÍA. <a name="id11"></a>
 [1] Django Documentation. Disponible en: https://docs.djangoproject.com
