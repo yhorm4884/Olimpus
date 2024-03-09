@@ -1,0 +1,7 @@
+django
+prettyconf
+djangorestframework
+django-filter
+django-qr-code
+markdown
+Faker #Libreria para generar datos random

@@ -9,11 +9,15 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+from prettyconf import config
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,9 +29,25 @@ SECRET_KEY = 'django-insecure-&krn@nwbq65e(upd#u-^7i8)bb5z2j!l-10b9p^(dya7)v3o97
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=config.list)
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+LANGUAGES = [
+ ('en', _('English')),
+ ('es', _('Spanish')),
+]
 
+# Frameworks
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +57,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users.apps.UsersConfig',
+    'activities.apps.ActivitiesConfig',
+    'companies.apps.CompaniesConfig',
+    'rest_framework',  # Django REST Framework para APIs
+    'qr_code',  # Para generar códigos QR
+    'django_filters', 
 ]
 
 MIDDLEWARE = [
@@ -54,7 +80,7 @@ ROOT_URLCONF = 'sportevent.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -121,3 +147,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Email server configuration adapted from your provided settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=config.boolean)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('SMTP_LOGIN_PASSWORD', default='password')
