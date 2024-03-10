@@ -5,3 +5,8 @@ django-filter
 django-qr-code
 markdown
 Faker #Libreria para generar datos random
+django_otp
+django-cors-headers
+Pillow
+qrcode
+phonenumbers

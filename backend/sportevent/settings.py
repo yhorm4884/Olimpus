@@ -31,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=config.list)
 
+
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
@@ -44,9 +45,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
     ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-    ],
+    # 'DEFAULT_RENDERER_CLASSES': [
+    #     'rest_framework.renderers.JSONRenderer',
+    # ],
 }
 # Application definition
 
@@ -61,15 +62,21 @@ INSTALLED_APPS = [
     'activities.apps.ActivitiesConfig',
     'companies.apps.CompaniesConfig',
     'rest_framework',  # Django REST Framework para APIs
-    'qr_code',  # Para generar códigos QR
+    'qrcode',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
     'django_filters', 
+    'corsheaders',
+    
+
 ]
 
 MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -154,3 +161,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=config.boolean)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('SMTP_LOGIN_PASSWORD', default='password')
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+# Configuración de CSRF
+CSRF_COOKIE_SECURE = False  # Deshabilita el uso seguro de la cookie CSRF
+CSRF_COOKIE_HTTPONLY = False
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000']  # Lista de orígenes confiables para CSRF
