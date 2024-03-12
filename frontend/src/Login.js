@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Styles.css';
-
+import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import './argon-design-system-react.css';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -22,15 +22,35 @@ function Login() {
     };
 
     return (
-        <div className="form-container">
-            <h2>Login</h2>
-            {error && <p className="error-message">{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-                <input type="text" value={otpToken} onChange={(e) => setOtpToken(e.target.value)} placeholder="OTP Token" required />
-                <button type="submit">Login</button>
-            </form>
+        <div className="section section-shaped">
+            <Container className="pt-lg-md">
+                <Row className="justify-content-center">
+                    <Col lg="5">
+                        <Card className="bg-secondary shadow border-0">
+                            <CardBody className="px-lg-5 py-lg-5">
+                                {error && <p className="text-danger">{error}</p>}
+                                <Form onSubmit={handleSubmit}>
+                                    <FormGroup className="mb-3">
+                                        <Label for="username" className="form-control-label">Username</Label>
+                                        <Input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" required />
+                                    </FormGroup>
+                                    <FormGroup className="mb-3">
+                                        <Label for="password" className="form-control-label">Password</Label>
+                                        <Input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" required />
+                                    </FormGroup>
+                                    <FormGroup className="mb-3">
+                                        <Label for="otpToken" className="form-control-label">OTP Token</Label>
+                                        <Input type="text" id="otpToken" value={otpToken} onChange={(e) => setOtpToken(e.target.value)} className="form-control" required />
+                                    </FormGroup>
+                                    <div className="text-center">
+                                        <Button type="submit" color="primary" className="my-4">Login</Button>
+                                    </div>
+                                </Form>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }
