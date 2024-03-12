@@ -8,7 +8,6 @@ import base64
 from io import BytesIO
 from .models import Usuario
 from django.contrib.auth import authenticate, login
-from django_otp import devices_for_user
 
 @csrf_exempt
 def register_request(request):
