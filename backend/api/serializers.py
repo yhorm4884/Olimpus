@@ -12,7 +12,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
 class EmpresaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Empresa
-        fields = ['nombre','__all__']
+        fields = '__all__'
 
 class ActividadSerializer(serializers.ModelSerializer):
     participantes_actividad = UsuarioSerializer(many=True)  # Utiliza el serializador de Usuario

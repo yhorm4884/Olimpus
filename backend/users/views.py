@@ -7,9 +7,26 @@ import qrcode
 import base64
 from io import BytesIO
 from .models import Usuario
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.http import require_POST, require_GET
 
-@csrf_exempt
+@require_POST
+def logout_view(request):
+    logout(request)
+    return JsonResponse({'message': 'Sesión cerrada con éxito.'})
+
+@require_GET
+def check_user_authenticated(request):
+    if request.method == 'GET':
+        # Comprobar si el usuario está autenticado
+        if request.user.is_authenticated:
+            # Puedes añadir más lógica aquí si necesitas enviar información adicional
+            return JsonResponse({'isAuthenticated': True})
+        else:
+            return JsonResponse({'isAuthenticated': False})
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
+
 def register_request(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -48,23 +65,23 @@ def register_request(request):
     return JsonResponse({'error': 'Invalid Request'}, status=405)
 
 
-@csrf_exempt
 def login_view(request):
-    if request.method == 'GET':
-        username = request.GET.get('username')
-        password = request.GET.get('password')
-        otp_token = request.GET.get('otp_token')
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        username = data.get('username')
+        password = data.get('password')
+        otp_token = data.get('otp_token')
 
         # Autenticación básica de usuario
         user = authenticate(username=username, password=password)
-
+        
         if user is not None:
             # Obtiene el dispositivo TOTP asociado al usuario
-            device = TOTPDevice.objects.filter(user=user).first()
+            device = TOTPDevice.objects.filter(user=user, name='default').first()
             if device:
                 # Verifica el token OTP
                 if device.verify_token(otp_token):
-                    login(request, user)
+                    login(request, user)  # Esto establecerá la sesión para el usuario
                     return JsonResponse({'success': 'User authenticated'})
                 else:
                     return JsonResponse({'error': 'Invalid OTP token'}, status=400)
