@@ -10,3 +10,4 @@ django-cors-headers
 Pillow
 qrcode
 phonenumbers
+rest_framework_simplejwt

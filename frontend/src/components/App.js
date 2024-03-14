@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     fetch('http://127.0.0.1:8000/users/check_user_authenticated/', {
       method: 'GET',
-      credentials: 'include',
+      credentials: 'include', // Importante para las cookies de sesión
     })
     .then((response) => response.json())
     .then((data) => {

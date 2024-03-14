@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, Alert, Tooltip } from 'reactstrap';
-import './argon-design-system-react.css';
+import './css/argon-design-system-react.css';
+import './css/propio-css.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -13,6 +18,7 @@ function Register() {
     const [alert, setAlert] = useState({ visible: false, color: '', message: '' });
     const [tooltipOpen, setTooltipOpen] = useState({});
     const [fieldErrors, setFieldErrors] = useState({ username: false, telefono: false, DNI: false, correo: false, password1: false, password2: false });
+    const [showPassword, setShowPassword] = useState({ password1: false, password2: false });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -50,27 +56,28 @@ function Register() {
             return;
         }
         const data = { username, telefono, DNI, correo, password1, password2, tipo_usuario: 'cliente', estado: 'activo' };
-        const response = await fetch('http://127.0.0.1:8000/users/register/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            setQrCode(result.qr_code);
-            setAlert({ visible: true, color: 'success', message: 'Registro exitoso' });
-        } else {
-            response.json().then(data => {
-                setAlert({ visible: true, color: 'danger', message: `Registro fallido: ${data.errors}` });
-            });
+    
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/users/register/', data, { withCredentials: true });
+    
+            if (response.status === 201) {
+                const result = response.data;
+                setQrCode(result.qr_code);
+                setAlert({ visible: true, color: 'success', message: 'Registro exitoso. Por favor, escanea el QR para completar la configuración 2FA.' });
+            }
+        } catch (error) {
+            console.error('Registro fallido:', error.response || error);
+            const errorMessage = error.response?.data?.errors || 'Error desconocido al registrar.';
+            setAlert({ visible: true, color: 'danger', message: `Registro fallido: ${errorMessage}` });
         }
     };
+    
 
-    const renderInput = (name, type, placeholder, labelText, tooltipText, value, setValue) => (
-        <FormGroup className="mb-3">
+    const renderInput = (name, type, placeholder, labelText, tooltipText, value) => (
+        <FormGroup className="mb-3 position-relative">
             <Label for={name}>
-                {labelText} <span style={{ fontWeight: "bold", cursor: "pointer" }} id={`${name}Tooltip`}>?</span>
+                {labelText} <span className="text-danger">*</span>
+                <span style={{ fontWeight: "bold", cursor: "pointer" }} id={`${name}Tooltip`}>?</span>
                 <Tooltip
                     placement="right"
                     isOpen={tooltipOpen[`${name}Tooltip`]}
@@ -81,7 +88,7 @@ function Register() {
                 </Tooltip>
             </Label>
             <Input
-                type={type}
+                type={type !== 'password' ? type : showPassword[name] ? 'text' : 'password'}
                 name={name}
                 id={name}
                 placeholder={placeholder}
@@ -89,9 +96,18 @@ function Register() {
                 onChange={handleChange}
                 invalid={fieldErrors[name]}
             />
+            {type === 'password' && (
+                <span
+                    onClick={() => setShowPassword({ ...showPassword, [name]: !showPassword[name] })}
+                    style={{ position: 'absolute', right: '10px', top: 'calc(40% - -10px)', cursor: 'pointer', zIndex: 5 }}
+                >
+                    <FontAwesomeIcon icon={showPassword[name] ? faEyeSlash : faEye} />
+                </span>
+            )}
+            {fieldErrors[name] && <p className="text-danger">Este campo es obligatorio.</p>}
         </FormGroup>
     );
-
+      
     return (
         <div className="section section-shaped">
             <Container className="pt-lg-md">
@@ -99,6 +115,7 @@ function Register() {
                     <Col lg="5">
                         <Card className="bg-secondary shadow border-0">
                             <CardBody className="px-lg-5 py-lg-5">
+                                <h2 className="text-center mb-4">Registro</h2>
                                 {alert.visible && <Alert color={alert.color}>{alert.message}</Alert>}
                                 <Form onSubmit={handleSubmit}>
                                     {renderInput('username', 'text', 'Nombre de usuario', 'Nombre de usuario', 'Escribe tu nombre de usuario.', username, setUsername)}
@@ -114,7 +131,7 @@ function Register() {
                                 {qrCode && (
                                     <div className="mt-4">
                                         <p>Escanea este código QR con tu aplicación de autenticación 2FA:</p>
-                                        <img src={`data:image/png;base64,${qrCode}`} alt="Código QR 2FA" />
+                                        <img src={`data:image/png;base64,${qrCode}`} alt="Código QR 2FA" className="qr-code"/>
                                     </div>
                                 )}
                             </CardBody>

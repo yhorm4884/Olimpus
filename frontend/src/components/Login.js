@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {
   Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, Alert, Tooltip, FormFeedback
 } from 'reactstrap';
-import './argon-design-system-react.css';
-import CSRFToken from './csrftoken'; // Asegúrate de que la ruta de importación sea correcta
-import getCookie from './csrftoken';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import './css/argon-design-system-react.css';
+import './css/propio-css.css';
+
+axios.defaults.withCredentials = true;
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 function Login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -16,11 +23,14 @@ function Login() {
   const [errors, setErrors] = useState({});
   const [alertMessage, setAlertMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState({
     username: false,
     password: false,
     otpToken: false,
   });
+
+  const imageContainerRef = useRef(null);
 
   const toggleTooltip = (field) => {
     setTooltipOpen({ ...tooltipOpen, [field]: !tooltipOpen[field] });
@@ -63,44 +73,58 @@ function Login() {
     }
 
     try {
-        
-        const response = await fetch('http://127.0.0.1:8000/users/login/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken'),
-            },
-            body: JSON.stringify(credentials),
-            credentials: 'include',
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            navigate('/');
-        } else {
-            setAlertMessage(data.error || 'Error durante el inicio de sesión');
-            setShowAlert(true);
-        }
+      await axios.get("http://127.0.0.1:8000/api/setcsrf/");
+      const loginResponse = await axios.post("http://127.0.0.1:8000/users/login/", {
+        username: credentials.username,
+        password: credentials.password,
+        otpToken: credentials.otpToken,
+      });
+      
+      console.log('Autenticación exitosa:', loginResponse.data);
+      navigate('/');
+      window.location.reload();
     } catch (error) {
-        console.error('Error al conectar con el servidor:', error);
-        setAlertMessage('Error al conectar con el servidor');
-        setShowAlert(true);
+      console.error('Error en la autenticación:', error.response ? error.response.data : error);
+      setAlertMessage('Fallo en la autenticación. Por favor, verifica tus credenciales.');
+      setShowAlert(true);
     }
   };
+  useEffect(() => {
+    const container = imageContainerRef.current;
+    
+    const handleMouseMove = (e) => {
+      const { left, top, width, height } = container.getBoundingClientRect();
+      // Calcula el porcentaje del desplazamiento del ratón desde el centro, pero invierte la dirección
+      const x = -(e.clientX - left - width / 2) / width * 20; // Reduce la sensibilidad y cambia la dirección
+      const y = -(e.clientY - top - height / 2) / height * 20; // Reduce la sensibilidad y cambia la dirección
+  
+      const img = container.querySelector('.crop-image');
+      // Aplica el desplazamiento con suavizado para evitar movimientos bruscos
+      img.style.transform = `translate(${x}px, ${y}px)`; // Usa píxeles en lugar de porcentajes para un control más fino
+    };
+  
+    container.addEventListener('mousemove', handleMouseMove);
+  
+    // Limpieza al desmontar
+    return () => container.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+  
+  
   return (
     <Container className="py-5">
       <Row className="justify-content-center align-items-center">
         <Col lg="6">
-          <img src="https://via.placeholder.com/500" alt="Imagen de Gym o Deporte" className="img-fluid" /> 
+          
+          <div className="crop-container px-lg-5 py-lg-5" ref={imageContainerRef}>
+            {/* <img src="https://via.placeholder.com/500" alt="Imagen de Gym o Deporte" className="img-fluid" />  */}
+            <img src="./media/prueba.jpg" alt="Imagen de Gym o Deporte" className="crop-image" />
+          </div>
         </Col>
         <Col lg="6">
           <Card className="bg-secondary shadow border-0">
             <CardBody className="px-lg-5 py-lg-5">
               {showAlert && <Alert color="danger">{alertMessage}</Alert>}
               <Form onSubmit={handleSubmit}>
-              <CSRFToken />
-
                 <FormGroup>
                   <Label for="username">Nombre de usuario <span className="text-danger">*</span>
                     <span id="UsernameTooltip" style={{ textDecoration: "underline", cursor: "pointer" }}>?</span>
@@ -134,14 +158,22 @@ function Login() {
                       Introduce tu contraseña.
                     </Tooltip>
                   </Label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    onChange={handleChange}
-                    value={credentials.password}
-                    invalid={!!errors.password}
-                  />
+                  <div className="position-relative">
+                    <Input
+                      id="password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      onChange={handleChange}
+                      value={credentials.password}
+                      invalid={!!errors.password}
+                    />
+                    <span
+                      onClick={() => setShowPassword(!showPassword)}
+                      style={{ position: 'absolute', right: '10px', top: 'calc(50% - 10px)', cursor: 'pointer' }}
+                    >
+                      <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                    </span>
+                  </div>
                   <FormFeedback>{errors.password}</FormFeedback>
                 </FormGroup>
                 <FormGroup>
