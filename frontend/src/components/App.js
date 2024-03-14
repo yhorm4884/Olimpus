@@ -5,6 +5,9 @@ import Home from './Home';
 import Login from './Login';
 import Register from './Register';
 import Logout from './Logout';
+import Dashboard from './Dashboard';
+import UsersSection from './UserSection';
+import NotFound from './NotFound';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -49,6 +52,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/users" element={<UsersSection />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>
