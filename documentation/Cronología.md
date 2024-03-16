@@ -4,7 +4,7 @@
 - Este proyecto se desarrollará en un período de dos meses donde estará divido en tres partes que recibirán el nombre de Sprint; los cuales delimitarán la finalización y cumplimientos de los plazos.
 - Este proyecto se realizará utilizando Django para el backend y React para el frontend.
 
-## SPRINT 1
+## SPRINT 1 (12 de Marzo - 25 de Marzo)
 ### Semana 1: Planificación y Diseño
 
 #### Día 1: Planificación del Proyecto
@@ -27,7 +27,7 @@
 - **Badel**: Implementación de sistemas de autenticación y autorización.
 - **Afellay y Miguel**: Pruebas iniciales de la API.
 
-## SPRINT 2
+## SPRINT 2 (25 de Marzo - 10 de Abril)
 ### Semana  2 y 3: Estructura y Diseño de Interfaces
 - **Miguel**: Creación de componentes React para las interfaces de usuario.
 - **Afellay y Badel**: Apoyo en la integración con el backend.
@@ -40,12 +40,12 @@
 
 - **TODOS** trabajan en la integración completa del frontend con el backend, pruebas de funcionalidades completas, resolución de problemas y optimización del rendimiento.
 
-## SPRINT 3
+## SPRINT 3 (10 de Abril - 25 de Abril)
 
 ### Semana 7: Pruebas de Usuario y Feedback
 - **Afellay y Miguel**: Realización de pruebas de aceptación del usuario e implementación de correcciones y mejoras.
 - **Badel**: Supervisor de las actividades y funcionalidades realizadas por Afellay y Miguel
 
 ### Semana 8: Documentación y Capacitación
-- **Afellay y Badel**: Creación de documentación técnica y de usuario.
+- **Afellay y Badel**: Culminación de documentación técnica y de usuario.
 - **Miguel**: Preparación de materiales de capacitación para los usuarios finales.
