@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.permissions import AllowAny
 from django.middleware.csrf import get_token
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.http import JsonResponse
 from .models import Usuario
 from io import BytesIO
@@ -79,7 +80,11 @@ def login_view(request):
         print(otp_token)
         if device and device.verify_token(otp_token):
             login(request, user)  # Esto establecerá la sesión para el usuario
-            return JsonResponse({'success': 'User authenticated','id':user.id,}, status=200)
+            
+            actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
+            print("actividades: ",actividades)
+            print("user: ",user.usuario.id)
+            return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
         else:
             # Maneja el caso donde el dispositivo TOTP no existe o el token OTP es inválido
             return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
@@ -92,3 +97,35 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return JsonResponse({'csrfToken': get_token(request)})
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def forgot_password(request):
+    email = request.data.get('email')
+    user = User.objects.filter(email=email).first()
+
+    if user:
+        # Genera y envía el correo para restablecer la contraseña (implementa tu lógica aquí)
+        send_mail(
+            'Restablecimiento de contraseña',
+            'Sigue este enlace para restablecer tu contraseña.',
+            'from@example.com',
+            [email],
+            fail_silently=False,
+        )
+
+        # Generar y enviar el nuevo código QR para TOTP
+        device, created = TOTPDevice.objects.get_or_create(user=user, defaults={'name': 'default', 'confirmed': True})
+        if not created:
+            # Regenera el código QR si el dispositivo ya existía
+            device.generate_challenge()
+        
+        qr = qrcode.make(device.config_url)
+        buf = BytesIO()
+        qr.save(buf, format="PNG")
+        qr_code = base64.b64encode(buf.getvalue()).decode()
+
+        # Envía la respuesta con el código QR
+        return JsonResponse({'qr_code': qr_code})
+
+    return JsonResponse({'message': 'Si existe una cuenta con ese correo, se han enviado instrucciones para restablecer la contraseña.'})

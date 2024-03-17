@@ -34,13 +34,14 @@ class Empresa(models.Model):
     id_empresa = models.AutoField(primary_key=True)
     codigo_empresa = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
-    cif = models.CharField(max_length=9, validators=[validar_cif])
+    # cif = models.CharField(max_length=9, validators=[validar_cif])
+    cif = models.CharField(max_length=9)
     usuarios = models.ManyToManyField('users.Usuario', related_name='empresas', verbose_name=_('Usuarios'))
     direccion = models.CharField(max_length=100)
 
-    def clean(self):
-        # Método de validación personalizada para validar el CIF
-        validar_cif(self.cif)
+    # def clean(self):
+    #     # Método de validación personalizada para validar el CIF
+    #     validar_cif(self.cif)
     
     def __str__(self) -> str:
         return f"{self.id_empresa} - {self.cif} "

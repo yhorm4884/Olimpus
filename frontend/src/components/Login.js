@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 import {
   Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, Alert, Tooltip, FormFeedback
 } from 'reactstrap';
@@ -81,9 +82,7 @@ function Login() {
       });
       
       console.log('Autenticación exitosa:', loginResponse.data.id);
-      const userid = loginResponse.data.id
-      // navigate('/');
-      // window.location.reload();
+      navigate(`/dashboard?userId=${loginResponse.data.id}`);
     } catch (error) {
       console.error('Error en la autenticación:', error.response ? error.response.data : error);
       setAlertMessage('Fallo en la autenticación. Por favor, verifica tus credenciales.');

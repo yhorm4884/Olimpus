@@ -23,19 +23,21 @@ class UsuarioViewSet(viewsets.ModelViewSet):
     serializer_class = UsuarioSerializer
 
 class EmpresaViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [SessionAuthentication]
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = [SessionAuthentication]
+   
 
     # def get_queryset(self):
     #     return self.queryset.filter(client=self.request.user.client)
 
 class ActividadViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [SessionAuthentication]
     queryset = Actividad.objects.all()
     serializer_class = ActividadSerializer
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = [SessionAuthentication]
+    
 
     # def get_queryset(self):
     #     return self.queryset.filter(client=self.request.user.client)
