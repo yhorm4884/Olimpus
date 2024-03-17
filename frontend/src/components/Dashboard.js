@@ -1,11 +1,29 @@
 // src/components/Dashboard.js
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import UsersSection from './UserSection';
 import { Link } from 'react-router-dom';
 import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
+import axios from 'axios';
 
 export default function Dashboard() {
+  axios.defaults.withCredentials = true;
+  axios.defaults.xsrfCookieName = 'csrftoken';
+  axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+  useEffect(() => {
+    var url = 'http://127.0.0.1:8000/api/usuarios/'+userid+'/'
+    axios.get(url, {
+      method: 'GET',
+      credentials: 'include', // Importante para las cookies de sesión
+    })
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.error('Error fetching auth status:', error);
+    });
+  }, []);
   return (
     <div>
       <Grid container spacing={2}>

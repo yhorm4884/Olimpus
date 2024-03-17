@@ -80,9 +80,10 @@ function Login() {
         otpToken: credentials.otpToken,
       });
       
-      console.log('Autenticación exitosa:', loginResponse.data);
-      navigate('/');
-      window.location.reload();
+      console.log('Autenticación exitosa:', loginResponse.data.id);
+      const userid = loginResponse.data.id
+      // navigate('/');
+      // window.location.reload();
     } catch (error) {
       console.error('Error en la autenticación:', error.response ? error.response.data : error);
       setAlertMessage('Fallo en la autenticación. Por favor, verifica tus credenciales.');

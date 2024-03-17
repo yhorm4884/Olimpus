@@ -17,6 +17,7 @@ import json
 @permission_classes([AllowAny])
 def check_user_authenticated(request):
     is_authenticated = request.user.is_authenticated
+    print(is_authenticated)
     return JsonResponse({'isAuthenticated': is_authenticated})
 
 @api_view(['POST'])
@@ -78,7 +79,7 @@ def login_view(request):
         print(otp_token)
         if device and device.verify_token(otp_token):
             login(request, user)  # Esto establecerá la sesión para el usuario
-            return JsonResponse({'success': 'User authenticated'}, status=200)
+            return JsonResponse({'success': 'User authenticated','id':user.id,}, status=200)
         else:
             # Maneja el caso donde el dispositivo TOTP no existe o el token OTP es inválido
             return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)

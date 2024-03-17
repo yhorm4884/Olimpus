@@ -173,7 +173,7 @@ CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000',]
-CORS_ALLOWED_ORIGINS = [
+CORS_ALLOWED_WHITELIST = [
     'http://localhost:3000',
     'http://localhost:8000',
 ]
