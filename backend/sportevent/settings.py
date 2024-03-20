@@ -42,17 +42,17 @@ LANGUAGES = [
 ]
 
 # Frameworks
-REST_FRAMEWORK = {
-     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-      ],
-      'DEFAULT_PERMISSION_CLASSES':[
-        'rest_framework.permissions.IsAuthenticated'
-    ]
-    # 'DEFAULT_RENDERER_CLASSES': [
-    #     'rest_framework.renderers.JSONRenderer',
-    # ],
-}
+# REST_FRAMEWORK = {
+#      'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.SessionAuthentication',
+#       ],
+#       'DEFAULT_PERMISSION_CLASSES':[
+#         'rest_framework.permissions.IsAuthenticated'
+#     ]
+#     # 'DEFAULT_RENDERER_CLASSES': [
+#     #     'rest_framework.renderers.JSONRenderer',
+#     # ],
+# }
 
 # Application definition
 
@@ -161,9 +161,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=config.boolean)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('SMTP_LOGIN_PASSWORD', default='password')
+EMAIL_HOST_USER = 'badbonsim@gmail.com'
+EMAIL_HOST_PASSWORD = 'xqoslwlyktqrdmxa'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True

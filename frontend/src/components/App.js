@@ -8,6 +8,9 @@ import Logout from './Logout';
 import Dashboard from './Dashboard';
 import UsersSection from './UserSection';
 import NotFound from './NotFound';
+import ForgotPassword from './ForgotPassword';
+import ResetPasswordPage from './ResetPasswordPage';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -54,6 +57,8 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/users" element={<UsersSection />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:uidb64/:token" element={<ResetPasswordPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

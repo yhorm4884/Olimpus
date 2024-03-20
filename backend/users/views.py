@@ -1,10 +1,16 @@
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from rest_framework.decorators import api_view, permission_classes
+from django.contrib.auth.tokens import default_token_generator
 from django_otp.plugins.otp_totp.models import TOTPDevice
-from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_protect
+from django.template.loader import render_to_string
 from rest_framework.permissions import AllowAny
+from django.utils.encoding import force_bytes
+from django.utils.encoding import force_str
 from django.middleware.csrf import get_token
 from django.contrib.auth.models import User
+from django.utils.html import strip_tags
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from .models import Usuario
@@ -98,6 +104,7 @@ def logout_view(request):
     logout(request)
     return JsonResponse({'csrfToken': get_token(request)})
 
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def forgot_password(request):
@@ -105,27 +112,60 @@ def forgot_password(request):
     user = User.objects.filter(email=email).first()
 
     if user:
-        # Genera y envía el correo para restablecer la contraseña (implementa tu lógica aquí)
-        send_mail(
-            'Restablecimiento de contraseña',
-            'Sigue este enlace para restablecer tu contraseña.',
-            'from@example.com',
-            [email],
-            fail_silently=False,
-        )
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+        token = default_token_generator.make_token(user)
 
-        # Generar y enviar el nuevo código QR para TOTP
-        device, created = TOTPDevice.objects.get_or_create(user=user, defaults={'name': 'default', 'confirmed': True})
-        if not created:
-            # Regenera el código QR si el dispositivo ya existía
-            device.generate_challenge()
-        
-        qr = qrcode.make(device.config_url)
-        buf = BytesIO()
-        qr.save(buf, format="PNG")
-        qr_code = base64.b64encode(buf.getvalue()).decode()
+        domain = '127.0.0.1:3000'
+        reset_link = f"http://{domain}/reset-password/{uidb64}/{token}"
 
-        # Envía la respuesta con el código QR
-        return JsonResponse({'qr_code': qr_code})
+        context = {'reset_link': reset_link}
+        subject = 'Restablecimiento de Contraseña'
+        html_message = render_to_string('emails/password_reset.html', context)
+        plain_message = strip_tags(html_message)
+        from_email = 'from@example.com'
 
-    return JsonResponse({'message': 'Si existe una cuenta con ese correo, se han enviado instrucciones para restablecer la contraseña.'})
+        send_mail(subject, plain_message, from_email, [email], html_message=html_message)
+
+        return JsonResponse({'message': 'Si tu correo electrónico está registrado, se han enviado instrucciones para restablecer tu contraseña.'})
+
+    return JsonResponse({'error': 'No se pudo enviar el correo de restablecimiento de contraseña.'})
+
+
+@api_view(['GET'])
+def serve_qr_code(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+
+        if user is not None and default_token_generator.check_token(user, token):
+            device, _ = TOTPDevice.objects.get_or_create(user=user, name='default')
+            img = qrcode.make(device.config_url)
+            buffer = BytesIO()
+            img.save(buffer, format="PNG")
+            qr_code_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+            return JsonResponse({'qr_code': qr_code_base64})
+        else:
+            return JsonResponse({'error': 'Token inválido o expirado.'}, status=400)
+    except Exception as e:
+        return JsonResponse({'error': 'Error al generar el código QR.'}, status=500)
+
+    
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def reset_password_confirm(request):
+    uidb64 = request.data.get('uidb64')
+    token = request.data.get('token')
+    new_password = request.data.get('new_password')
+
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.set_password(new_password)
+        user.save()
+        return JsonResponse({'success': 'La contraseña ha sido actualizada correctamente.'}, status=200)
+    else: 
+        return JsonResponse({'error': 'El token de restablecimiento de contraseña no es válido o ha expirado.'}, status=400)

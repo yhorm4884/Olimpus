@@ -10,6 +10,11 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('register/', views.register_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+    path('forgot-password/', views.forgot_password, name='forgot-password'),
+    path('reset-password-confirm/', views.reset_password_confirm, name='reset-password-confirm'),
+    path('serve-qr-code/<uidb64>/<token>/', views.serve_qr_code, name='serve-qr-code'),
+
+
 
 ]
 if settings.DEBUG:
