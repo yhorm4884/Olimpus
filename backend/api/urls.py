@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UsuarioViewSet, EmpresaViewSet, ActividadViewSet
+from .views import UsuarioViewSet, EmpresaViewSet, ActividadViewSet, set_csrf_cookie
 
 # Define el enrutador
 router = DefaultRouter()
@@ -14,4 +14,6 @@ router.register(r'actividades', ActividadViewSet)
 urlpatterns = [
     # Agrega las rutas del enrutador a las rutas principales
     path('', include(router.urls)),
+    path('setcsrf/', set_csrf_cookie, name='set-csrf-cookie'),
+
 ]

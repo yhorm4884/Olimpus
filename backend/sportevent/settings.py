@@ -18,7 +18,8 @@ from django.utils.translation import gettext_lazy as _
 BASE_DIR = Path(__file__).resolve().parent.parent
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -41,14 +42,18 @@ LANGUAGES = [
 ]
 
 # Frameworks
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-    ],
-    # 'DEFAULT_RENDERER_CLASSES': [
-    #     'rest_framework.renderers.JSONRenderer',
-    # ],
-}
+# REST_FRAMEWORK = {
+#      'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.SessionAuthentication',
+#       ],
+#       'DEFAULT_PERMISSION_CLASSES':[
+#         'rest_framework.permissions.IsAuthenticated'
+#     ]
+#     # 'DEFAULT_RENDERER_CLASSES': [
+#     #     'rest_framework.renderers.JSONRenderer',
+#     # ],
+# }
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -67,14 +72,12 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     'django_filters', 
     'corsheaders',
-    
-
 ]
 
 MIDDLEWARE = [
-    'django.middleware.csrf.CsrfViewMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware', 
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -158,13 +161,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=config.boolean)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('SMTP_LOGIN_PASSWORD', default='password')
+EMAIL_HOST_USER = 'badbonsim@gmail.com'
+EMAIL_HOST_PASSWORD = 'xqoslwlyktqrdmxa'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 # Configuración de CSRF
-CSRF_COOKIE_SECURE = False  # Deshabilita el uso seguro de la cookie CSRF
-CSRF_COOKIE_HTTPONLY = False
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000']  # Lista de orígenes confiables para CSRF
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000',]
+CORS_ALLOWED_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+]

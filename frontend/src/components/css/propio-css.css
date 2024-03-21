@@ -1,0 +1,35 @@
+.crop-container {
+    width: 100%; /* Ancho fijo para el contenedor */
+    overflow: hidden;
+    position: relative; /* Importante para posicionar la imagen absolutamente dentro */
+    border-radius: 15px; /* Recorte en las esquinas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
+    margin: 20px auto; /* Centrado y espacio alrededor del contenedor */
+    display: grid;
+    place-items: center;
+  }
+  
+  .crop-image {
+    transition: transform 0.8s ease-out; /* Ajusta la duración y la curva de velocidad según necesites */
+    width: 150%;
+  }
+  
+
+@media (max-width: 899px) {
+.crop-container {
+    height: auto; /* Altura auto para mantener la imagen completamente visible */
+    padding: 20px; /* Ajusta si deseas padding dentro del contenedor */
+}
+.crop-image {
+    position: relative; /* Posicionamiento relativo para ajuste en pantallas pequeñas */
+    height: auto;
+}
+}
+  
+.qr-code {
+    max-width: 150px; /* Ajusta esto según tus necesidades */
+    max-height: 150px;
+    transform: translate(-50%, -50%); /* Centra la imagen en el contenedor */
+
+
+}

@@ -1,14 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-class ParticipanteActividad(models.Model):
-    usuario = models.ForeignKey('users.Usuario', on_delete=models.CASCADE)
-    actividad = models.ForeignKey('activities.Actividad', on_delete=models.CASCADE)
-    fecha_inscripcion = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ('usuario', 'actividad')
-
 class Actividad(models.Model):
     codigo_actividad = models.CharField(max_length=100, verbose_name=_('Código de Actividad'))
     nombre = models.CharField(max_length=100, verbose_name=_('Nombre'))
