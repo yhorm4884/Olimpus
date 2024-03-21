@@ -24,8 +24,13 @@ import json
 @permission_classes([AllowAny])
 def check_user_authenticated(request):
     is_authenticated = request.user.is_authenticated
-    print(is_authenticated)
-    return JsonResponse({'isAuthenticated': is_authenticated})
+    if is_authenticated:
+        # El usuario está autenticado, devolver también el ID del usuario.
+        user_id = request.user.usuario.id
+        return JsonResponse({'isAuthenticated': is_authenticated, 'userId': user_id})
+    else:
+        # El usuario no está autenticado, solo devolver el estado.
+        return JsonResponse({'isAuthenticated': is_authenticated})
 
 @api_view(['POST'])
 @permission_classes([AllowAny])

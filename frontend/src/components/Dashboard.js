@@ -1,74 +1,50 @@
-// src/components/Dashboard.js
-import React, {useEffect} from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import UsersSection from './UserSection';
-import { Link } from 'react-router-dom';
-import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
+import React, { useEffect, } from 'react';
 import axios from 'axios';
+import { Box, Grid, Paper, Typography, Button } from '@mui/material';
+import { useParams  } from 'react-router-dom';
 
 function Dashboard() {
-  axios.defaults.withCredentials = true;
-  axios.defaults.xsrfCookieName = 'csrftoken';
-  axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-
-  const location = useLocation();
-  // Llama a useLocation directamente en el nivel superior del componente
-  const queryParams = new URLSearchParams(location.search); // Crea URLSearchParams basado en la ubicación actual
-  const userId = queryParams.get('userId'); // Obtiene el userId de los parámetros de la URL
+  const { userId } = useParams(); // Obtiene userId de la ruta
 
   useEffect(() => {
-    if (userId) { // Asegúrate de que userId esté presente
-      var url = `http://127.0.0.1:8000/api/usuarios/${userId}/`;
+    console.log(userId)
+    if (userId) {
+      const url = `http://127.0.0.1:8000/api/usuarios/${userId}/`;
       axios.get(url, {
-        method: 'GET',
-        credentials: 'include', // Importante para las cookies de sesión
+        withCredentials: true,
       })
-      .then((response) => {
-        console.log("Actividades recibidas:", response.data);
-        
+      .then(response => {
+        console.log(response.data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error fetching user data:', error);
       });
     }
   }, [userId]);
+
   return (
-    <div>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">Usuarios</Typography>
-              <Typography color="textSecondary">Administrar usuarios</Typography>
-              <Button component={Link} to="/dashboard/users" variant="contained" color="primary" style={{ marginTop: '10px' }}>Ir a Usuarios</Button>
-            </CardContent>
-          </Card>
+    <Box sx={{ flexGrow: 1, p: 3 }}>
+      <Typography variant="h4" gutterBottom>Dashboard</Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 3, textAlign: 'center' }}>
+            <Typography variant="h6">Perfil del Usuario</Typography>
+            <Button component="a" href={`/dashboard/profile/${userId}`} style={{ marginTop: '10px' }}>
+              Ver Perfil
+            </Button>
+          </Paper>
         </Grid>
-        <Grid item xs={12} sm={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">Empresa</Typography>
-              <Typography color="textSecondary">Administrar usuarios</Typography>
-              <Button component={Link} to="/dashboard/users" variant="contained" color="primary" style={{ marginTop: '10px' }}>Ir a Usuarios</Button>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">Usuarios</Typography>
-              <Typography color="textSecondary">Actividades</Typography>
-              <Button component={Link} to="/dashboard/users" variant="contained" color="primary" style={{ marginTop: '10px' }}>Ir a Usuarios</Button>
-            </CardContent>
-          </Card>
+        <Grid item xs={12} md={6}>
+          <Paper sx={{ p: 3, textAlign: 'center' }}>
+            <Typography variant="h6">Calendario de Actividades</Typography>
+            <Button component="a" href="/dashboard/activities" style={{ marginTop: '10px' }}>
+              Ver Actividades
+            </Button>
+          </Paper>
         </Grid>
       </Grid>
-      
-      <Routes>
-        <Route path="users" element={<UsersSection />} />
-        {/* Aquí puedes añadir más rutas para otras secciones del dashboard */}
-      </Routes>
-    </div>
+    </Box>
   );
 }
+
 export default Dashboard;

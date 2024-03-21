@@ -2,9 +2,17 @@ from rest_framework import serializers
 from activities.models import Actividad
 from users.models import Usuario
 from companies.models import Empresa
+from django.contrib.auth.models import User
+from rest_framework import serializers
 
-# Serializador simplificado para Usuario, para evitar la recursión infinita en ActividadSerializer
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
 class UsuarioSimpleSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)  
+
     class Meta:
         model = Usuario
         fields = ['id', 'DNI', 'telefono', 'tipo_usuario', 'estado', 'photo', 'user']

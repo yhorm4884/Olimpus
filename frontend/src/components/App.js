@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink as RSNavLink } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
 import Logout from './Logout';
 import Dashboard from './Dashboard';
-import UsersSection from './UserSection';
+import UserProfile from './UserProfile';
+import ActivityCalendar from './ActivityCalendar';
 import NotFound from './NotFound';
 import ForgotPassword from './ForgotPassword';
 import ResetPasswordPage from './ResetPasswordPage';
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authState, setAuthState] = useState({ isAuthenticated: false, userId: null });
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/users/check_user_authenticated/', {
       method: 'GET',
-      credentials: 'include', // Importante para las cookies de sesión
+      credentials: 'include',
     })
-    .then((response) => response.json())
-    .then((data) => {
-      setIsAuthenticated(data.isAuthenticated);
+    .then(response => response.json())
+    .then(data => {
+      
+      setAuthState({ isAuthenticated: data.isAuthenticated, userId: data.userId || null });
     })
-    .catch((error) => {
-      console.error('Error fetching auth status:', error);
-    });
+    .catch(error => console.error('Error fetching auth status:', error));
   }, []);
 
   return (
@@ -35,17 +35,23 @@ function App() {
         <Navbar color="dark" dark expand="md">
           <NavbarBrand href="/">SPORTEVENTS</NavbarBrand>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <RSNavLink to="/" tag={NavLink} className="nav-link">Inicio</RSNavLink>
-            </NavItem>
-            {!isAuthenticated && (
+            {authState.isAuthenticated ? (
               <NavItem>
-                <RSNavLink to="/login" tag={NavLink} className="nav-link">Iniciar sesión</RSNavLink>
+                <NavLink to={`/dashboard/user/${authState.userId}`} className="nav-link">Inicio</NavLink>
+              </NavItem>
+            ) : (
+              <NavItem>
+                <NavLink to="/" className="nav-link">Inicio</NavLink>
               </NavItem>
             )}
-            {isAuthenticated && (
+            {!authState.isAuthenticated && (
               <NavItem>
-                <RSNavLink to="/logout" tag={NavLink} className="nav-link">Cerrar sesión</RSNavLink>
+                <NavLink to="/login" className="nav-link">Iniciar sesión</NavLink>
+              </NavItem>
+            )}
+            {authState.isAuthenticated && (
+              <NavItem>
+                <NavLink to="/logout" className="nav-link">Cerrar sesión</NavLink>
               </NavItem>
             )}
           </Nav>
@@ -55,10 +61,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/users" element={<UsersSection />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:uidb64/:token" element={<ResetPasswordPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/user/:userId" element={<Dashboard />} />
+          <Route path="/dashboard/profile/:userId" element={<UserProfile />} />
+          <Route path="/dashboard/activities" element={<ActivityCalendar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
