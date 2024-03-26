@@ -123,6 +123,7 @@ function Login() {
         <Col lg="6">
           <Card className="bg-secondary shadow border-0">
             <CardBody className="px-lg-5 py-lg-5">
+              <h2 className="text-center mb-4">Iniciar Sesión</h2>
               {showAlert && <Alert color="danger">{alertMessage}</Alert>}
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
