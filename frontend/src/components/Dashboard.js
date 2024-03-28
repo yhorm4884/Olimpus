@@ -15,7 +15,7 @@ function Dashboard() {
         withCredentials: true,
       })
       .then(response => {
-        console.log(response.data);
+        console.log("Datos",response.data);
       })
       .catch(error => {
         console.error('Error fetching user data:', error);

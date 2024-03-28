@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
-from django.core.files.storage import FileSystemStorage
+from django.core.validators import FileExtensionValidator
 
 # Definición de validadores, si aún los necesitas
 dni_validator = RegexValidator(
@@ -14,9 +14,6 @@ telefono_validator = RegexValidator(
     regex=r"^\+?\d{9,15}$",
     message=_("El teléfono debe ser un número válido."),
 )
-
-# Para almacenar imágenes en un directorio específico, si es necesario
-user_images_storage = FileSystemStorage(location='/path/to/images')
 
 class Usuario(models.Model):
     ESTADO_OPCIONES = [
@@ -33,7 +30,9 @@ class Usuario(models.Model):
     telefono = models.CharField(max_length=20, validators=[telefono_validator])
     tipo_usuario = models.CharField(max_length=20, choices=TIPO_USUARIO_OPCIONES, default='cliente')
     estado = models.CharField(max_length=10, choices=ESTADO_OPCIONES, default='activo')
-    photo = models.ImageField(storage=user_images_storage, null=True, blank=True)
+    photo = models.ImageField(upload_to='user/%d/',
+        blank=True,
+        validators=[FileExtensionValidator(['jpg', 'png'])],)
     actividades_participadas = models.ManyToManyField('activities.Actividad', blank=True, related_name='usuarios_participantes', verbose_name=_('Actividades Participadas'))
 
     class Meta:

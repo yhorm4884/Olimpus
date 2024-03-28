@@ -1,0 +1,87 @@
+/* Estilos para el Navbar */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Alinea los elementos a los extremos opuestos */
+}
+
+/* Alinea el botón del menú a la derecha */
+.navbar-brand {
+    flex-grow: 1;
+    /* Hace que el NavbarBrand ocupe todo el espacio disponible, empujando lo demás a la derecha */
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    /* Elimina el padding predeterminado para alinear mejor el botón a la derecha */
+    margin-right: -0.5rem;
+    /* Ajusta esto según sea necesario para alinear el botón a la derecha */
+}
+
+/* Estilos para el Sidebar en el lado derecho */
+.sidebar {
+    height: 100%;
+    width: 0;
+    /* Ancho inicial del sidebar (oculto) */
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    /* Cambiado para que aparezca desde la derecha */
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar.open {
+    width: 250px;
+    /* Ancho del sidebar cuando está abierto */
+}
+
+/* Botón de cierre ahora se alinea a la izquierda, ya que el sidebar es de la derecha */
+.close-btn {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    /* Cambiado para alinear a la izquierda */
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+
+.sidebar-link {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: #ddd;
+    display: block;
+    transition: color 0.3s;
+}
+
+.sidebar-link:hover {
+    color: #fff;
+}
+
+/* Responsiveness */
+@media (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+
+    .sidebar .sidebar-link {
+        font-size: 18px;
+    }
+}
