@@ -7,6 +7,10 @@ axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 const UserProfile = () => {
+  axios.defaults.withCredentials = true;
+  axios.defaults.xsrfCookieName = 'csrftoken';
+  axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
   const { userId } = useParams();
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -22,7 +26,14 @@ const UserProfile = () => {
       const url = `http://127.0.0.1:8000/api/usuarios/${userId}/`;
       axios.get(url, { withCredentials: true })
         .then(response => {
-          console.log(response.data);
+          try{
+            axios.get("http://127.0.0.1:8000/users/prueba").then(respuesta=> {
+              console.log(respuesta.data)
+            })
+            
+          }catch (error) {
+            console.log(error);
+          }
           setUserData(response.data);
           setEditData({
             username: response.data.user?.username || '',
@@ -45,32 +56,30 @@ const UserProfile = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const handleSubmit = (e) => {
+  const updateData = {
+    user: {
+        username: editData.username,
+        email: editData.email,
+    },
+    telefono: editData.telefono,
+  };
+  console.log(updateData);
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try{
 
-    const updateData = {
+      await axios.post("http://127.0.0.1:8000/users/update-profile/", {
         user: {
-            username: editData.username,
-            email: editData.email,
+          username: editData.username,
+          email: editData.email,
         },
         telefono: editData.telefono,
-    };
+      });
+      console.log("Enviado la bicha");
+    }catch (error){
+      console.error("Error:", error.response? error.response.data : error);
+    }
 
-    axios.post('http://127.0.0.1:8000/users/update-profile/', updateData, {
-        withCredentials: true,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-    .then(response => {
-        setIsEditing(false);
-        // Ajusta según la respuesta de tu backend
-        setUserData({ ...userData, user: { ...userData.user, username: editData.username, email: editData.email }, telefono: editData.telefono });
-    })
-    .catch(error => {
-        console.error('Error updating user data:', error);
-    });
   };
 
 

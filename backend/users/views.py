@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.tokens import default_token_generator
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from django.template.loader import render_to_string
 from rest_framework.permissions import AllowAny
 from django.utils.encoding import force_bytes
@@ -19,6 +19,11 @@ import qrcode
 import base64
 import json
 
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def prueba(request):
+    return JsonResponse({'usuario:':request.user.is_authenticated})
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -174,29 +179,45 @@ def reset_password_confirm(request):
         return JsonResponse({'success': 'La contraseña ha sido actualizada correctamente.'}, status=200)
     else: 
         return JsonResponse({'error': 'El token de restablecimiento de contraseña no es válido o ha expirado.'}, status=400)
-    @csrf_protect
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
+def reset_password_confirm(request):
+    uidb64 = request.data.get('uidb64')
+    token = request.data.get('token')
+    new_password = request.data.get('new_password')
+
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.set_password(new_password)
+        user.save()
+        return JsonResponse({'success': 'La contraseña ha sido actualizada correctamente.'}, status=200)
+    else: 
+        return JsonResponse({'error': 'El token de restablecimiento de contraseña no es válido o ha expirado.'}, status=400)
+@csrf_exempt
 def update_profile(request):
-    print(request.user)
     if not request.user.is_authenticated:
         return JsonResponse({'error': 'No autenticado'}, status=401)
-
-    data = request.data.get('user', {})
-    telefono = request.data.get('telefono')
+    data = json.loads(request.body)
+    telefono = data['telefono']
 
     # Busca el usuario relacionado para evitar conflictos de unicidad
     try:
         user_related = request.user
-        if User.objects.exclude(pk=user_related.pk).filter(email=data.get('email')).exists():
+        if User.objects.exclude(pk=user_related.pk).filter(email=data['user']['email']).exists():
             return JsonResponse({'error': 'El correo electrónico ya está en uso'}, status=400)
 
         if Usuario.objects.exclude(user=user_related).filter(telefono=telefono).exists():
             return JsonResponse({'error': 'El teléfono ya está en uso'}, status=400)
 
         # Actualiza los datos del usuario
-        user_related.username = data.get('username')
-        user_related.email = data.get('email')
+        user_related.username = data['user']['username']
+        user_related.email = data['user']['email']
         user_related.save()
 
         # Actualiza los datos adicionales en el modelo Usuario
