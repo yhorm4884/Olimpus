@@ -179,6 +179,7 @@ def reset_password_confirm(request):
         return JsonResponse({'success': 'La contraseña ha sido actualizada correctamente.'}, status=200)
     else: 
         return JsonResponse({'error': 'El token de restablecimiento de contraseña no es válido o ha expirado.'}, status=400)
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def reset_password_confirm(request):
@@ -199,8 +200,6 @@ def reset_password_confirm(request):
     else: 
         return JsonResponse({'error': 'El token de restablecimiento de contraseña no es válido o ha expirado.'}, status=400)
 @csrf_exempt
-# @api_view(['POST'])
-# @permission_classes([AllowAny])
 def update_profile(request):
     if not request.user.is_authenticated:
         return JsonResponse({'error': 'No autenticado'}, status=401)

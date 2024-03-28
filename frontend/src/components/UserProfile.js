@@ -3,10 +3,14 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Paper, Typography, Avatar, Grid, Box, TextField, Button } from '@mui/material';
 
+axios.defaults.withCredentials = true;
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 const UserProfile = () => {
   axios.defaults.withCredentials = true;
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
   const { userId } = useParams();
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -75,6 +79,7 @@ const UserProfile = () => {
     }catch (error){
       console.error("Error:", error.response? error.response.data : error);
     }
+
   };
 
 
