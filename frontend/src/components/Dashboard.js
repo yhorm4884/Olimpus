@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Box, Grid, Paper, Typography, Button } from '@mui/material';
 import { useParams  } from 'react-router-dom';
 
+
 function Dashboard() {
   const { userId } = useParams(); // Obtiene userId de la ruta
 

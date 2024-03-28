@@ -1,4 +1,3 @@
-// ForgotPassword.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';

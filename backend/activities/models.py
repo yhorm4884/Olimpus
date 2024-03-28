@@ -10,7 +10,10 @@ class Actividad(models.Model):
     lugar = models.CharField(max_length=100, verbose_name=_('Lugar'))
     observaciones = models.TextField(blank=True, verbose_name=_('Observaciones'))
     empresas = models.ManyToManyField('companies.Empresa', verbose_name=_('Empresas'))
-    participantes_actividad = models.ManyToManyField('users.Usuario', related_name='actividades_participantes', verbose_name=_('Participantes'))
-
+    participantes_actividad = models.ManyToManyField(
+        'users.Usuario',
+        related_name='actividades',  # Cambiado de 'actividades_participadas' a 'actividades'
+        verbose_name=_('Participantes')
+    )
     def __str__(self):
         return f"{self.nombre} ({self.codigo_actividad})"

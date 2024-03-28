@@ -13,6 +13,9 @@ urlpatterns = [
     path('forgot-password/', views.forgot_password, name='forgot-password'),
     path('reset-password-confirm/', views.reset_password_confirm, name='reset-password-confirm'),
     path('serve-qr-code/<uidb64>/<token>/', views.serve_qr_code, name='serve-qr-code'),
+    path('update-profile/', views.update_profile, name='update-profile'),  
+
+    path('prueba', views.prueba, name='prueba'),
 
 
 
