@@ -23,7 +23,7 @@ function App() {
     })
     .then(response => response.json())
     .then(data => {
-      
+      console.log(data);
       setAuthState({ isAuthenticated: data.isAuthenticated, userId: data.userId || null });
     })
     .catch(error => console.error('Error fetching auth status:', error));

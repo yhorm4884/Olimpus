@@ -174,3 +174,36 @@ def reset_password_confirm(request):
         return JsonResponse({'success': 'La contraseña ha sido actualizada correctamente.'}, status=200)
     else: 
         return JsonResponse({'error': 'El token de restablecimiento de contraseña no es válido o ha expirado.'}, status=400)
+    @csrf_protect
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def update_profile(request):
+    print(request.user)
+    if not request.user.is_authenticated:
+        return JsonResponse({'error': 'No autenticado'}, status=401)
+
+    data = request.data.get('user', {})
+    telefono = request.data.get('telefono')
+
+    # Busca el usuario relacionado para evitar conflictos de unicidad
+    try:
+        user_related = request.user
+        if User.objects.exclude(pk=user_related.pk).filter(email=data.get('email')).exists():
+            return JsonResponse({'error': 'El correo electrónico ya está en uso'}, status=400)
+
+        if Usuario.objects.exclude(user=user_related).filter(telefono=telefono).exists():
+            return JsonResponse({'error': 'El teléfono ya está en uso'}, status=400)
+
+        # Actualiza los datos del usuario
+        user_related.username = data.get('username')
+        user_related.email = data.get('email')
+        user_related.save()
+
+        # Actualiza los datos adicionales en el modelo Usuario
+        usuario, created = Usuario.objects.get_or_create(user=user_related)
+        usuario.telefono = telefono
+        usuario.save()
+
+        return JsonResponse({'message': 'Perfil actualizado correctamente'}, status=200)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
