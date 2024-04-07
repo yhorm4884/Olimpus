@@ -5,7 +5,7 @@ import {
     Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, Alert, Tooltip, FormFeedback
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, } from '@fortawesome/free-solid-svg-icons';
 import './css/argon-design-system-react.css';
 import './css/propio-css.css';
 
@@ -21,7 +21,6 @@ function Register() {
     const [tooltipOpen, setTooltipOpen] = useState({});
     const [fieldErrors, setFieldErrors] = useState({ username: false, telefono: false, DNI: false, correo: false, password1: false, password2: false });
     const [showPassword, setShowPassword] = useState({ password1: false, password2: false });
-    const [showQRCode, setShowQRCode] = useState(false);
     const imageContainerRef = useRef(null);
 
     const handleChange = (e) => {
@@ -96,40 +95,40 @@ function Register() {
         return () => container.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
-    const renderInput = (name, type, placeholder, labelText, tooltipText, value) => (
-        <FormGroup className="mb-3 position-relative">
-            <Label for={name}>
-                {labelText} <span className="text-danger">*</span>
-                <span style={{ fontWeight: "bold", cursor: "pointer" }} id={`${name}Tooltip`}>?</span>
-                <Tooltip
-                    placement="right"
-                    isOpen={tooltipOpen[`${name}Tooltip`]}
-                    target={`${name}Tooltip`}
-                    toggle={() => toggleTooltip(`${name}Tooltip`)}
-                >
-                    {tooltipText}
-                </Tooltip>
-            </Label>
-            <Input
-                type={type !== 'password' ? type : showPassword[name] ? 'text' : 'password'}
-                name={name}
-                id={name}
-                placeholder={placeholder}
-                value={value}
-                onChange={handleChange}
-                invalid={fieldErrors[name]}
-            />
-            {type === 'password' && (
-                <span
-                    onClick={() => setShowPassword({ ...showPassword, [name]: !showPassword[name] })}
-                    style={{ position: 'absolute', right: '10px', top: 'calc(40% - -10px)', cursor: 'pointer', zIndex: 5 }}
-                >
-                    <FontAwesomeIcon icon={showPassword[name] ? faEyeSlash : faEye} />
-                </span>
-            )}
-            {fieldErrors[name] && <p className="text-danger">Este campo es obligatorio.</p>}
-        </FormGroup>
-    );
+    // const renderInput = (name, type, placeholder, labelText, tooltipText, value) => (
+    //     <FormGroup className="mb-3 position-relative">
+    //         <Label for={name}>
+    //             {labelText} <span className="text-danger">*</span>
+    //             <span style={{ fontWeight: "bold", cursor: "pointer" }} id={`${name}Tooltip`}>?</span>
+    //             <Tooltip
+    //                 placement="right"
+    //                 isOpen={tooltipOpen[`${name}Tooltip`]}
+    //                 target={`${name}Tooltip`}
+    //                 toggle={() => toggleTooltip(`${name}Tooltip`)}
+    //             >
+    //                 {tooltipText}
+    //             </Tooltip>
+    //         </Label>
+    //         <Input
+    //             type={type !== 'password' ? type : showPassword[name] ? 'text' : 'password'}
+    //             name={name}
+    //             id={name}
+    //             placeholder={placeholder}
+    //             value={value}
+    //             onChange={handleChange}
+    //             invalid={fieldErrors[name]}
+    //         />
+    //         {type === 'password' && (
+    //             <span
+    //                 onClick={() => setShowPassword({ ...showPassword, [name]: !showPassword[name] })}
+    //                 style={{ position: 'absolute', right: '10px', top: 'calc(40% - -10px)', cursor: 'pointer', zIndex: 5 }}
+    //             >
+    //                 <FontAwesomeIcon icon={showPassword[name] ? faEyeSlash : faEye} />
+    //             </span>
+    //         )}
+    //         {fieldErrors[name] && <p className="text-danger">Este campo es obligatorio.</p>}
+    //     </FormGroup>
+    // );
 
     return (
         <Container className="py-5">

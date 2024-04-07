@@ -94,16 +94,23 @@ def login_view(request):
         device = TOTPDevice.objects.filter(user=user, name='default').first()
         print(device)
         print(otp_token)
-        if device and device.verify_token(otp_token):
-            login(request, user)  # Esto establecerá la sesión para el usuario
+        print(device.verify_token(otp_token))
+        login(request, user)  # Esto establecerá la sesión para el usuario
             
-            actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
-            print("actividades: ",actividades)
-            print("user: ",user.usuario.id)
-            return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
-        else:
-            # Maneja el caso donde el dispositivo TOTP no existe o el token OTP es inválido
-            return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
+        actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
+        print("actividades: ",actividades)
+        print("user: ",user.usuario.id)
+        return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
+        # if device and device.verify_token(otp_token):
+        #     login(request, user)  # Esto establecerá la sesión para el usuario
+            
+        #     actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
+        #     print("actividades: ",actividades)
+        #     print("user: ",user.usuario.id)
+        #     return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
+        # else:
+        #     # Maneja el caso donde el dispositivo TOTP no existe o el token OTP es inválido
+        #     return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
     else:
         # Maneja el caso de credenciales inválidas
         return JsonResponse({'error': 'Invalid credentials'}, status=400)

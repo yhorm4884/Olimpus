@@ -82,7 +82,9 @@ function Login() {
       });
       
       console.log('Autenticación exitosa:', loginResponse.data.id);
+      window.location.reload();
       navigate(`/dashboard/user/${loginResponse.data.id}`);
+      
     } catch (error) {
       console.error('Error en la autenticación:', error.response ? error.response.data : error);
       setAlertMessage('Fallo en la autenticación. Por favor, verifica tus credenciales.');

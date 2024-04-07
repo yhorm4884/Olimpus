@@ -17,14 +17,14 @@ def set_csrf_cookie(request):
     return Response("CSRF Cookie set.")
     
 class UsuarioViewSet(viewsets.ModelViewSet):
-    authentication_classes=[ SessionAuthentication ]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes=[ SessionAuthentication ]
+    # permission_classes = [IsAuthenticated]
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
 
 class EmpresaViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [SessionAuthentication]
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
    
@@ -33,8 +33,8 @@ class EmpresaViewSet(viewsets.ModelViewSet):
     #     return self.queryset.filter(client=self.request.user.client)
 
 class ActividadViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [SessionAuthentication]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [SessionAuthentication]
     queryset = Actividad.objects.all()
     serializer_class = ActividadSerializer
     
