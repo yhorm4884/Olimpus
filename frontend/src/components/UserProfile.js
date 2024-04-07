@@ -65,6 +65,7 @@ const UserProfile = () => {
         telefono: editData.telefono,
       });
       console.log("Perfil actualizado");
+      window.location.reload()
     } catch (error) {
       console.error("Error:", error.response ? error.response.data : error);
     }
