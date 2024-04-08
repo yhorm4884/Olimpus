@@ -19,6 +19,7 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
+  const [showAlert, setShowAlert] = useState(false); // Estado para controlar la visibilidad del Alert
   const [editData, setEditData] = useState({
     username: '',
     email: '',
@@ -56,7 +57,6 @@ const UserProfile = () => {
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -68,21 +68,33 @@ const UserProfile = () => {
         telefono: editData.telefono,
       });
       console.log("Perfil actualizado");
-      console.log("Perfil actualizado");
       setMessage("Perfil actualizado");
       setError(false);
+      setShowAlert(true);
+      setIsEditing(false);
       setTimeout(() => {
         setMessage('');
+        setShowAlert(false);
       }, 3000);
+  
+      // Recargar los datos del usuario después de la actualización exitosa
+      const updatedUserData = await axios.get(`http://127.0.0.1:8000/api/usuarios/${userId}/`, { withCredentials: true });
+      setUserData(updatedUserData.data);
     } catch (error) {
+      const updatedUserData = await axios.get(`http://127.0.0.1:8000/api/usuarios/${userId}/`, { withCredentials: true });
+      setUserData(updatedUserData.data);
       console.error("Error:", error.response ? error.response.data : error);
       setMessage("Error al actualizar el perfil");
       setError(true);
+      setShowAlert(true);
       setTimeout(() => {
         setMessage('');
+        setShowAlert(false);
       }, 3000);
+     
     }
   };
+  
 
   const minDate = new Date();
   minDate.setHours(0, 0, 0, 0); // Remover las horas para comparar solo fechas
@@ -125,7 +137,6 @@ const UserProfile = () => {
   if (!userData) {
     return <div>Cargando...</div>;
   }
-  const alertColor = message.includes('Perfil actualizado') ? 'error' : 'error';
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
@@ -154,10 +165,13 @@ const UserProfile = () => {
               {!isEditing && (
                 <Button variant="outlined" onClick={handleEditClick}>Editar</Button>
               )}
-              {error ? (
-                <Alert color="danger">{message}</Alert> // Muestra un mensaje de error si ocurre uno
-              ) : (
-                <Alert color="success">{message}</Alert> // Muestra un mensaje de éxito en caso contrario
+              {showAlert && ( // Mostrar el Alert solo cuando showAlert es verdadero
+                
+                error ? (
+                  <Alert color="danger">{message}</Alert> // Muestra un mensaje de error si ocurre uno
+                ) : (
+                  <Alert color="success">{message}</Alert> // Muestra un mensaje de éxito en caso contrario
+                )
               )}
             </Box>
           </Grid>
