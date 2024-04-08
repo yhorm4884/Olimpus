@@ -4,6 +4,7 @@ import axios from 'axios';
 import Calendar from 'react-widgets/Calendar';
 import { Paper, Typography, Avatar, Grid, Box, TextField, Button, Card, CardContent } from '@mui/material';
 import 'react-widgets/styles.css';
+import { Alert } from 'reactstrap';
 
 axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = 'csrftoken';
@@ -16,6 +17,8 @@ const UserProfile = () => {
   const [selectedDateActivities, setSelectedDateActivities] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isEditing, setIsEditing] = useState(false);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
   const [editData, setEditData] = useState({
     username: '',
     email: '',
@@ -65,9 +68,19 @@ const UserProfile = () => {
         telefono: editData.telefono,
       });
       console.log("Perfil actualizado");
-      window.location.reload()
+      console.log("Perfil actualizado");
+      setMessage("Perfil actualizado");
+      setError(false);
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
     } catch (error) {
       console.error("Error:", error.response ? error.response.data : error);
+      setMessage("Error al actualizar el perfil");
+      setError(true);
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
     }
   };
 
@@ -112,6 +125,7 @@ const UserProfile = () => {
   if (!userData) {
     return <div>Cargando...</div>;
   }
+  const alertColor = message.includes('Perfil actualizado') ? 'error' : 'error';
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Paper elevation={3} sx={{ p: 4 }}>
@@ -139,6 +153,11 @@ const UserProfile = () => {
               )}
               {!isEditing && (
                 <Button variant="outlined" onClick={handleEditClick}>Editar</Button>
+              )}
+              {error ? (
+                <Alert color="danger">{message}</Alert> // Muestra un mensaje de error si ocurre uno
+              ) : (
+                <Alert color="success">{message}</Alert> // Muestra un mensaje de éxito en caso contrario
               )}
             </Box>
           </Grid>

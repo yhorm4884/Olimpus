@@ -18,6 +18,9 @@ from io import BytesIO
 import qrcode
 import base64
 import json
+from .validators import dni_validator, telefono_validator, email_validator
+
+from django.core.exceptions import ValidationError
 
 
 @api_view(['GET'])
@@ -41,6 +44,8 @@ def check_user_authenticated(request):
 @permission_classes([AllowAny])
 def register_view(request):
     if request.method == 'POST':
+       
+
         data = request.data
 
         # Verifica que las contraseñas coincidan
@@ -51,6 +56,7 @@ def register_view(request):
         try:
             user = User.objects.create_user(username=data['username'], email=data['correo'], password=data['password1'])
         except Exception as e:
+            
             return JsonResponse({'errors': str(e)}, status=400)
 
         # A continuación, crea tu modelo de Usuario personalizado asociado a este usuario
@@ -221,11 +227,18 @@ def update_profile(request):
 
         if Usuario.objects.exclude(user=user_related).filter(telefono=telefono).exists():
             return JsonResponse({'error': 'El teléfono ya está en uso'}, status=400)
-
-        # Actualiza los datos del usuario
+        try:
+            email_validator(data['user']['email'])  # Esto lanzará una excepción si el correo electrónico no es válido
+        except ValidationError as e:
+            return JsonResponse({'error': str(e)}, status=400)
+            # actualiza los datos del usuario
         user_related.username = data['user']['username']
         user_related.email = data['user']['email']
         user_related.save()
+
+        # Validar el número de teléfono
+        telefono_validator(data['telefono'])
+        # Esto lanzará una excepción si el número de teléfono no es válido
 
         # Actualiza los datos adicionales en el modelo Usuario
         usuario, created = Usuario.objects.get_or_create(user=user_related)
@@ -233,5 +246,7 @@ def update_profile(request):
         usuario.save()
 
         return JsonResponse({'message': 'Perfil actualizado correctamente'}, status=200)
+    except ValidationError as e:
+        return JsonResponse({'error': str(e)}, status=400)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
