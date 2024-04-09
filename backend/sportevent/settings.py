@@ -169,12 +169,14 @@ EMAIL_USE_SSL = False
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 # Configuración de CSRF
-SESSION_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'none'
+CSRF_COOKIE_SAMESITE = 'none'
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000',]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:3000']
 CORS_ALLOWED_WHITELIST = [
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:8000',
     'http://localhost:3000',
     'http://localhost:8000',
 ]

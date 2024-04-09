@@ -4,3 +4,4 @@ migrations
 db.sqlite3
 package.json
 package-lock.json
+media

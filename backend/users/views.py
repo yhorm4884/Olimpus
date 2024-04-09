@@ -85,7 +85,7 @@ def register_view(request):
 
     else:
         return JsonResponse({'error': 'Invalid Request'}, status=405)
-@csrf_protect
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login_view(request):
@@ -98,25 +98,34 @@ def login_view(request):
     
     if user:
         device = TOTPDevice.objects.filter(user=user, name='default').first()
-        print(device)
-        print(otp_token)
-        print(device.verify_token(otp_token))
-        login(request, user)  # Esto establecerá la sesión para el usuario
+
+        # Imprime información sobre el dispositivo para asegurarte de que existe y está asociado al usuario correcto
+        print("Dispositivo TOTP:", device)
+
+        # Verifica que el token OTP está siendo recibido correctamente
+        print("Token OTP recibido:", otp_token)
+
+        # Intenta verificar el token e imprime el resultado de la verificación
+        # Esto te dirá si el token es válido o no, pero no olvides que estos tokens son válidos solo por un corto tiempo
+        resultado_verificacion = device.verify_token(otp_token) if device else False
+        print("Resultado de la verificación del token:", resultado_verificacion)
+
+        if device and resultado_verificacion:
+            login(request, user)  # Esto establecerá la sesión para el usuario
             
-        actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
-        print("actividades: ",actividades)
-        print("user: ",user.usuario.id)
-        return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
-        # if device and device.verify_token(otp_token):
-        #     login(request, user)  # Esto establecerá la sesión para el usuario
+            actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))
+            print("Actividades del usuario:", actividades)
+            print("ID del usuario:", user.usuario.id)
+            return JsonResponse({'success': 'User authenticated', 'id': user.usuario.id, 'actividades': actividades}, status=200)
+        else:
+            return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
+        # login(request, user)  # Esto establecerá la sesión para el usuario
             
-        #     actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
-        #     print("actividades: ",actividades)
-        #     print("user: ",user.usuario.id)
-        #     return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
-        # else:
-        #     # Maneja el caso donde el dispositivo TOTP no existe o el token OTP es inválido
-        #     return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
+        # actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
+        # print("actividades: ",actividades)
+        # print("user: ",user.usuario.id)
+        # return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
+        
     else:
         # Maneja el caso de credenciales inválidas
         return JsonResponse({'error': 'Invalid credentials'}, status=400)
@@ -212,41 +221,46 @@ def reset_password_confirm(request):
         return JsonResponse({'success': 'La contraseña ha sido actualizada correctamente.'}, status=200)
     else: 
         return JsonResponse({'error': 'El token de restablecimiento de contraseña no es válido o ha expirado.'}, status=400)
+
 @csrf_exempt
 def update_profile(request):
-    if not request.user.is_authenticated:
-        return JsonResponse({'error': 'No autenticado'}, status=401)
-    data = json.loads(request.body)
-    telefono = data['telefono']
+    
+    if request.method == 'POST':
+        # Accede a los datos del formulario y al archivo
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        telefono = request.POST.get('telefono')
+        photo = request.FILES.get('photo')  # Accede al archivo cargado
 
-    # Busca el usuario relacionado para evitar conflictos de unicidad
-    try:
-        user_related = request.user
-        if User.objects.exclude(pk=user_related.pk).filter(email=data['user']['email']).exists():
-            return JsonResponse({'error': 'El correo electrónico ya está en uso'}, status=400)
-
-        if Usuario.objects.exclude(user=user_related).filter(telefono=telefono).exists():
-            return JsonResponse({'error': 'El teléfono ya está en uso'}, status=400)
         try:
-            email_validator(data['user']['email'])  # Esto lanzará una excepción si el correo electrónico no es válido
+            user_related = request.user
+            
+            # Verificaciones de unicidad para email y teléfono
+            if User.objects.exclude(pk=user_related.pk).filter(email=email).exists():
+                return JsonResponse({'error': 'El correo electrónico ya está en uso'}, status=400)
+            if Usuario.objects.exclude(user=user_related).filter(telefono=telefono).exists():
+                return JsonResponse({'error': 'El teléfono ya está en uso'}, status=400)
+            
+            # Validación del email y teléfono
+            email_validator(email)
+            telefono_validator(telefono)  # Asume que tienes esta función validadora
+            
+            # Actualización del usuario
+            user_related.username = username
+            user_related.email = email
+            user_related.save()
+
+            # Actualiza los datos adicionales en el modelo Usuario
+            usuario, created = Usuario.objects.get_or_create(user=user_related)
+            usuario.telefono = telefono
+            if photo:
+                usuario.photo.save(photo.name, photo)  # Actualiza la foto si se proporcionó
+            usuario.save()
+
+            return JsonResponse({'message': 'Perfil actualizado correctamente'}, status=200)
         except ValidationError as e:
-            return JsonResponse({'error': str(e)}, status=400)
-            # actualiza los datos del usuario
-        user_related.username = data['user']['username']
-        user_related.email = data['user']['email']
-        user_related.save()
-
-        # Validar el número de teléfono
-        telefono_validator(data['telefono'])
-        # Esto lanzará una excepción si el número de teléfono no es válido
-
-        # Actualiza los datos adicionales en el modelo Usuario
-        usuario, created = Usuario.objects.get_or_create(user=user_related)
-        usuario.telefono = telefono
-        usuario.save()
-
-        return JsonResponse({'message': 'Perfil actualizado correctamente'}, status=200)
-    except ValidationError as e:
-        return JsonResponse({'error': str(e)}, status=400)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+            return JsonResponse({'error': str(e.messages)}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
