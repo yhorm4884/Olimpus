@@ -27,6 +27,7 @@
     "react-scripts": "^5.0.1",
     "react-widgets": "^5.8.4",
     "reactstrap": "^9.2.2",
+    "socket.io-client": "^4.7.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

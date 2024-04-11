@@ -15,8 +15,8 @@ urlpatterns = [
     path('serve-qr-code/<uidb64>/<token>/', views.serve_qr_code, name='serve-qr-code'),
     path('update-profile/', views.update_profile, name='update-profile'),  
     path('prueba', views.prueba, name='prueba'),
-
-
+    # path('chat/session/', views.create_chat_session, name='create-chat-session'),
+    # path('chat/message/', views.post_message, name='post-message'),
 
 ]
 if settings.DEBUG:

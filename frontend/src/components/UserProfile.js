@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Calendar from 'react-widgets/Calendar';
-import { Paper, Typography, Avatar, Grid, Box, TextField, Button, Card, CardContent, IconButton, Fab, Badge} from '@mui/material';
-import { Edit, Notifications, ChatBubbleOutline } from '@mui/icons-material';
-
+import { Modal, InputBase, Paper, Typography, Avatar, Grid, Box, TextField, Button, Card, CardContent, IconButton, Fab, Badge } from '@mui/material';
+import { Edit, Notifications, Send } from '@mui/icons-material';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import 'react-widgets/styles.css';
 import { Alert } from 'reactstrap';
 
 axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -21,7 +22,10 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
-  const [showAlert, setShowAlert] = useState(false); // Estado para controlar la visibilidad del Alert
+  const [showAlert, setShowAlert] = useState(false); 
+  const [showChat, setShowChat] = useState(false);
+  const [messages, setMessages] = useState([]);
+
   const [editData, setEditData] = useState({
     username: '',
     email: '',
@@ -71,9 +75,7 @@ const UserProfile = () => {
     }
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/users/update-profile/", formData, {
-            withCredentials: true,
-      });
+      const response = await axios.post("http://127.0.0.1:8000/users/update-profile/", formData);
 
       console.log("Perfil actualizado", response.data);
       setMessage("Perfil actualizado");
@@ -88,10 +90,10 @@ const UserProfile = () => {
       // Recargar los datos del usuario después de la actualización exitosa
       const updatedUserData = await axios.get(`http://127.0.0.1:8000/api/usuarios/${userId}/`, { withCredentials: true });
       setUserData(updatedUserData.data);
-      window.location.reload();
+      
     } catch (error) {
       console.error("Error:", error.response ? error.response.data : error);
-      setMessage("Error al actualizar el perfil");
+      setMessage(error.response.data.error.toString().slice(2,-2));
       setError(true);
       setShowAlert(true);
       setTimeout(() => {
@@ -100,7 +102,10 @@ const UserProfile = () => {
       }, 3000);
     }
   };
-
+  const handleSendMessage = (message) => {
+    console.log(message); // Simula enviar mensaje
+    setMessages([...messages, { content: message, sender: "Usuario", senderId: userId, isCurrentUser: true }]);
+  };
   const handleAvatarChange = (event) => {
     if (event.target.files[0]) {
         setEditData((prevData) => ({
@@ -257,11 +262,74 @@ const UserProfile = () => {
         </Grid>
 
       </Paper>
-      <Fab color="primary" aria-label="help" sx={{ position: 'fixed', bottom: 16, right: 16 }}>
-        <ChatBubbleOutline />
+      <Fab color="primary" aria-label="chat" onClick={() => setShowChat(true)} sx={{ position: 'fixed', bottom: 16, right: 16 }}>
+        <ChatBubbleOutlineIcon />
       </Fab>
+      <ChatModal open={showChat} onClose={() => setShowChat(false)} messages={messages} onSendMessage={handleSendMessage} userId={userId} />
+
     </Box>
   );
 };
 
+const ChatMessage = ({ message, userId  }) => {
+  const isCurrentUser = message.senderId === userId;
+  <Box sx={{
+    display: 'flex',
+    justifyContent: isCurrentUser ? 'flex-end' : 'flex-start',
+    mb: 2,
+  }}>
+    <Paper sx={{
+      bgcolor: isCurrentUser ? 'primary.main' : 'grey.200',
+      color: isCurrentUser ? 'common.white' : 'text.primary',
+      p: 2,
+      maxWidth: '70%',
+      wordBreak: 'break-word',
+    }}>
+      <Typography variant="caption">{message.sender}</Typography>
+      <Typography variant="body1">{message.content}</Typography>
+    </Paper>
+  </Box>
+};
+
+// Componente de modal de chat
+const ChatModal = ({ open, onClose, messages, onSendMessage, userId }) => {
+  const [input, setInput] = useState('');
+
+  const handleSend = () => {
+    if (input.trim()) {
+      console.log(input);
+      onSendMessage(input);
+      setInput('');
+    }
+  };
+
+  return (
+    <Modal open={open} onClose={onClose} aria-labelledby="chat-modal-title">
+      <Box sx={{
+        position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+        width: '90%', bgcolor: 'background.paper', boxShadow: 24, p: 4, maxHeight: '80%', overflow: 'auto'
+      }}>
+        <Typography id="chat-modal-title" variant="h6" color="primary" sx={{ mb: 2 }}>
+          Chat
+        </Typography>
+        {messages.map((msg, index) => (
+          <ChatMessage key={index} message={msg} isCurrentUser={msg.senderId === userId} />
+        ))}
+        <Box display="flex" alignItems="center" mt={2}>
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Escribe un mensaje..."
+            inputProps={{ 'aria-label': 'Escribe un mensaje' }}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+          />
+          <IconButton color="primary" sx={{ p: '10px' }} onClick={handleSend}>
+            <Send />
+          </IconButton>
+        </Box>
+      </Box>
+    </Modal>
+  );
+};
 export default UserProfile;

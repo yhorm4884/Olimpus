@@ -110,21 +110,21 @@ def login_view(request):
         resultado_verificacion = device.verify_token(otp_token) if device else False
         print("Resultado de la verificación del token:", resultado_verificacion)
 
-        if device and resultado_verificacion:
-            login(request, user)  # Esto establecerá la sesión para el usuario
+        # if device and resultado_verificacion:
+        #     login(request, user)  # Esto establecerá la sesión para el usuario
             
-            actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))
-            print("Actividades del usuario:", actividades)
-            print("ID del usuario:", user.usuario.id)
-            return JsonResponse({'success': 'User authenticated', 'id': user.usuario.id, 'actividades': actividades}, status=200)
-        else:
-            return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
-        # login(request, user)  # Esto establecerá la sesión para el usuario
+        #     actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))
+        #     print("Actividades del usuario:", actividades)
+        #     print("ID del usuario:", user.usuario.id)
+        #     return JsonResponse({'success': 'User authenticated', 'id': user.usuario.id, 'actividades': actividades}, status=200)
+        # else:
+        #     return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
+        login(request, user)  # Esto establecerá la sesión para el usuario
             
-        # actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
-        # print("actividades: ",actividades)
-        # print("user: ",user.usuario.id)
-        # return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
+        actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
+        print("actividades: ",actividades)
+        print("user: ",user.usuario.id)
+        return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
         
     else:
         # Maneja el caso de credenciales inválidas
@@ -231,7 +231,7 @@ def update_profile(request):
         username = request.POST.get('username')
         telefono = request.POST.get('telefono')
         photo = request.FILES.get('photo')  # Accede al archivo cargado
-
+        print(request.user)
         try:
             user_related = request.user
             
@@ -264,3 +264,22 @@ def update_profile(request):
             return JsonResponse({'error': str(e)}, status=500)
     else:
         return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def create_chat_session(request):
+#     user = request.user
+#     other_user_id = request.data.get('other_user_id')
+#     admin_user = User.objects.get(pk=other_user_id)
+#     chat_session, created = ChatSession.objects.get_or_create(admin=admin_user, user=user)
+#     return JsonResponse({'session_id': chat_session.id}, status=201)
+
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def post_message(request):
+#     user = request.user
+#     session_id = request.data.get('session_id')
+#     content = request.data.get('content')
+#     chat_session = ChatSession.objects.get(pk=session_id)
+#     message = Message.objects.create(session=chat_session, sender=user, content=content)
+#     return JsonResponse(MessageSerializer(message).data, safe=False, status=201)
