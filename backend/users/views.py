@@ -1,26 +1,29 @@
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from .validators import dni_validator, telefono_validator, email_validator
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.tokens import default_token_generator
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import csrf_protect,csrf_exempt
+from django.utils.encoding import force_bytes,force_str
+from django.utils.translation import gettext_lazy as _
+from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
+from django.core.exceptions import ValidationError
 from rest_framework.permissions import AllowAny
-from django.utils.encoding import force_bytes
-from django.utils.encoding import force_str
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import get_user_model
 from django.middleware.csrf import get_token
 from django.contrib.auth.models import User
 from django.utils.html import strip_tags
 from django.core.mail import send_mail
 from django.http import JsonResponse
+from django.conf import settings
+from django.urls import reverse
 from .models import Usuario
 from io import BytesIO
 import qrcode
 import base64
 import json
-from .validators import dni_validator, telefono_validator, email_validator
-
-from django.core.exceptions import ValidationError
 
 
 @api_view(['GET'])
@@ -97,34 +100,25 @@ def login_view(request):
     user = authenticate(username=username, password=password)
     
     if user:
+        usuario_info = Usuario.objects.get(user=user)
+        if usuario_info.estado == 'bloqueado':
+            return JsonResponse({'error': 'El usuario está bloqueado'}, status=403)
+        
         device = TOTPDevice.objects.filter(user=user, name='default').first()
 
-        # Imprime información sobre el dispositivo para asegurarte de que existe y está asociado al usuario correcto
         print("Dispositivo TOTP:", device)
-
-        # Verifica que el token OTP está siendo recibido correctamente
         print("Token OTP recibido:", otp_token)
 
-        # Intenta verificar el token e imprime el resultado de la verificación
-        # Esto te dirá si el token es válido o no, pero no olvides que estos tokens son válidos solo por un corto tiempo
         resultado_verificacion = device.verify_token(otp_token) if device else False
         print("Resultado de la verificación del token:", resultado_verificacion)
 
         # if device and resultado_verificacion:
-        #     login(request, user)  # Esto establecerá la sesión para el usuario
-            
-        #     actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))
-        #     print("Actividades del usuario:", actividades)
-        #     print("ID del usuario:", user.usuario.id)
-        #     return JsonResponse({'success': 'User authenticated', 'id': user.usuario.id, 'actividades': actividades}, status=200)
-        # else:
-        #     return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
         login(request, user)  # Esto establecerá la sesión para el usuario
-            
-        actividades = list(user.usuario.actividades_participadas.values('id', 'nombre', 'observaciones'))  # Asume que las actividades tienen estos campos
-        print("actividades: ",actividades)
-        print("user: ",user.usuario.id)
-        return JsonResponse({'success': 'User authenticated','id':user.usuario.id,'actividades':actividades}, status=200)
+        actividades = list(usuario_info.actividades_participadas.values('id', 'nombre', 'observaciones'))
+        print("Actividades del usuario:", actividades)
+        return JsonResponse({'success': 'User authenticated', 'id': usuario_info.id, 'actividades': actividades}, status=200)
+        # else:
+            # return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
         
     else:
         # Maneja el caso de credenciales inválidas
@@ -265,6 +259,47 @@ def update_profile(request):
     else:
         return JsonResponse({'error': 'Método no permitido'}, status=405)
 
+@csrf_exempt
+def desactivar_usuario(request, user_id):
+    usuario = get_object_or_404(Usuario, pk=user_id)
+    
+    if usuario.estado != 'activo':
+        return JsonResponse({'error': _('El usuario ya está desactivado o bloqueado.')}, status=400)
+
+    usuario.estado = 'bloqueado'
+    usuario.save()
+
+    # Genera el token
+    token = default_token_generator.make_token(usuario.user)
+    # Construye la URL de React para reactivación
+    reactivation_url = f"http://localhost:3000/reactivate/{usuario.user.id}/{token}"
+
+    email_body = _(
+        "Tu cuenta ha sido desactivada. Para reactivarla, por favor sigue este enlace: {}"
+    ).format(reactivation_url)
+
+    send_mail(
+        _('Cuenta Desactivada'),
+        email_body,
+        settings.EMAIL_HOST_USER,
+        [usuario.user.email],
+        fail_silently=False,
+    )
+
+    return JsonResponse({'mensaje': _('Usuario desactivado exitosamente y correo enviado.')})
+
+def reactivar_usuario(request, user_id, token):
+    user = get_object_or_404(get_user_model(), pk=user_id)
+    if default_token_generator.check_token(user, token):
+        usuario = get_object_or_404(Usuario, user=user)
+        if usuario.estado == 'bloqueado':
+            usuario.estado = 'activo'
+            usuario.save()
+            return JsonResponse({'mensaje': _('Cuenta reactivada exitosamente.')})
+        else:
+            return JsonResponse({'error': _('Esta cuenta no está bloqueada.')}, status=400)
+    else:
+        return JsonResponse({'error': _('El enlace de reactivación no es válido o ha expirado.')}, status=400)
 # @api_view(['POST'])
 # @permission_classes([IsAuthenticated])
 # def create_chat_session(request):

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate   } from 'react-router-dom';
 import axios from 'axios';
 import Calendar from 'react-widgets/Calendar';
 import { Modal, InputBase, Paper, Typography, Avatar, Grid, Box, TextField, Button, Card, CardContent, IconButton, Fab, Badge } from '@mui/material';
-import { Edit, Notifications, Send } from '@mui/icons-material';
+import { Edit, Notifications, Send, Block  } from '@mui/icons-material';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import 'react-widgets/styles.css';
 import { Alert } from 'reactstrap';
@@ -25,6 +25,11 @@ const UserProfile = () => {
   const [showAlert, setShowAlert] = useState(false); 
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
+  const navigate = useNavigate();  
+  const logoutUser = () => {
+    localStorage.removeItem('token');  
+    navigate('/logout');  
+  };
 
   const [editData, setEditData] = useState({
     username: '',
@@ -152,6 +157,33 @@ const UserProfile = () => {
       </CardContent>
     </Card>
   ));
+  const handleDisableUser = async () => {
+    try {
+      const response = await axios.post(`http://127.0.0.1:8000/users/deactivate/${userId}/`);
+      console.log(response)
+      setMessage("Usuario desactivado exitosamente. Serás redirigido a la página de inicio.");
+      setError(false);
+      setShowAlert(true);
+      setTimeout(() => {
+        setMessage('');
+        setShowAlert(false);
+        logoutUser(); // Llama a la función de logout para manejar la limpieza y redirección
+      }, 5000); // Espera 5 segundos antes de redirigir
+    } catch (error) {
+      const errorMessage = error.response && error.response.data && error.response.data.error
+        ? error.response.data.error.toString()
+        : "Error desconocido al desactivar el usuario";
+      setMessage(errorMessage);
+      setError(true);
+      setShowAlert(true);
+      setTimeout(() => {
+        setMessage('');
+        setShowAlert(false);
+      }, 3000);
+    }
+  };
+  
+  
 
   if (!userData) {
     return <div>Cargando...</div>;
@@ -230,6 +262,9 @@ const UserProfile = () => {
                       <Badge color="secondary" badgeContent={1000} max={999}>
                         <Notifications />
                       </Badge>
+                    </IconButton>
+                    <IconButton color="primary" onClick={handleDisableUser}>
+                      <Block />
                     </IconButton>
                   </Box>
                   {showAlert && (

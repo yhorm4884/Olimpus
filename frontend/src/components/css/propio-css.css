@@ -9,7 +9,10 @@
 
 
 body{
-  background: linear-gradient(to bottom, #171f23 0%, #171f23 48%, #171f23dd 49%, #efbc23ad 49%, #efbc23 50%, #efbc23 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#13547a), to(#80d0c7)) fixed;
+}
+h1{
+  color: #fff !important;
 }
 
 .crop-container {
@@ -26,6 +29,10 @@ body{
     background-color: #2d9ffb;
   }
   
+  .logo-nav{
+    width: 50px;
+    margin-right: 20px;
+  }
   .crop-image {
     transition: transform 0.8s ease-out; /* Ajusta la duración y la curva de velocidad según necesites */
     width: 150%;

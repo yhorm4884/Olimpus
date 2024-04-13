@@ -13,6 +13,7 @@ import ActivityCalendar from './ActivityCalendar';
 import NotFound from './NotFound';
 import ForgotPassword from './ForgotPassword';
 import ResetPasswordPage from './ResetPasswordPage';
+import ReactivateAccount from './ReactiveAccount';
 import './css/app.css'; // Asegúrate de que tus estilos estén en este archivo
 
 function App() {
@@ -63,9 +64,10 @@ function App() {
     <Router>
       <div>
         <Navbar color="dark" dark expand="md">
+          <img src="../../media/logo.png" alt="Logo SportEvent" className="logo-nav"/>
           <NavbarBrand href="/">SPORTEVENTS</NavbarBrand>
           <button onClick={toggleSidebar} className="menu-button">☰</button>
-          {/* Aquí van tus NavItems si necesitas más */}
+          
         </Navbar>
         <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
           <button onClick={toggleSidebar} className="close-btn">&times;</button>
@@ -93,6 +95,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/reactivate/:userId/:token" element={<ReactivateAccount />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:uidb64/:token" element={<ResetPasswordPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

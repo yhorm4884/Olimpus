@@ -86,7 +86,7 @@ function Login() {
       //window.location.reload();
     } catch (error) {
       console.error('Error en la autenticación:', error.response ? error.response.data : error);
-      setAlertMessage('Fallo en la autenticación. Por favor, verifica tus credenciales.');
+      setAlertMessage(error.response.data.error.toString());
       setShowAlert(true);
     }
   };
