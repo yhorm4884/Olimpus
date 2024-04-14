@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Grid, Paper, Typography, Button, IconButton, Snackbar } from '@mui/material';
+import { Box, Grid, Paper, Typography, Button, IconButton, Snackbar, Card, CardMedia, CardContent, Divider } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useParams } from 'react-router-dom';
 
 function Dashboard() {
   const { userId } = useParams();
   const [userData, setUserData] = useState(null);
+  const [companies, setCompanies] = useState([]);
+
   const [openSnackbar, setOpenSnackbar] = useState(true);
 
   useEffect(() => {
@@ -24,7 +26,14 @@ function Dashboard() {
         .catch(error => {
           console.error('Error fetching user data:', error);
         });
-    }
+      const companiesUrl = `http://127.0.0.1:8000/api/empresas`;
+      axios.get(companiesUrl)
+        .then(response => {
+          console.log("Empresas", response.data);
+          setCompanies(response.data);
+        })
+        .catch(error => console.error('Error fetching companies:', error));
+      }
   }, [userId]);
   const handleCloseSnackbar = (event, reason) => {
     if (reason === 'clickaway') {
@@ -33,6 +42,28 @@ function Dashboard() {
     setOpenSnackbar(false);
   };
 
+  const renderCompanies = () => {
+    return companies.map((company) => (
+      <Grid item xs={12} sm={6} md={4} key={company.id_empresa}>
+        <Card>
+          <CardMedia
+            component="img"
+            height="140"
+            image={company.photo||"https://via.placeholder.com/150"}
+            alt="Company Image"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {company.nombre}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {company.direccion}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+    ));
+  };
   const renderMessageForUserType = () => {
     if (userData?.tipo_usuario === 'cliente') {
       return (
@@ -57,8 +88,9 @@ function Dashboard() {
             </IconButton>
           </React.Fragment>
         }
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       />
+     
     );
   } else if (userData?.tipo_usuario === 'propietario') {
       return (
@@ -102,6 +134,7 @@ function Dashboard() {
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Typography variant="h4" gutterBottom>Dashboard</Typography>
       {renderMessageForUserType()}
+      <Divider sx={{ my: 2 }} />
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 3, textAlign: 'center' }}>
@@ -111,8 +144,7 @@ function Dashboard() {
             </Button>
           </Paper>
         </Grid>
-        {/* Condicionalmente renderizamos esta parte solo si el tipo de usuario es 'cliente' o 'administrador' */}
-        {['cliente', 'administrador'].includes(userData?.tipo_usuario) && (
+        {['cliente'].includes(userData?.tipo_usuario) && (
           <Grid item xs={12} md={6}>
             <Paper sx={{ p: 3, textAlign: 'center' }}>
               <Typography variant="h6">Calendario de Actividades</Typography>
@@ -132,6 +164,15 @@ function Dashboard() {
               </Button>
             </Paper>
           </Grid>
+        )}
+        {userData?.tipo_usuario === 'cliente' && (
+          <>
+            <Grid item xs={12}>
+              <Typography variant="h5" gutterBottom>Empresas Disponibles</Typography>
+              <Divider sx={{ mb: 2 }} />
+            </Grid>
+            {renderCompanies()}
+          </>
         )}
       </Grid>
     </Box>

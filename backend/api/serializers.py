@@ -18,7 +18,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = ['id', 'DNI', 'telefono', 'tipo_usuario', 'estado', 'photo', 'user', 'actividades']
-        depth = 1  # Ajusta esto según necesites para incluir detalles anidados
+        depth = 1  
 
     def create(self, validated_data):
         user_data = validated_data.pop('user')
@@ -46,7 +46,7 @@ class EmpresaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Empresa
-        fields = ['id_empresa', 'codigo_empresa', 'nombre', 'cif', 'usuarios', 'direccion']
+        fields = ['id_empresa', 'codigo_empresa', 'nombre', 'cif', 'usuarios', 'direccion', 'photo']
 
 
 class ActividadSerializer(serializers.ModelSerializer):

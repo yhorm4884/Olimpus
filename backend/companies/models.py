@@ -2,6 +2,8 @@ import re
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import FileExtensionValidator
+
 def validar_cif(value):
     # Expresión regular para verificar la estructura básica del CIF
     regex = re.compile(r'^[A-HJ-NP-SUVW][0-9]{7}[0-9A-J]$')
@@ -38,6 +40,9 @@ class Empresa(models.Model):
     cif = models.CharField(max_length=9)
     usuarios = models.ManyToManyField('users.Usuario', related_name='empresas', verbose_name=_('Usuarios'))
     direccion = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='user/%d/',
+        blank=True,
+        validators=[FileExtensionValidator(['jpg', 'png'])],)
 
     # def clean(self):
     #     # Método de validación personalizada para validar el CIF
