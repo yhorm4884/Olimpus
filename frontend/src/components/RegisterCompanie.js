@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 
 function RegisterEmpresa() {
+    const navigate = useNavigate();
     const { userId } = useParams();
     const [userData, setUserData] = useState(null); // Estado para almacenar los datos del usuario
     useEffect(() => {
@@ -60,6 +62,10 @@ function RegisterEmpresa() {
     
             if (response.status === 201) {
                 setAlert({ visible: true, color: 'success', message: 'Registro exitoso.' });
+                var idusuario = response.data.userid
+                setTimeout(() => {
+                    navigate(`/dashboard/user/${idusuario}`);
+                  }, 5000);
             }
         } catch (error) {
             console.error('Registro fallido:', error.response || error);

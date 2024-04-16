@@ -179,6 +179,15 @@ function Dashboard() {
             {renderCompanies()}
           </>
         )}
+        {userData?.tipo_usuario === 'propietario' && (
+          <>
+            <Grid item xs={12}>
+              <Typography variant="h5" gutterBottom>Mis empresas como propietario</Typography>
+              <Divider sx={{ mb: 2 }} />
+            </Grid>
+            {renderCompanies()}
+          </>
+        )}
       </Grid>
     </Box>
   );

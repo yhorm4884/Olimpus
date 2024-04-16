@@ -14,6 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .models import Empresa
 from users.models import Usuario
+from django.contrib.auth.models import User
 
 
 # @api_view(['POST'])
@@ -23,22 +24,26 @@ def register_empresa_view(request):
     if request.method == 'POST':
         try:
             user_related = request.user
-            usuario_actual = Usuario.objects.get(pk=user_related.pk)
+            usuario_actual = User.objects.get(pk=user_related.pk)
 
             nombre = request.POST.get('nombre')
             codigo_empresa = request.POST.get('codigo_empresa')
             cif = request.POST.get('cif')
             direccion = request.POST.get('direccion')
-            print(usuario_actual)
             empresa_existente = Empresa.objects.filter(codigo_empresa=codigo_empresa).first()
             if empresa_existente:
                 return JsonResponse({'error': 'La empresa ya existe'}, status=400)
 
             empresa = Empresa.objects.create(nombre=nombre, codigo_empresa=codigo_empresa, cif=cif, direccion=direccion)
-            
+            usuario_actual = Usuario.objects.get(user=usuario_actual)
+
+
             empresa.usuarios.add(usuario_actual)
+            usuario_actual.tipo_usuario = 'propietario'
+            usuario_actual.save()
             
-            return JsonResponse({'message': 'Empresa creada exitosamente'}, status=201)
+            
+            return JsonResponse({'message': 'Empresa creada exitosamente', 'userid':usuario_actual.id}, status=201)
         except Usuario.DoesNotExist:
             return JsonResponse({'error': 'Usuario no encontrado'}, status=404)
         except Exception as e:
