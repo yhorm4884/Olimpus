@@ -221,6 +221,7 @@ def update_profile(request):
     
     if request.method == 'POST':
         # Accede a los datos del formulario y al archivo
+        
         email = request.POST.get('email')
         username = request.POST.get('username')
         telefono = request.POST.get('telefono')

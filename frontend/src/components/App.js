@@ -14,6 +14,7 @@ import NotFound from './NotFound';
 import ForgotPassword from './ForgotPassword';
 import ResetPasswordPage from './ResetPasswordPage';
 import ReactivateAccount from './ReactiveAccount';
+import RegisterEmpresa from './RegisterCompanie';
 import './css/app.css'; // Asegúrate de que tus estilos estén en este archivo
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
           <Route path="/dashboard/user/:userId" element={<Dashboard />} />
           <Route path="/dashboard/profile/:userId" element={<UserProfile />} />
           <Route path="/dashboard/activities" element={<ActivityCalendar />} />
+          <Route path="/register-companie" element={<RegisterEmpresa />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

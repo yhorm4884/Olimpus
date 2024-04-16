@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, Alert, Tooltip } from 'reactstrap';
-import './css/argon-design-system-react.css';
-import './css/propio-css.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 
 function RegisterEmpresa() {
+    const { userId } = useParams();
+    const [userData, setUserData] = useState(null); // Estado para almacenar los datos del usuario
+    useEffect(() => {
+        if (userId) {
+          const url = `http://127.0.0.1:8000/api/usuarios/${userId}/`;
+          axios.get(url, { withCredentials: true })
+            .then(response => {
+              console.log(response.data);
+              setUserData(response.data); // Almacenar los datos del usuario en el estado
+            })
+            .catch(error => console.error('Error fetching user data:', error));
+        }
+      }, [userId]);
+
     const [nombre, setNombre] = useState('');
     const [codigoEmpresa, setCodigoEmpresa] = useState('');
     const [cif, setCif] = useState('');
@@ -37,22 +48,22 @@ function RegisterEmpresa() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateFields()) {
-            setAlert({ visible: true, color: 'danger', message: 'Por favor, corrige los errores en el formulario.' });
-            return;
-        }
-        const data = { nombre, codigo_empresa: codigoEmpresa, cif, direccion };
-
+    
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+        formData.append('codigo_empresa', codigoEmpresa);
+        formData.append('cif', cif);
+        formData.append('direccion', direccion);
+    
         try {
-            const response = await axios.post('http://127.0.0.1:8000/companies/register/', data, { withCredentials: true });
-
+            const response = await axios.post('http://127.0.0.1:8000/companies/register/', formData, { withCredentials: true });
+    
             if (response.status === 201) {
                 setAlert({ visible: true, color: 'success', message: 'Registro exitoso.' });
             }
         } catch (error) {
             console.error('Registro fallido:', error.response || error);
-            const errorMessage = error.response?.data?.errors || 'Error desconocido al registrar.';
-            setAlert({ visible: true, color: 'danger', message: `Registro fallido: ${errorMessage}` });
+            setAlert({ visible: true, color: 'danger', message: `Registro fallido: ${error.response.data.error}` });
         }
     };
 
@@ -88,6 +99,10 @@ function RegisterEmpresa() {
                                     {renderInput('codigoEmpresa', 'text', 'Código de la empresa', 'Código de la empresa', codigoEmpresa)}
                                     {renderInput('cif', 'text', 'CIF', 'CIF (9 caracteres)', cif)}
                                     {renderInput('direccion', 'text', 'Dirección', 'Dirección de la empresa', direccion)}
+
+                                    {/* Campo invisible para almacenar el usuario */}
+                                    <input type="hidden" name="userId" value={userData?.id} />
+
                                     <div className="text-center">
                                         <Button type="submit" color="primary" className="my-4">Registrar Empresa</Button>
                                     </div>

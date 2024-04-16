@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Box, Grid, Paper, Typography, Button, IconButton, Snackbar, Card, CardMedia, CardContent, Divider } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   const { userId } = useParams();
@@ -64,6 +65,10 @@ function Dashboard() {
       </Grid>
     ));
   };
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate('/register-companie');
+  };
   const renderMessageForUserType = () => {
     if (userData?.tipo_usuario === 'cliente') {
       return (
@@ -75,7 +80,7 @@ function Dashboard() {
           <span>
             Bienvenido a tu Dashboard. Aquí puedes ver tu perfil y las actividades en las que participas.
             {userData?.tipo_usuario === 'cliente' && (
-              <Button color="secondary" size="small" onClick={() => alert('Navigate to register as a propietario')}>
+               <Button color="secondary" size="small" onClick={handleButtonClick}>
                 Si quieres ser propietario, pulsa este botón.
               </Button>
             )}
