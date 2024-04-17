@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'activities.apps.ActivitiesConfig',
     'companies.apps.CompaniesConfig',
+    'notifications.apps.NotificationsConfig',
     'rest_framework',  # Django REST Framework para APIs
     'qrcode',
     'django_otp',

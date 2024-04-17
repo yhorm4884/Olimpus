@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from companies.models import Empresa
 class Actividad(models.Model):
     codigo_actividad = models.CharField(max_length=100, verbose_name=_('Código de Actividad'))
     nombre = models.CharField(max_length=100, verbose_name=_('Nombre'))
@@ -9,7 +9,7 @@ class Actividad(models.Model):
     personas = models.IntegerField(verbose_name=_('Capacidad de Personas'))
     lugar = models.CharField(max_length=100, verbose_name=_('Lugar'))
     observaciones = models.TextField(blank=True, verbose_name=_('Observaciones'))
-    empresas = models.ManyToManyField('companies.Empresa', verbose_name=_('Empresas'))
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, verbose_name=_('Empresa'))
     participantes_actividad = models.ManyToManyField(
         'users.Usuario',
         related_name='actividades',  # Cambiado de 'actividades_participadas' a 'actividades'
