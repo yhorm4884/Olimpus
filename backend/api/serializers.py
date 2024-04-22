@@ -4,6 +4,13 @@ from users.models import Usuario
 from companies.models import Empresa
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from notifications.models import Notificacion
+
+
+class NotificacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notificacion
+        fields = '__all__'
 
 User = get_user_model()
 
@@ -46,7 +53,7 @@ class EmpresaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Empresa
-        fields = ['id_empresa', 'codigo_empresa', 'nombre', 'cif', 'usuarios', 'direccion', 'photo']
+        fields = ['id_empresa', 'codigo_empresa', 'nombre', 'cif', 'usuarios', 'direccion', 'estado', 'photo']
 
 
 class ActividadSerializer(serializers.ModelSerializer):

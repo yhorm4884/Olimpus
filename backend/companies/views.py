@@ -1,20 +1,10 @@
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from rest_framework.decorators import api_view, permission_classes
-from django.contrib.auth.tokens import default_token_generator
-from django_otp.plugins.otp_totp.models import TOTPDevice
-from django.contrib.auth import authenticate, login, logout
-from django.views.decorators.csrf import csrf_protect
-from django.template.loader import render_to_string
-from rest_framework.permissions import AllowAny
-from django.utils.encoding import force_bytes
-from django.utils.encoding import force_str
-from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt
-
-from django.http import JsonResponse
-from .models import Empresa
-from users.models import Usuario
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from users.models import Usuario
+from .models import Empresa
+import json
 
 
 # @api_view(['POST'])
@@ -50,3 +40,52 @@ def register_empresa_view(request):
             return JsonResponse({'error': str(e)}, status=400)
     else:
         return JsonResponse({'error': 'Solicitud inválida'}, status=405)
+
+@csrf_exempt
+def empresa_detail(request, user_id):
+    if request.method == 'GET':
+        try:
+            usuario = Usuario.objects.get(id=user_id, tipo_usuario='propietario')
+            empresa = Empresa.objects.get(usuarios=usuario)
+            empresa_data = {
+                'id': empresa.id_empresa,
+                'nombre': empresa.nombre,
+                'estado': empresa.estado,
+                'direccion': empresa.direccion,
+                'photo': empresa.photo.url if empresa.photo else None
+            }
+            return JsonResponse(empresa_data)
+        except Usuario.DoesNotExist:
+            return JsonResponse({'error': 'Usuario no encontrado'}, status=404)
+        except Empresa.DoesNotExist:
+            return JsonResponse({'error': 'Empresa no encontrada'}, status=404)
+
+    elif request.method == 'POST':
+        data = json.loads(request.body)
+        usuario = Usuario.objects.get(id=user_id, tipo_usuario='propietario')
+        empresa = Empresa.objects.get(usuarios=usuario)
+        empresa.nombre = data.get('nombre', empresa.nombre)
+        empresa.estado = data.get('estado', empresa.estado)
+        empresa.direccion = data.get('direccion', empresa.direccion)
+        empresa.save()
+        return JsonResponse({'message': 'Datos de la empresa actualizados con éxito'}, status=200)
+    
+
+@csrf_exempt
+def join(request, company_id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_id = data.get('userId')
+        print(data)
+        print(company_id)  # Debería mostrar el ID de la empresa
+        print(user_id)  # Debería mostrar el ID del usuario
+
+        usuario = get_object_or_404(Usuario, pk=user_id)
+        empresa = get_object_or_404(Empresa, pk=company_id)
+
+        empresa.usuarios.add(usuario)
+        empresa.save()
+
+        return JsonResponse({'message': 'Usuario unido a la empresa con éxito.'}, status=200)
+
+    return JsonResponse({'error': 'Método no permitido'}, status=400)

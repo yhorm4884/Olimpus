@@ -15,6 +15,9 @@ import ForgotPassword from './ForgotPassword';
 import ResetPasswordPage from './ResetPasswordPage';
 import ReactivateAccount from './ReactiveAccount';
 import RegisterEmpresa from './RegisterCompanie';
+import CompanyManagement from './CompanyManagement';
+import ChoosePlanScreen from './ChoosePlanScreen'; // Asegúrate de importar el nuevo componente
+
 import './css/app.css'; // Asegúrate de que tus estilos estén en este archivo
 
 function App() {
@@ -100,10 +103,12 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:uidb64/:token" element={<ResetPasswordPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/activities/:companyId" element={<ActivityCalendar />} />
           <Route path="/dashboard/user/:userId" element={<Dashboard />} />
           <Route path="/dashboard/profile/:userId" element={<UserProfile />} />
-          <Route path="/dashboard/activities" element={<ActivityCalendar />} />
+          <Route path="/dashboard/company-management/:userId" element={<CompanyManagement />} />
           <Route path="/register-companie" element={<RegisterEmpresa />} />
+          <Route path="/choose-plan/:companyId" element={<ChoosePlanScreen />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

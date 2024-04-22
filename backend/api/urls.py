@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UsuarioViewSet, EmpresaViewSet, ActividadViewSet, set_csrf_cookie
+from .views import UsuarioViewSet, EmpresaViewSet,NotificacionViewSet, ActividadViewSet, set_csrf_cookie
 
 # Define el enrutador
 router = DefaultRouter()
@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet)
 router.register(r'empresas', EmpresaViewSet)
 router.register(r'actividades', ActividadViewSet)
+router.register(r'notifications', NotificacionViewSet, basename='notification')
 
 # Define las rutas de la aplicación
 urlpatterns = [
