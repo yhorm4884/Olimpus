@@ -16,7 +16,8 @@ import ResetPasswordPage from './ResetPasswordPage';
 import ReactivateAccount from './ReactiveAccount';
 import RegisterEmpresa from './RegisterCompanie';
 import CompanyManagement from './CompanyManagement';
-import ChoosePlanScreen from './ChoosePlanScreen'; // Asegúrate de importar el nuevo componente
+import ChoosePlanScreen from './ChoosePlanScreen'; 
+import LinktoCompanie from './LinkToCompanie';// Asegúrate de importar el nuevo componente
 
 import './css/app.css'; // Asegúrate de que tus estilos estén en este archivo
 
@@ -109,6 +110,7 @@ function App() {
           <Route path="/dashboard/company-management/:userId" element={<CompanyManagement />} />
           <Route path="/register-companie" element={<RegisterEmpresa />} />
           <Route path="/choose-plan/:companyId" element={<ChoosePlanScreen />} />
+          <Route path="/dashboard/link-to-companie/:userId" element={<LinktoCompanie />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

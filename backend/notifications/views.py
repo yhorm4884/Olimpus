@@ -29,8 +29,13 @@ def notificacion_update(request, notificacion_id):
         action = data.get('action')
 
         if action == 'aceptar':
-            # Añadir el usuario cliente a la actividad y eliminar la notificación
-            notificacion.actividad.participantes_actividad.add(notificacion.usuario_cliente)
+            if "Solicitud de unión a la empresa" in notificacion.actividad.nombre:
+                print("La actividad es una solicitud de unión a la empresa")
+                empresa = notificacion.actividad.empresa
+                empresa.usuarios.add(notificacion.usuario_cliente)
+                empresa.save()
+            else:
+                notificacion.actividad.participantes_actividad.add(notificacion.usuario_cliente)
             notificacion.delete()
             return JsonResponse({'message': 'Solicitud aceptada, usuario añadido a la actividad.'}, status=200)
 

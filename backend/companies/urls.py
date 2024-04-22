@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path('register/', views.register_empresa_view, name='register'),
     path('empresa/<int:user_id>/', views.empresa_detail, name='empresa_detail'),
-    path('<int:company_id>/join', views.join, name='join'),
+    path('join/', views.join, name='join'),
 
 ]
 if settings.DEBUG:

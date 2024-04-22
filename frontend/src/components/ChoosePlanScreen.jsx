@@ -20,8 +20,7 @@ const ChoosePlanScreen = () => {
   const handleJoinCompany = async () => {
     try {
       console.log(userId);
-      await axios.post(`http://127.0.0.1:8000/companies/${companyId}/join`, { userId: userId });
-      navigate(`/dashboard/user/${userId}/activities`);
+      navigate(`/dashboard/link-to-companie/${userId}`);
     } catch (error) {
       console.error('Error al unirse a la empresa:', error);
     }

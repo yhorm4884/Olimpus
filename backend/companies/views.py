@@ -4,9 +4,12 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from users.models import Usuario
 from .models import Empresa
+from notifications.models import Notificacion
+from activities.models import Actividad
 import json
-
-
+from datetime import datetime
+import random
+import string
 # @api_view(['POST'])
 # @permission_classes([AllowAny])
 @csrf_exempt
@@ -70,22 +73,68 @@ def empresa_detail(request, user_id):
         empresa.save()
         return JsonResponse({'message': 'Datos de la empresa actualizados con éxito'}, status=200)
     
+def generar_codigo_unico():
+    codigo = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+    return codigo
+def crear_notificacion_solicitud_unión_empresa(usuario_solicitante, empresa):
+    if Notificacion.objects.filter(actividad__empresa=empresa, usuario_cliente=usuario_solicitante).exists():
+        return  
+    
+    nombre_actividad = 'Solicitud de unión a la empresa'
+    actividad_existente = Actividad.objects.filter(nombre=nombre_actividad, empresa=empresa).first()
+    if actividad_existente:
+        actividad = actividad_existente
+    else:
+        codigo_actividad = generar_codigo_unico()
+        while Actividad.objects.filter(codigo_actividad=codigo_actividad).exists():
+            codigo_actividad = generar_codigo_unico()
+
+        actividad = Actividad.objects.create(
+            codigo_actividad=codigo_actividad,
+            nombre=nombre_actividad,
+            hora_entrada=datetime.now(),
+            hora_salida=datetime.now(),
+            personas=1000,
+            lugar='Oficina',
+            empresa=empresa
+        )
+
+    notificacion = Notificacion.objects.create(
+        actividad=actividad,
+        usuario_cliente=usuario_solicitante,
+        usuario_propietario=empresa.usuarios.filter(tipo_usuario='propietario').first(),
+        estado='pendiente'
+    )
+    notificacion.save()
 
 @csrf_exempt
-def join(request, company_id):
+def join(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        user_id = data.get('userId')
-        print(data)
-        print(company_id)  # Debería mostrar el ID de la empresa
-        print(user_id)  # Debería mostrar el ID del usuario
 
-        usuario = get_object_or_404(Usuario, pk=user_id)
-        empresa = get_object_or_404(Empresa, pk=company_id)
+        try:
+            
+            codigo_empresa = request.POST.get('codigoEmpresa')
+            user_id = request.POST.get('userId')
+          
+            print(codigo_empresa)  
 
-        empresa.usuarios.add(usuario)
-        empresa.save()
+            try:
+                usuario = Usuario.objects.get(pk=user_id)
+                empresa = Empresa.objects.get(codigo_empresa=codigo_empresa)
+            except Usuario.DoesNotExist:
+                return JsonResponse({'error': 'El usuario especificado no existe.'}, status=404)
+            except Empresa.DoesNotExist:
+                return JsonResponse({'error': 'La empresa especificada no existe.'}, status=404)
 
-        return JsonResponse({'message': 'Usuario unido a la empresa con éxito.'}, status=200)
+            try:
+                crear_notificacion_solicitud_unión_empresa(usuario, empresa)
+                
+            except Exception as e:
+                return JsonResponse({'error': f'Error al unir usuario a la empresa: {str(e)}'}, status=500)
+
+            return JsonResponse({'message': 'Usuario unido a la empresa con éxito.'}, status=200)
+
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Los datos enviados no son válidos JSON.'}, status=400)
 
     return JsonResponse({'error': 'Método no permitido'}, status=400)

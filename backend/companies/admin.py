@@ -5,3 +5,4 @@ from .models import Empresa
 class EmpresaAdmin(admin.ModelAdmin):
     list_display = ['codigo_empresa', 'nombre', 'cif', 'direccion']
     list_filter = ['usuarios']  # Usa el campo correcto aquí, basado en tus relaciones actuales
+    

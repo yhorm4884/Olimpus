@@ -193,12 +193,21 @@ function Dashboard() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleJoinCompany(selectedCompany.id_empresa)} color="primary">
-            Unirse a esta Empresa
-          </Button>
-          <Button onClick={handleCloseDialog} color="primary">
-            Cerrar
-          </Button>
+        {selectedCompany?.usuarios.map(usuario => {
+          console.log(userId)
+          if (usuario.id === userId) {
+            return null;
+          } else {
+            return (
+              <Button key={usuario.id} onClick={() => handleJoinCompany(selectedCompany.id_empresa)} color="primary">
+                Unirse a esta Empresa
+              </Button>
+            );
+          }
+        })}
+        <Button onClick={handleCloseDialog} color="primary">
+          Cerrar
+        </Button>
         </DialogActions>
       </Dialog>
     </Box>
