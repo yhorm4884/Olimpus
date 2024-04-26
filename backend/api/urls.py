@@ -9,7 +9,7 @@ router = DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet)
 router.register(r'empresas', EmpresaViewSet)
 router.register(r'actividades', ActividadViewSet)
-router.register(r'notifications', NotificacionViewSet, basename='notification')
+router.register(r'notifications', NotificacionViewSet, )
 
 # Define las rutas de la aplicación
 urlpatterns = [

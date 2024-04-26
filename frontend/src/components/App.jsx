@@ -1,25 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
-import { Avatar} from '@mui/material';
-import { Navbar, NavbarBrand,} from 'reactstrap';
-import axios from 'axios'; // Asegúrate de tener axios instalado o importa tu configuración de axios si es personalizada
-import Home from './Home';
-import Login from './Login';
-import Register from './Register';
-import Logout from './Logout';
-import Dashboard from './Dashboard';
-import UserProfile from './UserProfile';
-import ActivityCalendar from './ActivityCalendar';
-import NotFound from './NotFound';
-import ForgotPassword from './ForgotPassword';
-import ResetPasswordPage from './ResetPasswordPage';
-import ReactivateAccount from './ReactiveAccount';
-import RegisterEmpresa from './RegisterCompanie';
-import CompanyManagement from './CompanyManagement';
-import ChoosePlanScreen from './ChoosePlanScreen'; 
-import LinktoCompanie from './LinkToCompanie';// Asegúrate de importar el nuevo componente
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { Avatar } from '@mui/material';
+import { Navbar, NavbarBrand } from 'reactstrap';
+import axios from 'axios';
+import BreadcrumbComponent from './BreadcrumbComponent';
+import routesConfig from './routesConfig';
 
-import './css/app.css'; // Asegúrate de que tus estilos estén en este archivo
+import './css/app.css';
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -39,23 +26,12 @@ function App() {
           credentials: 'include',
         });
         const data = await authResponse.json();
-        const isAuthenticated = data.isAuthenticated;
-        const userId = data.userId || null;
-
-        setAuthState(prevState => ({
-          ...prevState,
-          isAuthenticated: isAuthenticated,
-          userId: userId
-        }));
-
-        if (isAuthenticated && userId) {
-          const userDataResponse = await axios.get(`http://127.0.0.1:8000/api/usuarios/${userId}/`, {
-            withCredentials: true,
+        if (data.isAuthenticated && data.userId) {
+          setAuthState({
+            isAuthenticated: true,
+            userId: data.userId,
+            photo: data.photo
           });
-          setAuthState(prevState => ({
-            ...prevState,
-            photo: userDataResponse.data.photo
-          }));
         }
       } catch (error) {
         console.error('Error fetching auth status:', error);
@@ -69,21 +45,19 @@ function App() {
     <Router>
       <div>
         <Navbar color="dark" dark expand="md">
-          <img src="../../media/logo.png" alt="Logo SportEvent" className="logo-nav"/>
+          <img src="../../media/logo.png" alt="Logo SportEvent" className="logo-nav" />
           <NavbarBrand href="/">SPORTEVENTS</NavbarBrand>
           <button onClick={toggleSidebar} className="menu-button">☰</button>
-          
         </Navbar>
         <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
           <button onClick={toggleSidebar} className="close-btn">&times;</button>
           {authState.isAuthenticated && (
             <>
               <div className="user-info">
-                <Avatar src={authState.photo || ''} alt="Foto del Usuario" sx={{ width: 128, height: 128 }} />
-                <NavLink to={`/dashboard/user/${authState.userId}`} className="sidebar-link" onClick={toggleSidebar}>INICIO</NavLink>
+                <Avatar src={authState.photo || ''} alt="User Photo" sx={{ width: 128, height: 128 }} />
+                <NavLink to={`/dashboard/user/${authState.userId}`} className="sidebar-link" onClick={toggleSidebar}>Inicio</NavLink>
                 <NavLink to={`/dashboard/profile/${authState.userId}`} className="sidebar-link" onClick={toggleSidebar}>Ver Perfil</NavLink>
                 <NavLink to="/logout" className="sidebar-link" onClick={toggleSidebar}>Cerrar sesión</NavLink>
-                
               </div>
             </>
           )}
@@ -95,27 +69,47 @@ function App() {
             </>
           )}
         </div>
-        <Routes>
-        <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/reactivate/:userId/:token" element={<ReactivateAccount />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:uidb64/:token" element={<ResetPasswordPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/activities/:companyId" element={<ActivityCalendar />} />
-          <Route path="/dashboard/user/:userId" element={<Dashboard />} />
-          <Route path="/dashboard/profile/:userId" element={<UserProfile />} />
-          <Route path="/dashboard/company-management/:userId" element={<CompanyManagement />} />
-          <Route path="/register-companie" element={<RegisterEmpresa />} />
-          <Route path="/choose-plan/:companyId" element={<ChoosePlanScreen />} />
-          <Route path="/dashboard/link-to-companie/:userId" element={<LinktoCompanie />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <RoutesWithBreadcrumbs authState={authState} />
       </div>
     </Router>
   );
 }
+
+function RoutesWithBreadcrumbs({ authState }) {
+  const location = useLocation();
+
+  // Comprobación de existencia de ruta sin usar regex.
+  const routeExists = routesConfig.some(route => {
+    // Divide tanto la ruta actual como la ruta de configuración en segmentos.
+    const currentPathSegments = location.pathname.split('/').filter(p => p);
+    const routePathSegments = route.path.split('/').filter(p => p);
+
+    // Comprueba si cada segmento coincide, tratando los parámetros como comodines.
+    if (routePathSegments.length !== currentPathSegments.length) {
+      return false;
+    }
+
+    return routePathSegments.every((segment, index) => {
+      return segment.startsWith(':') || segment === currentPathSegments[index];
+    });
+  });
+
+  console.log("Location Pathname:", location.pathname);
+  console.log("Route Exists:", routeExists);
+  console.log("Is Authenticated:", authState.isAuthenticated);
+  console.log("Show Breadcrumb:", routeExists && location.pathname !== '/' && authState.isAuthenticated);
+
+  return (
+    <>
+      {routeExists && location.pathname !== '/' && authState.isAuthenticated && <BreadcrumbComponent authState={authState} />}
+      <Routes>
+        {routesConfig.map(({ path, Component }, index) => (
+          <Route key={index} path={path} element={<Component />} />
+        ))}
+      </Routes>
+    </>
+  );
+}
+
 
 export default App;

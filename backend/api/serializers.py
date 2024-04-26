@@ -7,10 +7,7 @@ from django.contrib.auth import get_user_model
 from notifications.models import Notificacion
 
 
-class NotificacionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Notificacion
-        fields = '__all__'
+
 
 User = get_user_model()
 
@@ -63,3 +60,8 @@ class ActividadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actividad
         fields = ['codigo_actividad', 'nombre', 'hora_entrada', 'hora_salida', 'personas', 'lugar', 'observaciones', 'empresas', 'participantes_actividad']
+
+class NotificacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notificacion
+        fields = '__all__'
