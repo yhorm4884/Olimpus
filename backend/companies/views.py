@@ -10,6 +10,15 @@ import json
 from datetime import datetime
 import random
 import string
+from django.http import JsonResponse
+import stripe
+
+stripe.api_key = "sk_test_51PBBogCeiEB5qy1OvG85xg5TB7VS8IdY9SliIhcAsELju1EYV2X2mzuzbUcVw4wOhiaQPV3a8D7okSboJxhwY0A700wh486jwP"
+
+
+
+
+
 # @api_view(['POST'])
 # @permission_classes([AllowAny])
 @csrf_exempt
@@ -138,3 +147,38 @@ def join(request):
             return JsonResponse({'error': 'Los datos enviados no son válidos JSON.'}, status=400)
 
     return JsonResponse({'error': 'Método no permitido'}, status=400)
+
+
+
+@csrf_exempt
+def crear_sesion_checkout(request):
+
+    if request.method == "POST":
+        data = request.POST
+        
+        try:
+            
+            session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[
+                    {
+                        'price_data': {
+                            'currency': 'eur',
+                            'product_data': {
+                                'name': data.get('plan'),  
+                            },
+                            'unit_amount': int(data.get('cantidad'))*100,  #Multiplicar el rollo por 100 pa pasarlo a centimos
+                        },
+                        'quantity': 1,
+                    },
+                ],
+                mode='payment',
+                success_url='http://localhost:3000/dashboard/link-to-companie/'+str(data.get('userId')), #esto son urls que gestiona el react
+                cancel_url='http://localhost:3000/choose-plan/'+str(data.get('userId')),
+            )
+            
+            return JsonResponse({'sessionId': session.id})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    return JsonResponse({'error': 'Método no permitido'}, status=405)

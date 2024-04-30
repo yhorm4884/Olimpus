@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Typography, Box, Card, CardContent, CardActions, useMediaQuery, useTheme } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';  // MUI Icons
+import { loadStripe } from '@stripe/stripe-js';
 
 const ChoosePlanScreen = () => {
   const { companyId } = useParams();
@@ -14,17 +15,42 @@ const ChoosePlanScreen = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const userId = state.userId;
 
-  
 
+const handleJoinCompany = async (plan,cantidad) => {
+  try {
+    
+    const stripe = await loadStripe('pk_test_51PBBogCeiEB5qy1OhkW7TkY7h8gcMkNRT0wpwJaOwcKoszgJRzjCQBaycVNBynhbL4tq51IWKZdLrUSHLP4epx26000xfbFJ8r');
 
-  const handleJoinCompany = async () => {
-    try {
-      console.log(userId);
-      navigate(`/dashboard/link-to-companie/${userId}`);
-    } catch (error) {
-      console.error('Error al unirse a la empresa:', error);
+    const formData = new FormData();
+        formData.append('userId', userId);
+        formData.append('plan', plan);
+        formData.append('cantidad', cantidad);
+    
+
+    const response = await axios.post('http://127.0.0.1:8000/companies/crear-sesion-checkout/', formData, { withCredentials: true });
+    
+
+    
+    
+    if (response.data.sessionId) {
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: response.data.sessionId,
+      });
+
+      if (error) {
+        console.error('Error al redirigir a la página de pago de Stripe:', error);
+      }
+    } else {
+      console.error('Error al crear la sesión de checkout en Stripe');
     }
-  };
+  } catch (error) {
+    console.error('Error al unirse a la empresa:', error);
+  }
+};
+
+
+
+ 
 
   return (
     <Box sx={{ py: 6, backgroundColor: 'none !important;', color: 'text.primary' }}>
@@ -52,7 +78,7 @@ const ChoosePlanScreen = () => {
               "Acceso básico a la plataforma",
               "Acceso a todas las actividades públicas"
             ]}
-            onJoin={handleJoinCompany}
+            onJoin={() => handleJoinCompany('Básico',30)} 
           />
           <PlanCard
             title="Estándar"
@@ -64,7 +90,7 @@ const ChoosePlanScreen = () => {
               "Más importancia que los usuarios base",
               "Entrenador Personal"
             ]}
-            onJoin={handleJoinCompany}
+            onJoin={() => handleJoinCompany('Estándar',48)} 
             highlighted
           />
           <PlanCard
@@ -79,7 +105,7 @@ const ChoosePlanScreen = () => {
               "Entrenador Personal",
               "Espacio Privado"
             ]}
-            onJoin={handleJoinCompany}
+            onJoin={() => handleJoinCompany('Premium',99)} 
           />
         </Box>
       </Box>

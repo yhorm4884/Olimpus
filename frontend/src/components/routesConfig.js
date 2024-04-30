@@ -11,6 +11,8 @@ import ResetPasswordPage from './ResetPasswordPage';
 import ReactivateAccount from './ReactiveAccount';
 import RegisterEmpresa from './RegisterCompanie';
 import ChoosePlanScreen from './ChoosePlanScreen';
+import CompanyManagement from './CompanyManagement';
+import LinktoCompanie from './LinkToCompanie';
 
 const routesConfig = [
   
@@ -23,10 +25,10 @@ const routesConfig = [
   { path: "/dashboard/user/:userId", name: "Dashboard", Component: Dashboard },
   { path: "/dashboard/profile/:userId", name: "Perfil", Component: UserProfile },
   { path: "/dashboard/activities/:companyId", name: "Actividades", Component: ActivityCalendar },
-  { path: "/dashboard/company-management/:userId", name: "Gestión de la empresa", Component: Dashboard }, // Asume que este es el componente correcto
+  { path: "/dashboard/company-management/:userId", name: "Gestión de la empresa", Component: CompanyManagement }, // Asume que este es el componente correcto
   { path: "/register-companie", name: "Registrar empresa", Component: RegisterEmpresa },
   { path: "/choose-plan/:companyId", name: "Elegir plan", Component: ChoosePlanScreen }, 
-  { path: "/dashboard/link-to-companie/:userId", name: "Vincular a la empresa", Component: Dashboard }, // Asume que este es el componente correcto
+  { path: "/dashboard/link-to-companie/:userId", name: "Vincular a la empresa", Component: LinktoCompanie }, // Asume que este es el componente correcto
   { path: "/", name: "Inicio", Component: Home },
   { path: "*", name: "No encontrado", Component: NotFound },
 ];
