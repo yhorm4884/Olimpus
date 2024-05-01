@@ -9,9 +9,18 @@
 <right>
 
 
-***Autor/es:***  
-***Fecha:***  
-***Tutor:***
+***Autor/es:*** 
+
+> <a href="https://github.com/yhorm4884">Badel Bonilla Simón</a>
+>
+> <a href="https://github.com/Afe11ay">Faybezrdt Ramos Luis</a>
+>
+> <a href="https://github.com/Miguelcg03">Miguel Carballo González</a>
+
+
+***Fecha: 01-05-2024***
+
+***Tutor: <a href="https://github.com/amarzar">Alejandro Martín Zarza</a>***
 
 
 
@@ -39,7 +48,16 @@
 
 ### 1. INTRODUCCIÓN. <a name="id1"></a>
 
-Qué pretende este documento de proyecto
+<p style="margin-left: 25px; text-align: justify;">SportEvents es una plataforma diseñada para facilitar la gestión integral de empresas deportivas. Aquí podrás administrar todas las actividades y clientes de tu empresa de manera eficiente y organizada. Desde la programación de eventos hasta la gestión de horarios y la atención al cliente, SportEvents te proporciona todas las herramientas necesarias para optimizar tus operaciones y ofrecer la mejor experiencia a tus clientes.</p>
+
+### Características Principales
+
+- <p style="text-align: justify"><b>Gestión de Actividades:</b> Programa y administra una amplia variedad de actividades deportivas, desde clases grupales hasta eventos especiales.</p>
+- <p style="text-align: justify"><b>Programación de Horarios:</b> Crea y gestiona horarios flexibles para tus actividades deportivas, permitiendo una fácil reserva y asignación de espacios.</p>
+- <p style="text-align: justify"><b>Gestión de Clientes:</b> Mantén un registro detallado de tus clientes, incluyendo información personal, historial de participación y preferencias.
+- <p style="text-align: justify"><b>Comunicación Integrada:</b> Facilita la comunicación con tus clientes mediante herramientas integradas de mensajería y notificaciones.</p>
+- <p style="text-align: justify"><b>Informes y Análisis:</b> Accede a datos y métricas clave para evaluar el rendimiento de tu empresa y tomar decisiones informadas.</p>
+
 
 ### 2. TECNOLOGÍAS UTILIZADAS. <a name="id2"></a>
 
