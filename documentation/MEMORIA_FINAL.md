@@ -65,13 +65,24 @@
 
 #### Backend:
 
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://docs.djangoproject.com/en/5.0/releases/5.0.4/"><b>Django 5.0.4</a>:</b> Framework de desarrollo web de alto nivel para Python, utilizado para la construcción de la parte backend de la aplicación.</p>
+![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)
+![Django Badge](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=fff&style=for-the-badge) 
+![PostgreSQL Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=for-the-badge) 
+![SQLite Badge](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=fff&style=for-the-badge)
+
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://docs.djangoproject.com/en/5.0/releases/5.0.4/"><b>Django 5.0.4 </a>:</b>Framework de desarrollo web de alto nivel para Python, utilizado para la construcción de la parte backend de la aplicación.</p>
 - <p style="text-align: justify; margin-left: 25px;"><a href="https://www.django-rest-framework.org/community/release-notes/#315x-series"><b>Django REST Framework 3.15</a>:</b> Biblioteca que facilita la creación de API RESTful en Django, utilizada para la implementación de la API del backend.
 - <p style="text-align: justify; margin-left: 25px;"><a href="https://www.python.org/downloads/release/python-3107/"><b>Python 3.10.7</a>:</b> Lenguaje de programación utilizado para escribir la lógica del backend de la aplicación.
 - <p style="text-align: justify; margin-left: 25px;"><a href="https://www.postgresql.org/docs/16/release-16-2.html"><b>PostgreSQL 16.2</a>:</b> Sistema de gestión de bases de datos relacional, utilizado como base de datos principal en el entorno de producción.</p>
 - <p style="text-align: justify; margin-left: 25px;"><a href="https://www.sqlite.org/releaselog/3_45_3.html"><b>SQLite 3.45.3</a>:</b> Sistema de gestión de bases de datos relacional, utilizado como base de datos de desarrollo y pruebas.
 
 #### Frontend:
+
+![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge)
+![React Router Badge](https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=for-the-badge)
+![Axios Badge](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge)
+![Webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=000&style=for-the-badge)
+![Babel Badge](https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=000&style=for-the-badge)
 
 - <p style="text-align: justify; margin-left: 25px;"><a href="https://legacy.reactjs.org/versions/"><b>React 18.2.0</a>:</b> Biblioteca de JavaScript utilizada para construir la interfaz de usuario de la aplicación frontend.
 - <p style="text-align: justify; margin-left: 25px;"><a href="https://reactrouter.com/en/6.22.0"><b>React Router 6.22.3</a>:</b> Componente de enrutamiento utilizado para la navegación entre diferentes vistas de la aplicación React.
