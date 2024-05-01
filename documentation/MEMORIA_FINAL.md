@@ -61,8 +61,39 @@
 
 ### 2. TECNOLOGÍAS UTILIZADAS. <a name="id2"></a>
 
-+ Indicar todo el software (y su versión) utilizado durante el proyecto, especificando si sólo es necesario en la fase de desarrollo o también es necesario en producción.
-+ ¿Qué hardware necesita tu web para funcionar?
+### Software Utilizado:
+
+#### Backend:
+
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://docs.djangoproject.com/en/5.0/releases/5.0.4/"><b>Django 5.0.4</a>:</b> Framework de desarrollo web de alto nivel para Python, utilizado para la construcción de la parte backend de la aplicación.</p>
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.django-rest-framework.org/community/release-notes/#315x-series"><b>Django REST Framework 3.15</a>:</b> Biblioteca que facilita la creación de API RESTful en Django, utilizada para la implementación de la API del backend.
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.python.org/downloads/release/python-3107/"><b>Python 3.10.7</a>:</b> Lenguaje de programación utilizado para escribir la lógica del backend de la aplicación.
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.postgresql.org/docs/16/release-16-2.html"><b>PostgreSQL 16.2</a>:</b> Sistema de gestión de bases de datos relacional, utilizado como base de datos principal en el entorno de producción.</p>
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.sqlite.org/releaselog/3_45_3.html"><b>SQLite 3.45.3</a>:</b> Sistema de gestión de bases de datos relacional, utilizado como base de datos de desarrollo y pruebas.
+
+#### Frontend:
+
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://legacy.reactjs.org/versions/"><b>React 18.2.0</a>:</b> Biblioteca de JavaScript utilizada para construir la interfaz de usuario de la aplicación frontend.
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://reactrouter.com/en/6.22.0"><b>React Router 6.22.3</a>:</b> Componente de enrutamiento utilizado para la navegación entre diferentes vistas de la aplicación React.
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.npmjs.com/package/axios"><b>Axios 1.6.8</a>:</b> Cliente HTTP basado en Promesas para realizar solicitudes HTTP desde el navegador o desde Node.js, utilizado para realizar llamadas a la API del backend desde el frontend.
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.npmjs.com/package/webpack"><b>Webpack 5.91.0</a>:</b> Empaquetador de módulos utilizado para compilar y empaquetar el código fuente de la aplicación React.
+- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.npmjs.com/package/@babel/core"><b>Babel 7.24.4</a>:</b> Herramienta utilizada para compilar código JavaScript moderno (ES6+) a una versión compatible con versiones anteriores de navegadores.
+
+#### Hardware Necesario:
+
+##### Servidor:
+- CPU: Se recomienda una CPU con múltiples núcleos y soporte para virtualización.
+
+- Memoria RAM: Se recomienda un mínimo de 4 GB de RAM para aplicaciones pequeñas a medianas, pero puede ser necesario más para aplicaciones más grandes o con mayor carga de trabajo.
+
+- Almacenamiento: Se recomienda utilizar unidades de estado sólido (SSD) para un rendimiento óptimo, con suficiente espacio de almacenamiento para los archivos de la aplicación y la base de datos.
+
+- Conectividad: Se necesita una conexión a Internet estable y de alta velocidad para servir solicitudes de usuarios y acceder a recursos externos (por ejemplo, servicios de terceros, bases de datos en la nube, etc.).
+
+##### Red:
+- Se debe configurar el servidor para permitir el tráfico HTTP (puerto 80) y HTTPS (puerto 443) desde y hacia el servidor.
+
+- Se debe configurar un nombre de dominio válido y registrar registros DNS adecuados para que los usuarios puedan acceder a la aplicación a través de Internet.
 
 ### 3. GUIA DE ESTILO DE LA WEB. <a name="id3"></a>
 
