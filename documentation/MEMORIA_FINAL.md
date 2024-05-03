@@ -198,8 +198,43 @@ La gestión adecuada de los derechos de autor es fundamental para el desarrollo 
 
 ### 7. GRADO DE CUMPLIMIENTO EN ALCANCE. <a name="id7"></a>
 
-¿Se han cubierto todas las funcionalidades proyectadas? ¿cuáles sí y cuáles no? ¿por qué?
+#### Evaluación del Cumplimiento de Funcionalidades Proyectadas
+- El desarrollo de SportEvents se planificó con un conjunto de funcionalidades clave diseñadas para optimizar la gestión de empresas deportivas. Aquí se detalla cuáles de estas funcionalidades se han implementado con éxito y cuáles no, así como las razones detrás de estos resultados.
 
+#### Funcionalidades Implementadas con Éxito
+1. <b>Gestión de Horarios y Eventos:</b>
+    - <b>Descripción:</b> Los propietarios pueden crear, modificar y eliminar horarios y eventos deportivos de manera eficiente.
+    - <b>Estado:</b> Implementado con éxito.
+    - <b>Justificación:</b> Esta funcionalidad se priorizó debido a su importancia central para la operación diaria de las empresas deportivas.
+
+2. <b>Registro y Administración de Clientes:</b>
+    - <b>Descripción:</b> Sistema completo para registrar clientes y gestionar sus datos e historial de actividades.
+    - <b>Estado:</b> Implementado con éxito.
+    - <b>Justificación:</b> La implementación se facilitó utilizando tecnologías modernas que soportan la gestión de datos de manera segura y escalable.
+
+3. <b>Sistema de Reservas en Línea:</b>
+    - <b>Descripción:</b> Los clientes pueden reservar clases y eventos directamente a través de la plataforma.
+    - <b>Estado:</b> Implementado con éxito.
+    - <b>Justificación:</b> La integración de un sistema de reservas en tiempo real ha mejorado significativamente la experiencia del usuario.
+
+4. <b>Integración de Pagos en Línea:</b>
+    - <b>Descripción:</b> Permite procesar pagos en línea asegurando transacciones seguras y eficientes.
+    - <b>Estado:</b> Implementado con éxito.
+    - <b>Justificación:</b> Estas herramientas han proporcionado valiosos insights para la toma de decisiones estratégicas y la mejora continua.
+
+5. <b>Reportes Avanzados y Analíticas:</b>
+    - <b>Descripción:</b> Herramientas para generar reportes detallados y analizar tendencias de uso y rendimiento.
+    - <b>Estado:</b> Implementado con éxito.
+    - <b>Justificación:</b> Estas herramientas han proporcionado valiosos insights para la toma de decisiones estratégicas y la mejora continua.
+
+#### Funcionalidades No Implementadas
+1. <b>Chat Directo con el Cliente:</b>
+    - <b>Descripción:</b> Una funcionalidad para permitir la comunicación en tiempo real entre los clientes y el servicio de soporte o administración.
+    - <b>Estado:</b> No implementado.
+    - <b>Justificación:</b> A pesar de su planificación inicial, esta funcionalidad fue pospuesta debido a prioridades en el desarrollo de otras áreas críticas y limitaciones de recursos. Es un objetivo para futuras actualizaciones de la plataforma.
+
+#### Análisis y Proyecciones Futuras
+- Aunque se han implementado con éxito la mayoría de las funcionalidades esenciales y avanzadas, la implementación del chat directo con el cliente es un objetivo pendiente que se reconoce como vital para mejorar aún más la comunicación y la satisfacción del cliente. Se planifica abordar esta funcionalidad en el próximo ciclo de desarrollo.
 
 ### 8. GRADO DE CUMPLIMIENTO EN TIEMPO. <a name="id8"></a>
 
