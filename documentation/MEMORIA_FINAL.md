@@ -48,7 +48,7 @@
 
 ### 1. INTRODUCCIÓN. <a name="id1"></a>
 
-<p style="margin-left: 25px; text-align: justify;">SportEvents es una plataforma diseñada para facilitar la gestión integral de empresas deportivas. Aquí podrás administrar todas las actividades y clientes de tu empresa de manera eficiente y organizada. Desde la programación de eventos hasta la gestión de horarios y la atención al cliente, SportEvents te proporciona todas las herramientas necesarias para optimizar tus operaciones y ofrecer la mejor experiencia a tus clientes.</p>
+- <p style="margin-left: 25px; text-align: justify;">SportEvents es una plataforma diseñada para facilitar la gestión integral de empresas deportivas. Aquí podrás administrar todas las actividades y clientes de tu empresa de manera eficiente y organizada. Desde la programación de eventos hasta la gestión de horarios y la atención al cliente, SportEvents te proporciona todas las herramientas necesarias para optimizar tus operaciones y ofrecer la mejor experiencia a tus clientes.</p>
 
 ### Características Principales
 
@@ -122,20 +122,39 @@
 </table>
 
 #### Tipografía
-Para los textos se utiliza la fuente <b>Betm-Black</b>, una tipografía moderna y en negrita que contribuye a un aspecto visual fuerte y decidido. Esta elección refuerza la accesibilidad y la facilidad de lectura en todas las interfaces de usuario, siendo ideal para destacar titulares y elementos clave sin sacrificar la claridad.
+- Para los textos se utiliza la fuente <b>Betm-Black</b>, una tipografía moderna y en negrita que contribuye a un aspecto visual fuerte y decidido. Esta elección refuerza la accesibilidad y la facilidad de lectura en todas las interfaces de usuario, siendo ideal para destacar titulares y elementos clave sin sacrificar la claridad.
 
 #### Interfaz de Usuario (UI)
-La interfaz será minimalista, evitando la sobrecarga visual y destacando los elementos más importantes mediante el uso estratégico de colores y formas inspiradas en el logo. El diseño responsive garantizará una experiencia uniforme tanto en dispositivos móviles como en desktop.
+- La interfaz será minimalista, evitando la sobrecarga visual y destacando los elementos más importantes mediante el uso estratégico de colores y formas inspiradas en el logo. El diseño responsive garantizará una experiencia uniforme tanto en dispositivos móviles como en desktop.
 
 #### Experiencia de Usuario (UX)
-La experiencia del usuario será fluida y lógica, con transiciones suaves y una estructura de navegación que permita a los usuarios encontrar rápidamente lo que necesitan. La interactividad será una prioridad, con elementos como calendarios dinámicos y formularios interactivos para garantizar una gestión efectiva y sin esfuerzos.
+- La experiencia del usuario será fluida y lógica, con transiciones suaves y una estructura de navegación que permita a los usuarios encontrar rápidamente lo que necesitan. La interactividad será una prioridad, con elementos como calendarios dinámicos y formularios interactivos para garantizar una gestión efectiva y sin esfuerzos.
 
 #### Consistencia
-Toda la aplicación mantendrá una coherencia estética con el logo y colores corporativos, asegurando que los usuarios identifiquen y se familiaricen rápidamente con la marca SportEvents.
+- Toda la aplicación mantendrá una coherencia estética con el logo y colores corporativos, asegurando que los usuarios identifiquen y se familiaricen rápidamente con la marca SportEvents.
 
 ### 4. INVESTIGACIÓN. <a name="id4"></a>
 
-¿Qué has tenido que investigar para desarrollar la web? ¿Ha funcionado todo a la primera o has tenido que desechar algunos desarrollos?
+#### Investigación Preliminar
+- Antes de iniciar el desarrollo de SportEvents, fue necesario realizar una investigación exhaustiva para entender mejor las necesidades específicas de las empresas deportivas. Esto incluyó el estudio de sistemas de gestión existentes, las particularidades de las operaciones deportivas y las expectativas de los usuarios finales respecto a funcionalidad, accesibilidad y experiencia de usuario.
+
+#### Tecnologías y Herramientas
+- Se investigaron diversas tecnologías y frameworks para seleccionar los más adecuados para el proyecto. Por ejemplo, se exploraron diferentes soluciones para el backend como Node.js y Django, evaluando su escalabilidad, seguridad y facilidad de integración con otras herramientas. Para el frontend, se consideraron frameworks como React y Angular, decidiéndose por React debido a su eficiencia en la actualización de interfaces de usuario en tiempo real y su vasta comunidad de desarrolladores.
+
+#### Desafios y Soluciones
+- Durante el desarrollo, no todo funcionó a la primera. Algunos de los desafíos incluyeron:
+
+    - <b>Integración de Calendarios Dinámicos:</b> Las primeras implementaciones no eran lo suficientemente flexibles para manejar múltiples eventos simultáneos de forma eficaz. Se tuvo que investigar y probar diferentes bibliotecas hasta encontrar una que permitiera una integración más fluida y personalizable.
+
+    - <b>Optimización de la Experiencia Móvil:</b> Las primeras versiones de la interfaz no se adaptaban correctamente a dispositivos móviles, lo que requería ajustes significativos en el diseño responsive para asegurar una buena experiencia de usuario en todas las plataformas.
+
+#### Evaluación y Retroalimentación
+- Se realizaron pruebas continuas y se recogió retroalimentación de usuarios beta para iterar sobre el desarrollo. Esto fue crucial para desechar algunas ideas iniciales y mejorar otras, asegurando que la aplicación final realmente satisfaciera las necesidades del usuario y mejorara la gestión operativa de las empresas deportivas.
+
+<hr>
+
+    La investigación y el desarrollo de SportEvents han sido un proceso de aprendizaje continuo, adaptación y refinamiento. Gracias a la investigación meticulosa y la retroalimentación activa de los usuarios, hemos logrado crear una solución que no solo cumple con los requisitos técnicos sino que también ofrece una experiencia de usuario excepcional.
+
 
 ### 5. DERECHOS DE AUTOR. <a name="id5"></a>
 
