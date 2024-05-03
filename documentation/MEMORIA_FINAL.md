@@ -177,7 +177,24 @@ La gestión adecuada de los derechos de autor es fundamental para el desarrollo 
 
 ### 6. RIESGOS Y MEDIDAS. <a name="id6"></a>
 
-Qué problemas han surgido durante el desarrollo del proyecto y cómo se ha actuado.
+#### Identificación de Riesgos
+- Durante el desarrollo de SportEvents, se identificaron varios riesgos técnicos y operacionales. Estos incluyeron la gestión de la alta concurrencia de usuarios, la seguridad de los datos, y la integración de múltiples sistemas y tecnologías de terceros.
+
+#### Problemas y Soluciones Implementadas
+1. <b>Gestión de Alta Concurrencia:</b>
+    - <b>Problema:</b> El sistema inicialmente no era capaz de manejar picos de carga durante eventos deportivos populares, lo que causaba tiempos de respuesta lentos y caídas del servicio.
+    - <b>Medida:</b> Se implementó una arquitectura basada en microservicios para mejorar la escalabilidad y la gestión de la carga. Además, se integraron soluciones de caching y se optimizaron las consultas a la base de datos para reducir la latencia.
+
+2. <b>Seguridad de los Datos:</b>
+    - <b>Problema:</b> Vulnerabilidades en la protección de datos personales y de pago, exponiendo la plataforma a riesgos de seguridad.
+    - <b>Medida:</b> Se fortalecieron las políticas de seguridad, incluyendo la implementación de cifrado de datos en tránsito y en reposo, autenticación de dos factores, y auditorías de seguridad regulares para identificar y mitigar vulnerabilidades.
+
+3. <b>Integración de Sistemas:</b>
+    - <b>Problema:</b> Dificultades en la integración fluida de diferentes sistemas y tecnologías de terceros, lo que provocaba errores y problemas de compatibilidad.
+    - <b>Medida:</b> Se establecieron alianzas con proveedores de tecnología y se dedicó tiempo a la realización de pruebas de integración exhaustivas. Se utilizó middleware personalizado para asegurar la compatibilidad y la comunicación efectiva entre sistemas.
+
+#### Evaluación Continua de Riesgos
+- Para asegurar la resiliencia continua de SportEvents frente a riesgos emergentes, se ha establecido un proceso de revisión de riesgos que incluye evaluaciones regulares, pruebas de penetración y simulacros de estrés. Este enfoque proactivo ayuda a identificar y mitigar riesgos antes de que puedan impactar significativamente en la operación del servicio.
 
 ### 7. GRADO DE CUMPLIMIENTO EN ALCANCE. <a name="id7"></a>
 
