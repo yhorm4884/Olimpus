@@ -238,7 +238,37 @@ La gestión adecuada de los derechos de autor es fundamental para el desarrollo 
 
 ### 8. GRADO DE CUMPLIMIENTO EN TIEMPO. <a name="id8"></a>
 
-¿Se ha seguido la planificación proyectada? ¿cuándo sí y cuándo no? ¿por qué?
+#### Evaluación de la Adherencia al Cronograma Proyectado
+- El cumplimiento de los plazos establecidos es crucial para la gestión eficaz del proyecto SportEvents. A continuación, se detalla cuándo se ha seguido la planificación proyectada y cuándo no, incluyendo las razones detrás de las variaciones en el cronograma.
+
+#### Fases Cumplidas según lo Programado
+1. <b>Inicio del Proyecto y Definición de Requerimientos:</b>
+    - <b>Cumplimiento:</b> Realizado dentro del plazo.
+    - <b>Justificación:</b> La fase inicial fue completada a tiempo gracias a una preparación y coordinación efectiva entre todos los equipos involucrados.
+
+2. <b>Desarrollo de Funcionalidades Principales (Registro de Usuarios, Gestión de Eventos):</b>
+    - <b>Cumplimiento:</b> Realizado dentro del plazo.
+    - <b>Justificación:</b> El desarrollo de estas funcionalidades clave se planificó meticulosamente, y se asignaron recursos adicionales para garantizar su finalización en el tiempo estipulado.
+
+3. <b>Pruebas Iniciales y Feedback de Usuarios Beta:</b>
+    - <b>Cumplimiento:</b> Realizado dentro del plazo.
+    - <b>Justificación:</b> La recolección de feedback y las pruebas se realizaron según lo planificado debido a una excelente respuesta de los usuarios beta y una gestión eficaz del proceso de pruebas.
+
+#### Fases con Desviaciones de la Planificación
+1. <b>Integración de Pagos en Línea:</b>
+    - <b>Cumplimiento:</b> Retrasado
+    - <b>Justificación:</b> La implementación de la integración de pagos se retrasó debido a complejidades inesperadas con las APIs de los proveedores de pago y la necesidad de cumplir con normativas de seguridad adicionales.
+
+2. <b>Integración de Pagos en Línea:</b>
+    - <b>Cumplimiento:</b> Ligeramente retrasado.
+    - <b>Justificación:</b> Aunque se finalizó con éxito, esta fase experimentó un ligero retraso debido a la complejidad técnica y los desafíos en la integración de datos para análisis avanzados.
+
+3. <b>Implementación del Chat Directo con el Cliente:</b>
+    - <b>Cumplimiento:</b> No iniciado.
+    - <b>Justificación:</b> Esta funcionalidad no se inició según lo planificado por priorización de recursos hacia áreas con mayor impacto inmediato en la experiencia del usuario y operatividad de la plataforma.
+
+#### Evaluación y Medidas Correctivas:
+- Para abordar las desviaciones en el cronograma, se han tomado medidas correctivas incluyendo la reasignación de recursos, la optimización de procesos y la implementación de herramientas de gestión de proyectos más eficientes. Además, se ha incrementado la comunicación entre los equipos para mejorar la coordinación y anticipación de posibles retrasos.
   
 ### 9. GRADO DE CUMPLIMIENTO EN COSTE. <a name="id9"></a>
 
