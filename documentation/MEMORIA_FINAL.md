@@ -158,9 +158,22 @@
 
 ### 5. DERECHOS DE AUTOR. <a name="id5"></a>
 
-Debes tener en cuenta todo el contenido multimedia de la web (imágenes, audio, vídeos, etc.) y también otro tipo contenido usado (librerías, plugins, etc). Para estos contenidos, especificar:
-+ Si es de desarrollo propio con qué aplicación se ha desarrollado y con qué licencia se publica
-+ Qué material de terceros ha sido utilizado, indicando qué tipo de licencia tiene en cada caso y justificando que puedes usarlo para tu web
+La gestión adecuada de los derechos de autor es fundamental para el desarrollo y la operación legal de SportEvents. A continuación, se detalla cómo se ha gestionado el contenido multimedia y el software utilizado en la plataforma:
+
+#### Contenido Multimedia de Desarrollo Propio
+- <b>Imágenes y Diseños Gráficos:</b> Generados utilizando tecnologías avanzadas como <a href="https://openai.com/index/gpt-4"><b>OpenAI's GPT-4.</b></a> Todos los gráficos generados están publicados bajo la licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es"><b>Creative Commons Attribution-ShareAlike (CC BY-SA)</b></a>, permitiendo su uso, distribución y modificación siempre que se atribuya adecuadamente y se comparta de manera similar.
+
+- <b>Videos Promocionales:</b> Creados mediante tecnologías de generación de video basadas en modelos de inteligencia artificial de OpenAI. Estos videos están publicados bajo la misma licencia <a href="Creative Commons Attribution-ShareAlike (CC BY-SA)"><b>CC BY-SA</b></a>, asegurando la libertad de uso mientras se mantenga la atribución y se comparta de forma similar.
+
+#### Software y Librerías de Terceros
+- <b>React (Biblioteca de JavaScript para interfaces de usuario):</b> Utilizado bajo la licencia MIT, que permite el uso, copia, modificación, fusión, publicación, distribución, sublicencia y/o venta de copias del software.
+
+- <b>Django (Framework de desarrollo web):</b> Utilizado bajo la licencia BSD, que es muy permisiva y permite prácticamente cualquier uso con la condición de mantener los derechos de autor en las redistribuciones.
+
+- <b>Argon Design System React (Sistema de diseño para React):</b> Usado bajo la licencia MIT, facilitando la creación de interfaces atractivas y coherentes con una extensa documentación y componentes pre-diseñados.
+
+#### Justificación de Uso
+- El uso de material bajo licencias como MIT, BSD, y Creative Commons, así como el empleo de tecnologías avanzadas de generación de contenido, es ideal para proyectos como SportEvents, donde la escalabilidad, la innovación y la legalidad del uso de recursos son cruciales. Cada selección de software y contenido multimedia ha sido realizada no solo por su calidad y funcionalidad sino también por sus términos de licencia, asegurando el cumplimiento legal completo y la adaptabilidad para futuras modificaciones o expansiones comerciales.
 
 ### 6. RIESGOS Y MEDIDAS. <a name="id6"></a>
 
