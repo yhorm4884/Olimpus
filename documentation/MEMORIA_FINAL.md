@@ -153,7 +153,7 @@
 
 <hr>
 
-    La investigación y el desarrollo de SportEvents han sido un proceso de aprendizaje continuo, adaptación y refinamiento. Gracias a la investigación meticulosa y la retroalimentación activa de los usuarios, hemos logrado crear una solución que no solo cumple con los requisitos técnicos sino que también ofrece una experiencia de usuario excepcional.
+  La investigación y el desarrollo de SportEvents han sido un proceso de aprendizaje continuo, adaptación y refinamiento. Gracias a la investigación meticulosa y la retroalimentación activa de los usuarios, hemos logrado crear una solución que no solo cumple con los requisitos técnicos sino que también ofrece una experiencia de usuario excepcional.
 
 
 ### 5. DERECHOS DE AUTOR. <a name="id5"></a>
