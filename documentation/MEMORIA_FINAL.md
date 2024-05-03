@@ -109,14 +109,14 @@
 ### 3. GUIA DE ESTILO DE LA WEB. <a name="id3"></a>
 
 #### Diseño y Estilo
-<table>
+<table style="border: none">
   <tr>
     <td>
         El diseño de SportEvents se inspira en su <a src="documentation\Logo-SportEvents.webp"><b>logo</b></a>, utilizando una paleta de colores compuesta por azul, amarillo y negro, los cuales reflejan energía, dinamismo y profesionalismo. El <b style="color: cyan">azul</b> transmite serenidad y confianza, esencial para una plataforma de gestión; el <b style="color: yellow">amarillo</b> aporta vitalidad y optimismo, aludiendo a la energía deportiva; y el <b style="color: black">negro</b> ofrece un contraste fuerte que acentúa la seriedad y el enfoque de la plataforma.
     </td>
     <td>
 
-![Logo Sports Events](../documentation\Logo-SportEvents.webp)
+![Logo Sports Events](./Logo-SportEvents.webp)
     </td>
   </tr>
 </table>
