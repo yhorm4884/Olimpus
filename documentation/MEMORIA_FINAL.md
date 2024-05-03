@@ -108,7 +108,30 @@
 
 ### 3. GUIA DE ESTILO DE LA WEB. <a name="id3"></a>
 
-Sintetizar lo que se pretende lograr: Por ejemplo, crear una aplicación web...
+#### Diseño y Estilo
+<table>
+  <tr>
+    <td>
+        El diseño de SportEvents se inspira en su <a src="documentation\Logo-SportEvents.webp"><b>logo</b></a>, utilizando una paleta de colores compuesta por azul, amarillo y negro, los cuales reflejan energía, dinamismo y profesionalismo. El <b style="color: cyan">azul</b> transmite serenidad y confianza, esencial para una plataforma de gestión; el <b style="color: yellow">amarillo</b> aporta vitalidad y optimismo, aludiendo a la energía deportiva; y el <b style="color: black">negro</b> ofrece un contraste fuerte que acentúa la seriedad y el enfoque de la plataforma.
+    </td>
+    <td>
+
+![Logo Sports Events](../documentation\Logo-SportEvents.webp)
+    </td>
+  </tr>
+</table>
+
+#### Tipografía
+Para los textos se utiliza la fuente <b>Betm-Black</b>, una tipografía moderna y en negrita que contribuye a un aspecto visual fuerte y decidido. Esta elección refuerza la accesibilidad y la facilidad de lectura en todas las interfaces de usuario, siendo ideal para destacar titulares y elementos clave sin sacrificar la claridad.
+
+#### Interfaz de Usuario (UI)
+La interfaz será minimalista, evitando la sobrecarga visual y destacando los elementos más importantes mediante el uso estratégico de colores y formas inspiradas en el logo. El diseño responsive garantizará una experiencia uniforme tanto en dispositivos móviles como en desktop.
+
+#### Experiencia de Usuario (UX)
+La experiencia del usuario será fluida y lógica, con transiciones suaves y una estructura de navegación que permita a los usuarios encontrar rápidamente lo que necesitan. La interactividad será una prioridad, con elementos como calendarios dinámicos y formularios interactivos para garantizar una gestión efectiva y sin esfuerzos.
+
+#### Consistencia
+Toda la aplicación mantendrá una coherencia estética con el logo y colores corporativos, asegurando que los usuarios identifiquen y se familiaricen rápidamente con la marca SportEvents.
 
 ### 4. INVESTIGACIÓN. <a name="id4"></a>
 
