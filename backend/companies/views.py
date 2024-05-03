@@ -53,17 +53,26 @@ def register_empresa_view(request):
     else:
         return JsonResponse({'error': 'Solicitud inválida'}, status=405)
 
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from .models import Empresa
+from users.models import Usuario
+from django.core.exceptions import ValidationError
+
 @csrf_exempt
 def empresa_detail(request, user_id):
     if request.method == 'GET':
         try:
-            usuario = Usuario.objects.get(id=user_id, tipo_usuario='propietario')
-            empresa = Empresa.objects.get(usuarios=usuario)
+            usuario = get_object_or_404(Usuario, id=user_id, tipo_usuario='propietario')
+            empresa = get_object_or_404(Empresa, usuarios=usuario)
             empresa_data = {
-                'id': empresa.id_empresa,
+                'id_empresa': empresa.id_empresa,
+                'codigo_empresa': empresa.codigo_empresa,
                 'nombre': empresa.nombre,
-                'estado': empresa.estado,
+                'cif': empresa.cif,
                 'direccion': empresa.direccion,
+                'estado': empresa.estado,
                 'photo': empresa.photo.url if empresa.photo else None
             }
             return JsonResponse(empresa_data)
@@ -73,14 +82,29 @@ def empresa_detail(request, user_id):
             return JsonResponse({'error': 'Empresa no encontrada'}, status=404)
 
     elif request.method == 'POST':
-        data = json.loads(request.body)
-        usuario = Usuario.objects.get(id=user_id, tipo_usuario='propietario')
-        empresa = Empresa.objects.get(usuarios=usuario)
-        empresa.nombre = data.get('nombre', empresa.nombre)
-        empresa.estado = data.get('estado', empresa.estado)
-        empresa.direccion = data.get('direccion', empresa.direccion)
+        usuario = get_object_or_404(Usuario, id=user_id, tipo_usuario='propietario')
+        empresa = get_object_or_404(Empresa, usuarios=usuario)
+
+        empresa.nombre = request.POST.get('nombre', empresa.nombre)
+        empresa.estado = request.POST.get('estado', empresa.estado) == 'True'
+        empresa.direccion = request.POST.get('direccion', empresa.direccion)
+        empresa.codigo_empresa = request.POST.get('codigo_empresa', empresa.codigo_empresa)
+        empresa.cif = request.POST.get('cif', empresa.cif)
+
+        # Manejar la carga de archivos
+        if 'photo' in request.FILES:
+            empresa.photo = request.FILES['photo']
+
+        # Opcional: Validar CIF si decides habilitar validación nuevamente
+        # try:
+        #     validar_cif(empresa.cif)
+        # except ValidationError as e:
+        #     return JsonResponse({'error': str(e)}, status=400)
+
         empresa.save()
         return JsonResponse({'message': 'Datos de la empresa actualizados con éxito'}, status=200)
+
+
     
 def generar_codigo_unico():
     codigo = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
