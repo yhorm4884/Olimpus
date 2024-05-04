@@ -294,7 +294,27 @@ La gestión adecuada de los derechos de autor es fundamental para el desarrollo 
   
 ### 9. GRADO DE CUMPLIMIENTO EN COSTE. <a name="id9"></a>
 
-Qué acciones se van llevar a cabo para saber que nuestro proyecto no tiene desviaciones y va cumpliendo con los objetivos planteados, test a desarrollar, etc.
+#### Estrategias de Control de Costes
+- A pesar del presupuesto no monetario, es crucial adoptar prácticas de gestión que maximicen los recursos disponibles y aseguren el cumplimiento de los objetivos del proyecto sin desviaciones económicas. Las siguientes estrategias han sido adoptadas:
+
+    1. <b>Uso de Tecnologías y Herramientas Gratuitas:</b>
+        - Se ha optado por utilizar software y herramientas que ofrecen licencias gratuitas para uso educativo o son de código abierto, como React para el frontend, Django para el backend, y diversas librerías disponibles bajo licencias abiertas.
+    
+    2. <b>Colaboración y Recursos Compartidos:</b>
+        - Aprovechando las redes académicas que dispone nuestro centro, incluyendo servidores de prueba y acceso a software especializado sin coste adicional.
+
+    3. <b>Optimización del Tiempo y Esfuerzo:</b>
+        - Se ha establecido una planificación rigurosa y una división clara de responsabilidades para asegurar la eficiencia en el trabajo del equipo.
+    
+#### Acciones para Detectar y Corregir Desviaciones
+1. Reuniones Regulares de Seguimiento:
+    - Se organizan reuniones semanales para revisar el progreso y ajustar la carga de trabajo según sea necesario, garantizando que el proyecto avance según lo planificado sin necesidad de recursos adicionales.
+
+2. Pruebas Continuas y Retroalimentación:
+    - Implementación de ciclos de pruebas y test continuos para detectar errores y validar funcionalidades a tiempo, lo que ayuda a evitar trabajos dobles que consumirían más tiempo y esfuerzo.
+
+3. Evaluación Continua de Prioridades:
+    - Priorización constante de las tareas según su importancia y su viabilidad dentro del contexto del tiempo y los recursos disponibles.
 
 ### 10.  CLAUSULAS. <a name="id10"></a>
 
