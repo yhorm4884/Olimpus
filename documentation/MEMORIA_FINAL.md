@@ -74,34 +74,30 @@
 
 ### 2. TECNOLOGÍAS UTILIZADAS. <a name="id2"></a>
 
-### Software Utilizado:
+#### Software Utilizado:
 
-#### Backend:
+##### Backend:
 
-![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)
-![Django Badge](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=fff&style=for-the-badge) 
-![PostgreSQL Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=for-the-badge) 
-![SQLite Badge](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=fff&style=for-the-badge)
+| Tecnología | Badge | Descripción |
+|---|---|---|
+| **Python 3.10.7** | ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge) | [Python 3.10.7](https://www.python.org/downloads/release/python-3107/): Lenguaje de programación utilizado para escribir la lógica del backend de la aplicación. |
+| **Django 5.0.4** | ![Django Badge](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=fff&style=for-the-badge) | [Django 5.0.4](https://docs.djangoproject.com/en/5.0/releases/5.0.4/): Framework de desarrollo web de alto nivel, lo hemos utilizado para la construcción de la parte backend de la aplicación (vistas, enlaces, acciones). |
+| **Django REST Framework 3.15** | ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) | [Django REST Framework 3.15](https://www.django-rest-framework.org/community/release-notes/#315x-series): Biblioteca que facilita la creación de API RESTful en Django. |
+| **PostgreSQL 16.2** | ![PostgreSQL Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=for-the-badge) | [PostgreSQL 16.2](https://www.postgresql.org/docs/16/release-16-2.html): Sistema de gestión de bases de datos relacional, utilizado como base de datos principal. |
+| **SQLite 3.45.3** | ![SQLite Badge](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=fff&style=for-the-badge) | [SQLite 3.45.3](https://www.sqlite.org/releaselog/3_45_3.html): Sistema de gestión de bases de datos relacional, utilizado como base de datos de desarrollo y pruebas en los primeros momentos del desarrollo. |
 
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://docs.djangoproject.com/en/5.0/releases/5.0.4/"><b>Django 5.0.4 </a>:</b>Framework de desarrollo web de alto nivel para Python, utilizado para la construcción de la parte backend de la aplicación.</p>
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.django-rest-framework.org/community/release-notes/#315x-series"><b>Django REST Framework 3.15</a>:</b> Biblioteca que facilita la creación de API RESTful en Django, utilizada para la implementación de la API del backend.
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.python.org/downloads/release/python-3107/"><b>Python 3.10.7</a>:</b> Lenguaje de programación utilizado para escribir la lógica del backend de la aplicación.
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.postgresql.org/docs/16/release-16-2.html"><b>PostgreSQL 16.2</a>:</b> Sistema de gestión de bases de datos relacional, utilizado como base de datos principal en el entorno de producción.</p>
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.sqlite.org/releaselog/3_45_3.html"><b>SQLite 3.45.3</a>:</b> Sistema de gestión de bases de datos relacional, utilizado como base de datos de desarrollo y pruebas.
+##### Frontend:
 
-#### Frontend:
+| Tecnología | Badge | Descripción |
+|---|---|---|
+| **React 18.2.0** | ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge) | [React 18.2.0](https://legacy.reactjs.org/versions/): Biblioteca de JavaScript utilizada para la construcción de la interfaz de usuario. |
+| **React Router 6.22.3** | ![React Router Badge](https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=for-the-badge) | [React Router 6.22.3](https://reactrouter.com/en/6.22.0): Componente de enrutamiento para la navegación entre las diferentes vistas. |
+| **Axios 1.6.8** | ![Axios Badge](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge) | [Axios 1.6.8](https://www.npmjs.com/package/axios): Cliente HTTP que nos ha ayudado a realizar las solicitudes HTTP entre el backend y frontend. |
+| **Webpack 5.91.0** | ![Webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=000&style=for-the-badge) | [Webpack 5.91.0](https://www.npmjs.com/package/webpack): Empaquetador de módulos utilizado para compilar y empaquetar el código fuente dentro de JavaScript. |
+| **Babel 7.24.4** | ![Babel Badge](https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=000&style=for-the-badge) | [Babel 7.24.4](https://www.npmjs.com/package/@babel/core): Herramienta utilizada para compilar código JavaScript. |
 
-![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge)
-![React Router Badge](https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=for-the-badge)
-![Axios Badge](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge)
-![Webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=000&style=for-the-badge)
-![Babel Badge](https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=000&style=for-the-badge)
 
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://legacy.reactjs.org/versions/"><b>React 18.2.0</a>:</b> Biblioteca de JavaScript utilizada para construir la interfaz de usuario de la aplicación frontend.
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://reactrouter.com/en/6.22.0"><b>React Router 6.22.3</a>:</b> Componente de enrutamiento utilizado para la navegación entre diferentes vistas de la aplicación React.
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.npmjs.com/package/axios"><b>Axios 1.6.8</a>:</b> Cliente HTTP basado en Promesas para realizar solicitudes HTTP desde el navegador o desde Node.js, utilizado para realizar llamadas a la API del backend desde el frontend.
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.npmjs.com/package/webpack"><b>Webpack 5.91.0</a>:</b> Empaquetador de módulos utilizado para compilar y empaquetar el código fuente de la aplicación React.
-- <p style="text-align: justify; margin-left: 25px;"><a href="https://www.npmjs.com/package/@babel/core"><b>Babel 7.24.4</a>:</b> Herramienta utilizada para compilar código JavaScript moderno (ES6+) a una versión compatible con versiones anteriores de navegadores.
+
 
 #### Hardware Necesario:
 
