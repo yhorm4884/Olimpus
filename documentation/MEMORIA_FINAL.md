@@ -65,7 +65,12 @@
 
 ### 1. INTRODUCCIÓN. <a name="id1"></a>
 
-- <p style="margin-left: 25px; text-align: justify;">SportEvents es una plataforma diseñada para facilitar la gestión integral de empresas deportivas. Aquí podrás administrar todas las actividades y clientes de tu empresa de manera eficiente y organizada. Desde la programación de eventos hasta la gestión de horarios y la atención al cliente, SportEvents te proporciona todas las herramientas necesarias para optimizar tus operaciones y ofrecer la mejor experiencia a tus clientes.</p>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+  <p style="flex: 1; text-align: justify; margin-right: 20px;">
+    SportEvents es una página web que hemos diseñado para facilitar la gestión a las empresas deportivas. Dentro de estas es posible administrar todas las actividades y clientes actuales en la empresa, de manera eficiente y rápida. Te proporcionamos todas las herramientas necesarias para optimizar tus operaciones y ofrecer la mejor experiencia a tus clientes.
+  </p>
+  <img src="https://octodex.github.com/images/scottocat.jpg" alt="calendar" style="flex-shrink: 0; width: 100px; height: 100px;">
+</div>
 
 ### Características Principales
 
