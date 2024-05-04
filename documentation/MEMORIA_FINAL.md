@@ -1,40 +1,58 @@
 <center>
 
 # MEMORIA FINAL
-***
+<img src="./pictures/logo.png" style="width:100px">
 
+***
 
 </center>
 
-<right>
-
+<center>
 
 ***Autor/es:*** 
+| <img src="https://avatars.githubusercontent.com/u/94459279?v=4" width="200px"> | <img src="https://avatars.githubusercontent.com/u/102224204?v=4" width="200px"> | <img src="https://avatars.githubusercontent.com/u/99322335?v=4" width="200px"> |
+|:---------------------------------------:|:---------------------------------------:|:---------------------------------------:|
+| <a href="https://github.com/yhorm4884">**Badel Bonilla Simón**</a> <br> 💻 Programación | <a href="https://github.com/Miguelcg03">**Miguel Carballo González**</a> <br> 🌐 Despliegue/Programación | <a href="https://github.com/Afe11ay">**Afellay Ramos Luis**</a> <br> 📖 Documentación |
 
-> <a href="https://github.com/yhorm4884">Badel Bonilla Simón</a>
->
-> <a href="https://github.com/Afe11ay">Faybezrdt Ramos Luis</a>
->
-> <a href="https://github.com/Miguelcg03">Miguel Carballo González</a>
-
-
-***Fecha: 01-05-2024***
-
-***Tutor: <a href="https://github.com/amarzar">Alejandro Martín Zarza</a>***
-
-
-
-</right>
+</center>
 
 <center>
 
-# INDICE 
+***
+
+</center>
+
+<center>
+
+***Fecha:*** 01-05-2024
+
+</center>
+
+<p align="center">
+
+<strong>Tutor:</strong>
+<table align="center">
+<tr>
+<td><img src="https://avatars.githubusercontent.com/u/58997290?v=4" width="200px"></td>
+</tr>
+<tr>
+<td><a href="https://github.com/amarzar">**Alejandro Martín Zarza**</a></td>
+</tr>
+</table>
+
+</p>
+
+<br>
+
+<center>
+
+# ÍNDICE
 
 </center>
 
 1. [***INTRODUCCIÓN.***](#id1)
 2. [***TECNOLOGÍAS UTILIZADAS.***](#id2)
-3. [***GUIA DE ESTILO DE LA WEB.***](#id3)
+3. [***GUÍA DE ESTILO DE LA WEB.***](#id3)
 4. [***INVESTIGACIÓN.***](#id4)
 5. [***DERECHOS DE AUTOR.***](#id5)
 6. [***RIESGOS Y MEDIDAS.***](#id6)
@@ -42,7 +60,7 @@
 8. [***GRADO DE CUMPLIMIENTO EN TIEMPO.***](#id8)
 9. [***GRADO DE CUMPLIMIENTO EN COSTE.***](#id9)
 10. [***PRODUCTO FINAL.***](#id10)
-11. [***EXPEIRNECIAS APRENDIDAS A TENER EN CUENTA EN PRÓXIMOS PROYECTOS.***](#id11)
+11. [***EXPERIENCIAS APRENDIDAS A TENER EN CUENTA EN PRÓXIMOS PROYECTOS.***](#id11)
 12. [***CONCLUSIONES, COMENTARIOS Y VALORACIÓN FINAL.***](#id12)
 
 
@@ -284,4 +302,3 @@ Describir el producto final obtenido, qué funcionalidades se han implementado, 
     
 ### 12.  EXPERIENCIAS APRENDIDAS A TENER EN CUENTA EN PRÓXIMOS PROYECTOS. <a name="id12"></a>
 ### 13.  CONCLUSIONES, COMENTARIOS Y VALORACIÓN FINAL. <a name="id13"></a>
-
