@@ -1,32 +1,34 @@
-<center>
-
 # MEMORIA FINAL
-<img src="./pictures/logo.png" style="width:100px">
+<p align="center">
+  <img src="./pictures/logo.png" style="width:100px">
+</p>
 
 ***
 
-</center>
-
-<center>
+<p align="center">
 
 ***Autor/es:*** 
-| <img src="https://avatars.githubusercontent.com/u/94459279?v=4" width="200px"> | <img src="https://avatars.githubusercontent.com/u/102224204?v=4" width="200px"> | <img src="https://avatars.githubusercontent.com/u/99322335?v=4" width="200px"> |
-|:---------------------------------------:|:---------------------------------------:|:---------------------------------------:|
-| <a href="https://github.com/yhorm4884">**Badel Bonilla Simón**</a> <br> 💻 Programación | <a href="https://github.com/Miguelcg03">**Miguel Carballo González**</a> <br> 🌐 Despliegue/Programación | <a href="https://github.com/Afe11ay">**Afellay Ramos Luis**</a> <br> 📖 Documentación |
+<table align="center">
+<tr>
+<td><img src="https://avatars.githubusercontent.com/u/94459279?v=4" width="200px"></td>
+<td><img src="https://avatars.githubusercontent.com/u/102224204?v=4" width="200px"></td>
+<td><img src="https://avatars.githubusercontent.com/u/99322335?v=4" width="200px"></td>
+</tr>
+<tr>
+<td><a href="https://github.com/yhorm4884">**Badel Bonilla Simón**</a> <br> 💻 Programación</td>
+<td><a href="https://github.com/Miguelcg03">**Miguel Carballo González**</a> <br> 🌐 Despliegue/Programación</td>
+<td><a href="https://github.com/Afe11ay">**Afellay Ramos Luis**</a> <br> 📖 Documentación</td>
+</tr>
+</table>
 
-</center>
-
-<center>
+</p>
 
 ***
 
-</center>
+<p align="center">
+  <strong>Fecha:</strong> 01-05-2024
+</p>
 
-<center>
-
-***Fecha:*** 01-05-2024
-
-</center>
 
 <p align="center">
 
