@@ -115,18 +115,19 @@
 #### Hardware Necesario:
 
 ##### Servidor:
-- CPU: Se recomienda una CPU con múltiples núcleos y soporte para virtualización.
+- **CPU**: Se recomienda una CPU con múltiples núcleos y soporte para virtualización.
 
-- Memoria RAM: Se recomienda un mínimo de 4 GB de RAM para aplicaciones pequeñas a medianas, pero puede ser necesario más para aplicaciones más grandes o con mayor carga de trabajo.
+- **Memoria RAM**: Recomendamos un mínimo de 8 GB de RAM ya que el propio react al tener cierta cantidad de paquetes y librerías necesita instalar muchos componentes.
 
-- Almacenamiento: Se recomienda utilizar unidades de estado sólido (SSD) para un rendimiento óptimo, con suficiente espacio de almacenamiento para los archivos de la aplicación y la base de datos.
+- **Almacenamiento**: Es importante utilizar unidades SSD para una mayor velocidad, con suficiente espacio de almacenamiento para los archivos de la aplicación y la base de datos.
 
-- Conectividad: Se necesita una conexión a Internet estable y de alta velocidad para servir solicitudes de usuarios y acceder a recursos externos (por ejemplo, servicios de terceros, bases de datos en la nube, etc.).
+- **Conectividad**: Obligatoriamente es necesario una buena conexión a Internet y de alta velocidad para que tanto el usuario como en el servidor se puedan hacer las solicitudes de usuarios y acciones lo antes posible.
 
 ##### Red:
 - Se debe configurar el servidor para permitir el tráfico HTTP (puerto 80) y HTTPS (puerto 443) desde y hacia el servidor.
 
-- Se debe configurar un nombre de dominio válido y registrar registros DNS adecuados para que los usuarios puedan acceder a la aplicación a través de Internet.
+- Se debe configurar un nombre de dominio válido y registrar registros DNS adecuados para que los usuarios puedan acceder a la aplica
+
 
 ### 3. GUIA DE ESTILO DE LA WEB. <a name="id3"></a>
 
