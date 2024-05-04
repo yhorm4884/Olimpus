@@ -139,7 +139,7 @@
     </td>
     <td>
 
-![Logo Sports Events](./Logo-SportEvents.webp)
+![Logo Sports Events](./pictures/Logo-SportEvents.webp)
     </td>
   </tr>
 </table>
