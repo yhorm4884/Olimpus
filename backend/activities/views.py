@@ -7,36 +7,53 @@ from companies.models import Empresa
 from users.models import Usuario
 import json
 
-
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def mostrarActividades(request):
-    data = json.loads(request.body)
-    username = data.get('username')
-    
+@csrf_exempt
+def mostrarActividades(request, user_id):
     try:
-        usuario = Usuario.objects.get(user__username=username)
+        usuario = Usuario.objects.get(pk=user_id)  # Asegurando que buscamos por el ID correcto en el User
+        empresas_usuario = Empresa.objects.filter(usuarios__id=usuario.user.id)  # Obtenemos las empresas del usuario
     except Usuario.DoesNotExist:
         return JsonResponse({'error': 'Usuario no encontrado'}, status=404)
 
-    actividades_participadas = usuario.actividades_participadas.all()
-    
-    actividades = []
-    for actividad in actividades_participadas:
-        actividades.append({
-            'codigo_actividad': actividad.codigo_actividad,
-            'nombre': actividad.nombre,
-            'hora_entrada': actividad.hora_entrada,
-            'hora_salida': actividad.hora_salida,
-            'personas': actividad.personas,
-            'lugar': actividad.lugar,
-            'observaciones': actividad.observaciones,
-            'empresas': [empresa.nombre for empresa in actividad.empresas.all()],
-            
-        })
-    
-    return JsonResponse({'actividades': actividades})
+    actividades_participadas = Actividad.objects.filter(empresa__in=empresas_usuario, participantes_actividad=usuario)
+    actividades = [{
+        'codigo_actividad': actividad.codigo_actividad,
+        'nombre': actividad.nombre,
+        'hora_entrada': actividad.hora_entrada.isoformat(),
+        'hora_salida': actividad.hora_salida.isoformat(),
+        'personas': actividad.personas,
+        'lugar': actividad.lugar,
+        'observaciones': actividad.observaciones,
+        'empresa': actividad.empresa.nombre  # Asumiendo que quieres mostrar el nombre de la empresa
+    } for actividad in actividades_participadas]
 
+    return JsonResponse({'actividades': actividades})
+@csrf_exempt
+def actividades_disponibles(request, user_id):
+    try:
+        usuario = Usuario.objects.get(pk=user_id)
+        # Buscar las empresas relacionadas con el usuario
+        empresas_usuario = Empresa.objects.filter(usuarios__id=usuario.user.id)
+        print("Usuario", usuario, "Empresa usuario", empresas_usuario)
+        # Filtrar actividades por las empresas del usuario y que no incluyan al usuario como participante
+        actividades = Actividad.objects.filter(empresa__in=empresas_usuario).exclude(participantes_actividad=usuario)
+
+        data = [{
+            'codigo_actividad': act.codigo_actividad,
+            'nombre': act.nombre,
+            'hora_entrada': act.hora_entrada.isoformat(),
+            'hora_salida': act.hora_salida.isoformat(),
+            'personas': act.personas,
+            'lugar': act.lugar,
+            'observaciones': act.observaciones,
+            'empresa': act.empresa.nombre  # Asumiendo que cada actividad está vinculada a una empresa
+        } for act in actividades]
+
+        return JsonResponse({'actividades': data}, safe=False)
+
+    except Usuario.DoesNotExist:
+        return JsonResponse({'error': 'Usuario no encontrado'}, status=404)
+    
 @csrf_exempt
 def actividades(request, user_id):
     usuario = Usuario.objects.get(id=user_id)

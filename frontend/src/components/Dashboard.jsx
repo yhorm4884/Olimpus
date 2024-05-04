@@ -155,15 +155,15 @@ function Dashboard() {
           </Paper>
         </Grid>
         {['cliente'].includes(userData?.tipo_usuario) && (
-          <Grid item xs={12} md={6}>
-            <Paper sx={{ p: 3, textAlign: 'center' }}>
-              <Typography variant="h6">Calendario de Actividades</Typography>
-              <Button component="a" href="/dashboard/activities" style={{ marginTop: '10px' }}>
-                Ver Actividades
-              </Button>
-            </Paper>
-          </Grid>
-        )}
+                <Grid item xs={12} md={6}>
+                    <Paper sx={{ p: 3, textAlign: 'center' }}>
+                        <Typography variant="h6">Calendario de Actividades</Typography>
+                        <Button component="a" href={`/dashboard/my-activities/${userId}`} style={{ marginTop: '10px' }}>
+                            Ver Actividades
+                          </Button>
+                    </Paper>
+                </Grid>
+            )}
         {/* Condicionalmente renderizamos esta parte solo si el tipo de usuario es 'propietario' */}
         {userData?.tipo_usuario === 'propietario' && (
           <Grid item xs={12} md={6}>

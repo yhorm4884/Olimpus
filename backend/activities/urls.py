@@ -5,7 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('misactividades/', views.mostrarActividades, name='misactividades'),
+    path('actividades-empresa/<int:user_id>/', views.actividades_disponibles, name='actividades_disponibles'),
+    path('misactividades/<int:user_id>/', views.mostrarActividades, name='misactividades'),
     path('actividades/<int:user_id>/', views.actividades, name='actividades'),
     path('actividad/<int:actividad_id>/', views.actividad_detail, name='actividad_detail'),
     path('edit_actividad/<int:actividad_id>/', views.edit_actividad, name='edit_actividad'),

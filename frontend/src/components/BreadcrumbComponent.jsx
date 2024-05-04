@@ -54,7 +54,7 @@ function BreadcrumbComponent({ authState }) {
     }
   });
 
-  console.log("Breadcrumb path accumulation: ", pathAccumulated); // Para depuración
+  // console.log("Breadcrumb path accumulation: ", pathAccumulated); // Para depuración
 
   // Añadir el último segmento como clickeable si no es el actual
   if (pathAccumulated !== pathname) {
@@ -67,7 +67,7 @@ function BreadcrumbComponent({ authState }) {
     }
   }
 
-  console.log("Final Breadcrumbs: ", breadcrumbs); // Para depuración
+  // console.log("Final Breadcrumbs: ", breadcrumbs); // Para depuración
 
   return (
     <Breadcrumbs aria-label="breadcrumb" sx={{ padding: 2, backgroundColor: '#f0f0f0', borderRadius: 1 }}>

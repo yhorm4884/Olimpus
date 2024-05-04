@@ -15,7 +15,7 @@ urlpatterns = [
     path('serve-qr-code/<uidb64>/<token>/', views.serve_qr_code, name='serve-qr-code'),
     path('update-profile/', views.update_profile, name='update-profile'),  
     path('prueba', views.prueba, name='prueba'),
-     path('deactivate/<int:user_id>/', views.desactivar_usuario, name='desactivar_usuario'),
+    path('deactivate/<int:user_id>/', views.desactivar_usuario, name='desactivar_usuario'),
     path('reactivate/<int:user_id>/<str:token>/', views.reactivar_usuario, name='reactivar_usuario'),
 
     # path('chat/session/', views.create_chat_session, name='create-chat-session'),

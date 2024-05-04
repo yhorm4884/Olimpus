@@ -94,10 +94,10 @@ function RoutesWithBreadcrumbs({ authState }) {
     });
   });
 
-  console.log("Location Pathname:", location.pathname);
-  console.log("Route Exists:", routeExists);
-  console.log("Is Authenticated:", authState.isAuthenticated);
-  console.log("Show Breadcrumb:", routeExists && location.pathname !== '/' && authState.isAuthenticated);
+  // console.log("Location Pathname:", location.pathname);
+  // console.log("Route Exists:", routeExists);
+  // console.log("Is Authenticated:", authState.isAuthenticated);
+  // console.log("Show Breadcrumb:", routeExists && location.pathname !== '/' && authState.isAuthenticated);
 
   return (
     <>

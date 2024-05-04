@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('solicitar-unirse-actividad/', views.solicitar_unirse_actividad, name='solicitar_unirse_actividad'),
     path('list/<int:user_id>/', views.notificaciones_list, name='notificaciones_list'),
     path('update/<int:notificacion_id>/', views.notificacion_update, name='notificacion_update'),
 ]
