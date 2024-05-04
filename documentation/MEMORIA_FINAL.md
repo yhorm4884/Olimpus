@@ -1,4 +1,6 @@
-# MEMORIA FINAL
+<center> 
+  # MEMORIA FINAL
+<center>
 <p align="center">
   <img src="./pictures/logo.png" style="width:100px">
 </p>
