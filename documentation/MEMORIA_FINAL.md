@@ -1,28 +1,24 @@
-<center> 
-  # MEMORIA FINAL
-<center>
 <p align="center">
-  <img src="./pictures/logo.png" style="width:100px">
+  <img src="./pictures/logo.png" style="width:100px"><br>
+  <strong>MEMORIA FINAL</strong>
 </p>
 
 ***
 
 <p align="center">
-
-***Autor/es:*** 
-<table align="center">
-<tr>
-<td><img src="https://avatars.githubusercontent.com/u/94459279?v=4" width="200px"></td>
-<td><img src="https://avatars.githubusercontent.com/u/102224204?v=4" width="200px"></td>
-<td><img src="https://avatars.githubusercontent.com/u/99322335?v=4" width="200px"></td>
-</tr>
-<tr>
-<td><a href="https://github.com/yhorm4884">**Badel Bonilla Simón**</a> <br> 💻 Programación</td>
-<td><a href="https://github.com/Miguelcg03">**Miguel Carballo González**</a> <br> 🌐 Despliegue/Programación</td>
-<td><a href="https://github.com/Afe11ay">**Afellay Ramos Luis**</a> <br> 📖 Documentación</td>
-</tr>
-</table>
-
+  <strong>Autor/es:</strong>
+  <table align="center">
+  <tr>
+  <td><img src="https://avatars.githubusercontent.com/u/94459279?v=4" width="200px"></td>
+  <td><img src="https://avatars.githubusercontent.com/u/102224204?v=4" width="200px"></td>
+  <td><img src="https://avatars.githubusercontent.com/u/99322335?v=4" width="200px"></td>
+  </tr>
+  <tr>
+  <td><a href="https://github.com/yhorm4884">Badel Bonilla Simón</a> <br> 💻 Programación</td>
+  <td><a href="https://github.com/Miguelcg03">Miguel Carballo González</a> <br> 🌐 Despliegue/Programación</td>
+  <td><a href="https://github.com/Afe11ay">Afellay Ramos Luis</a> <br> 📖 Documentación</td>
+  </tr>
+  </table>
 </p>
 
 ***
@@ -31,28 +27,23 @@
   <strong>Fecha:</strong> 01-05-2024
 </p>
 
-
 <p align="center">
-
-<strong>Tutor:</strong>
-<table align="center">
-<tr>
-<td><img src="https://avatars.githubusercontent.com/u/58997290?v=4" width="200px"></td>
-</tr>
-<tr>
-<td><a href="https://github.com/amarzar">**Alejandro Martín Zarza**</a></td>
-</tr>
-</table>
-
+  <strong>Tutor:</strong>
+  <table align="center">
+  <tr>
+  <td><img src="https://avatars.githubusercontent.com/u/58997290?v=4" width="200px"></td>
+  </tr>
+  <tr>
+  <td><a href="https://github.com/amarzar">Alejandro Martín Zarza</a></td>
+  </tr>
+  </table>
 </p>
 
 <br>
 
-<center>
-
-# ÍNDICE
-
-</center>
+<p align="center">
+  <strong>ÍNDICE</strong>
+</p>
 
 1. [***INTRODUCCIÓN.***](#id1)
 2. [***TECNOLOGÍAS UTILIZADAS.***](#id2)
