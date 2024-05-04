@@ -325,7 +325,22 @@ La gestión adecuada de los derechos de autor es fundamental para el desarrollo 
 
 ### 10.  CLAUSULAS. <a name="id10"></a>
 
-Indicar alguna cláusula, como qué sucede en caso de retraso, cómo se realizarán los pagos, cómo se controlará la calidad, etc.
+#### Contexto de las Cláusulas
+1. Clausula de Retraso en la Entrega:
+    - <b>Descripción:</b> Si el proyecto se retrasa y no se cumple con los hitos establecidos en el cronograma académico.
+    - <b>Medida:</b> El equipo deberá notificar al supervisor académico con anticipación, proporcionando una evaluación detallada de las causas del retraso y un plan revisado para la finalización. 
+
+2. Clausula de Calidad y Revisión:
+    - <b>Descripción:</b> Cómo se controlará y asegurará la calidad del proyecto a lo largo de su desarrollo.
+    - <b>Medida:</b> El proyecto será sometido a revisiones periódicas por el supervisor académico, quien evaluará el progreso y la adherencia a los estándares académicos de calidad. Las correcciones y mejoras sugeridas deberán implementarse según lo indicado por las evaluaciones.
+
+3. Clausula de Contribución de los Miembros del Equipo:
+    - <b>Descripción:</b> Cómo se gestionará la contribución de cada miembro del equipo para asegurar la equidad y evitar desequilibrios en la carga de trabajo.
+    - <b>Medida:</b> Se requerirá que cada miembro del equipo documente sus contribuciones y participe equitativamente en todas las fases del proyecto. Las evaluaciones de desempeño individual serán parte de la evaluación final del proyecto.
+
+4. Clausula de Uso de Recursos Externos:
+    - <b>Descripción:</b> Uso de material con derechos de autor, software de pago o cualquier otro recurso que pueda tener implicaciones legales o éticas.
+    - <b>Medida:</b> Todo el material y software utilizado deberá cumplir con las licencias adecuadas y, en el caso de recursos académicos, deberá ser utilizado exclusivamente bajo los términos permitidos. 
 
 ### 11.  PRODUCTO FINAL. <a name="id11"></a>
 
