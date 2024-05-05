@@ -5,13 +5,14 @@ import { format, parseISO, isValid } from 'date-fns';
 import CompanyEdit from './CompanyEdit';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination,
-  TextField, Button, Checkbox, IconButton, Tooltip, Paper, TableSortLabel, List, ListItem, ListItemIcon, ListItemText, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
+  TextField, Grid, Typography, Button, Checkbox, IconButton, Tooltip, Paper, TableSortLabel, List, ListItem, ListItemIcon, ListItemText, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 } from '@mui/material';
 import { Add as AddIcon, Delete as DeleteIcon, Edit as EditIcon, FileDownload as FileDownloadIcon, Notifications as NotificationsIcon } from '@mui/icons-material';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import AddActivityForm from './AddActivityForm';
 import EditActivityForm from './EditActivityForm';
+import GestionUsuarios from './GestionUsuarios';
 
 const Notifications = ({ userId }) => {
   const [notifications, setNotifications] = useState([]);
@@ -88,11 +89,9 @@ const ActivityList = ({ userId }) => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [formMode, setFormMode] = useState(null); // 'add', 'edit' o null
   const [currentActivity, setCurrentActivity] = useState(null);
-
-  useEffect(() => {
-    fetchActivities();
-
-  }, [userId]);
+  const [error, setError] = useState(false);
+  const [empresas, setEmpresas] = useState([]);
+ 
   const fetchActivities = async () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/activities/actividades/${userId}`);
@@ -193,7 +192,6 @@ const ActivityList = ({ userId }) => {
   // Exportar a csv
   const exportToCSV = () => {
     const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-    const fileExtension = '.xlsx';
     const formattedData = filteredActivities.map(activity => {
         // Parse y validación de las fechas
         const entradaDate = activity.hora_entrada ? parseISO(activity.hora_entrada) : null;
@@ -246,9 +244,28 @@ const ActivityList = ({ userId }) => {
         console.error('Error al eliminar la actividad:', error);
         alert('Error al eliminar la actividad');
     }
-};
+  };
 
+  const fetchEmpresas = () => {
+    axios.get('http://127.0.0.1:8000/api/empresas/')
+      .then(response => {
+        // Filtrar para obtener empresas donde el usuario actual es propietario
+        const empresasPropietario = response.data.filter(empresa =>
+          empresa.usuarios.some(usuario => usuario.id === parseInt(userId) && usuario.tipo_usuario === 'propietario')
+        );
+        setEmpresas(empresasPropietario);
+      })
+      .catch(error => {
+        console.error('Error fetching empresas:', error);
+        setError(true);
+      });
+  };
 
+  useEffect(() => {
+    fetchActivities();
+    fetchEmpresas();
+
+  }, [userId]);
 
   return (
     <div style={{ flex: 1, overflow: 'auto', marginLeft: '20px' }}>
@@ -388,13 +405,22 @@ const ActivityList = ({ userId }) => {
           onRowsPerPageChange={(event) => setRowsPerPage(parseInt(event.target.value, 10))}
         />
       </TableContainer>
+      {empresas.map((empresa) => (
+      <Grid item xs={12} md={8} lg={9} key={empresa.id_empresa}>
+        <Typography variant="h6">Gestión de Usuarios - {empresa.nombre}</Typography>
+        <GestionUsuarios idEmpresa={empresa.id_empresa} />
+      </Grid>
+    ))}
     </div>
+    
   );
 
 };
 
 const CompanyManagement = () => {
   const { userId } = useParams();
+
+  
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '1200px', margin: 'auto' }}>
@@ -405,11 +431,12 @@ const CompanyManagement = () => {
         </div>
         <div style={{ flex: 3 }}>
           <ActivityList userId={userId} />
+          
         </div>
       </div>
-
     </div>
   );
 };
+
 
 export default CompanyManagement;

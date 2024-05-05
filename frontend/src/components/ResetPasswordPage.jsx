@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, FormGroup, Label, Input, Button, Alert, Card, CardBody } from 'reactstrap';
 
@@ -9,6 +9,7 @@ function ResetPasswordPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [qrCode, setQrCode] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:8000/users/serve-qr-code/${uidb64}/${token}/`)
@@ -33,11 +34,10 @@ function ResetPasswordPage() {
                 uidb64, token, new_password: newPassword
             });
             console.log('Contraseña restablecida correctamente');
-            // Aquí puedes redirigir al usuario o mostrar un mensaje de éxito, si deseas.
+            navigate(`/login`)
         } catch (err) {
             setError('Error al restablecer la contraseña.');
             console.error('Error en cambiar contraseña:', error.response ? error.response.data : error);
-
         }
     };
 
@@ -46,7 +46,7 @@ function ResetPasswordPage() {
             {qrCode && (
                 <div className="text-center my-4">
                     <p>Tu nuevo código QR para la autenticación de dos factores:</p>
-                    <img src={`data:image/png;base64,${qrCode}`} alt="Código QR" />
+                    <img src={`data:image/png;base64,${qrCode}`} alt="Código QR" style={{ maxWidth: '150px', height: 'auto' }} />
                 </div>
             )}
             <Card>

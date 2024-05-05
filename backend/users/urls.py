@@ -17,7 +17,7 @@ urlpatterns = [
     path('prueba', views.prueba, name='prueba'),
     path('deactivate/<int:user_id>/', views.desactivar_usuario, name='desactivar_usuario'),
     path('reactivate/<int:user_id>/<str:token>/', views.reactivar_usuario, name='reactivar_usuario'),
-
+    
     # path('chat/session/', views.create_chat_session, name='create-chat-session'),
     # path('chat/message/', views.post_message, name='post-message'),
 
