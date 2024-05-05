@@ -342,7 +342,6 @@ Para abordar las desviaciones en el cronograma, se han tomado medidas correctiva
   2. Aquí en la sección de empresas disponibles podrá ver todas las empresas públicas disponibles que hay en la web. Una vez encontrado la empresa deseada, deberá de dar click en esta, aquí saldrá un cuadro sobre la información de la misma, además de un botón que dirá si desea unirse a la empresa.
   Al pulsar en dicho botón, se le enviará una petición al empresario para que este la pueda o no aceptar.
   3. Una vez el empresario ha aceptado la petición, si accedemos a la pestaña de `Actividades Disponibles` ubicada en el inicio de nuestro perfil, podremos ver todas las actividades que nos pertenecen.
-  4. Si desea añadir una actividad por su cuenta, solo deberá seleccionar la empresa, y rellenar los campos que se muestran para poder crear dicha actividad exclusiva para usted.
 
 #### Manual de Uso Básico como Propietario
   1. Si es usuario de nuestra web, pero quiere añadir su empresa a nuestra web, deberá de acceder al inicio de su perfil seleccionando el menú "hamburguesa" situado en la parte superior derecha de la web, y aquí accedemos a `Inicio`.
