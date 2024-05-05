@@ -355,4 +355,16 @@ Para abordar las desviaciones en el cronograma, se han tomado medidas correctiva
   Por otro lado, también podremos gestionar los usuarios la empresa así como también acceder a las notificaciones de esta, donde podremos aceptar o rechazar las peticiones de los usuarios de unirse a al empresa.
     
 ### 12.  EXPERIENCIAS APRENDIDAS A TENER EN CUENTA EN PRÓXIMOS PROYECTOS. <a name="id12"></a>
+- A lo largo del desarrollo de SportEvents, el equipo ha adquirido valiosas experiencias que serán cruciales para la mejora continua y la eficacia en futuros proyectos. A continuación, se enumerarán algunas de las lecciones más importantes aprendidas:
+</br>
+
+|       Título            |             Lección            |             Aplicación Futura            |
+|-------------------------|--------------------------------|------------------------------------------|
+| <b>Planificación y Gestión del Tiempo</b> | La importancia de una planificación detallada. | Implementar técnicas de gestión de proyectos como el método Scrum para mejorar la planificación.   |
+| <b>Colaboración y Comunicación</b> | La comunicación efectiva es fundamental.       | Fomentar un entorno donde las reuniones regulares y las actualizaciones de estado sean la norma.    |
+| <b>Uso de Tecnología y Herramientas</b> | La selección adecuada de tecnología es crítica. | Realizar una evaluación profunda de las herramientas antes de decidir cuáles implementar.           |
+| <b>Gestión de Riesgos</b> | Los riesgos subestimados pueden impactar negativamente. | Desarrollar y mantener un plan de gestión de riesgos dinámico que sea revisado y actualizado regularmente.    |
+| <b>Pruebas y Calidad</b> | Las pruebas exhaustivas son cruciales.         | Integrar pruebas en cada etapa del desarrollo, utilizando metodologías de pruebas automáticas y manuales.    |
+
+
 ### 13.  CONCLUSIONES, COMENTARIOS Y VALORACIÓN FINAL. <a name="id13"></a>
