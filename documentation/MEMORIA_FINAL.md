@@ -195,19 +195,16 @@
 
 #### Contenido Multimedia de Producción Propia
 
-<br>
+- **Imágenes y Diseños Gráficos:**
 
-<center>
-<img src="https://paas-file-pro.imetastore.io/shop/6574ed0c908b2b67908fc241.jpg" width="450px">
-</center>
-
-<br>
-
-- **Imágenes y Diseños Gráficos:** Desarrollados con herramientas de inteligencia artificial avanzada como [OpenAI's GPT-4](https://openai.com/index/gpt-4). Todos los gráficos son compartidos bajo la [licencia Creative Commons Attribution-ShareAlike (CC BY-SA)](https://creativecommons.org/licenses/by-sa/4.0/deed.es), que permite su uso y modificación siempre que se brinde reconocimiento apropiado y se redistribuya bajo la misma licencia.
+  ![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)</br> 
+  Desarrollados con herramientas de inteligencia artificial avanzada como [OpenAI's GPT-4](https://openai.com/index/gpt-4). Todos los gráficos son compartidos bajo la [licencia Creative Commons Attribution-ShareAlike (CC BY-SA)](https://creativecommons.org/licenses/by-sa/4.0/deed.es), que permite su uso y modificación siempre que se brinde reconocimiento apropiado y se redistribuya bajo la misma licencia.
 
 <br>
 
-- **Videos Promocionales:** Generados mediante tecnologías de video basadas en inteligencia artificial de OpenAI. Publicados bajo la misma <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">licencia CC BY-SA</a>, garantizando la libertad de uso siempre que se otorgue el crédito correspondiente y se comparta de igual manera.
+- **Videos Promocionales:**</br> 
+  [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)</br> 
+  Generados mediante tecnologías de video basadas en inteligencia artificial de OpenAI. Publicados bajo la misma <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">licencia CC BY-SA</a>, garantizando la libertad de uso siempre que se otorgue el crédito correspondiente y se comparta de igual manera.
 
 <br>
 
