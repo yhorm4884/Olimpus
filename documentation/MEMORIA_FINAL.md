@@ -368,3 +368,26 @@ Para abordar las desviaciones en el cronograma, se han tomado medidas correctiva
 
 
 ### 13.  CONCLUSIONES, COMENTARIOS Y VALORACIÓN FINAL. <a name="id13"></a>
+#### Conclusión General del Proyecto
+
+- SportEvents ha sido un proyecto desafiante, diseñado para facilitar la gestión de empresas deportivas a través de una plataforma intuitiva y multifuncional. El desarrollo del proyecto permitió al equipo enfrentar y superar diversos desafíos técnicos y de gestión, lo cual ha resultado en un producto robusto que satisface las necesidades básicas de nuestros usuarios objetivo y proporciona una base sólida para futuras expansiones.
+
+#### Comentarios sobre el Desarrollo
+
+- El proceso de desarrollo de SportEvents ha destacado la importancia de una planificación detallada y la adaptabilidad en la gestión de proyectos. La colaboración dentro del equipo fue crucial para superar los obstáculos y para implementar soluciones diferentes que se ajustaran a los requisitos del proyecto. El uso de tecnologías modernas y de código abierto no solo facilitó una implementación eficiente sino que también mantuvo los costos operativos al mínimo, lo cual era esencial dado el presupuesto.
+
+#### Valoración de las Funcionalidades Implementadas
+
+- Todas las funcionalidades principales, como la gestión de eventos, registro de clientes, sistema de reservas en línea, y la integración de pagos, fueron implementadas con éxito y han funcionado conforme a las expectativas.
+
+#### Lecciones Aprendidas
+
+- Las lecciones aprendidas durante este proyecto han sido varias y de mucha valía. La importancia de realizar pruebas exhaustivas, la necesidad de una comunicación efectiva dentro del equipo y la adaptación a feedback en tiempo real son aspectos que serán llevados a futuros proyectos. La experiencia ha mostrado cómo la adaptabilidad puede ser crucial cuando se enfrentan desafíos inesperados.
+
+#### Perspectivas Futuras
+
+- Mirando hacia el futuro, existe un claro potencial para expandir SportEvents, no solo en términos de nuevas funcionalidades, sino también en la escalabilidad de la plataforma para manejar un mayor número de usuarios y operaciones más complejas. La experiencia adquirida y la infraestructura tecnológica ya establecida ofrecen una excelente base para estos desarrollos.
+
+#### Conclusión Final
+
+- SportEvents es un desafío de lo que un equipo comprometido y motivado puede lograr, incluso con recursos limitados. Este proyecto no solo cumplió con sus objetivos iniciales sino que también proporcionó un aprendizaje significativo y estableció un sólido fundamento para futuros desafíos profesionales y académicos.
