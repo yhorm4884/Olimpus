@@ -332,7 +332,30 @@ Para abordar las desviaciones en el cronograma, se han tomado medidas correctiva
 
 ### 11.  PRODUCTO FINAL. <a name="id11"></a>
 
-Describir el producto final obtenido, qué funcionalidades se han implementado, que hay que tener en cuenta para usarla, etc. Describirlo como si fuera un pequeño MANUAL DE USO de la aplicación, ya que se usará este punto para corregir el proyecto.
+#### Descripción del Producto Final
+- SportEvents es una plataforma web diseñada para gestionar eficientemente empresas deportivas, permitiendo la administración integral de horarios, actividades, y clientes. La interfaz es intuitiva y accesible, optimizada tanto para dispositivos móviles como para escritorio, garantizando una experiencia de usuario fluida y coherente.
+
+#### Manual de Uso Básico General
+  1. Acceda a SportEvents e inicie sesión o regístrese si no tiene una cuenta en nuestra página web.
+  2. Una vez ha accedido, puede navegar a su `Perfil` seleccionando el menu "hamburguesa" situado en la parte superior derecha de la web, y aquí accedemos a `Perfil`.
+  3. Aquí podrá actualizar su información personal, así como también su imagen de perfil haciendo click en el botón con un símbolo de lápiz.
+
+#### Manual de Uso Básico como Cliente
+  1. Si es usuario de nuestra web, y desea unirse a alguna empresa deportiva, debe de ir a la página de inicio de su perfil seleccionando el menu "hamburguesa" situado en la parte superior derecha de la web, y aquí accedemos a `Inicio`.
+  2. Aquí en la sección de empresas disponibles pordrá ver todas las empresas públicas disponibles que hay en la web. Una vez encontrado la empresa deseada, deberá de dar click en esta, aquí saldrá un cuadro sobre la información de la misma, además de un botón que dirá si desea unirse a la empresa.
+  Al pulsar en dicho btón, se le enviará una petición al empresario para que este la pueda o no aceptar.
+  3. Una vez el empresario ha aceptado la petición, si accedemos a la pestaña de `Actividades Disponibles` ubicada en el inicio de nuestro perfil, podremos ver todas las actividades que nos pertenecen.
+  4. Si desea añadir una actividad por su cuenta, solo deberá seleccionar la empresa, y rellenar lso campos que se muestran para poder crear dicha actividad exclusiva para usted.
+
+#### Manual de Uso Básico como Propietario
+  1. Si es usuario de nuestra web, pero quiere añadir su empresa a nuestra web, deberá de acceder al inicio de su perfil seleccionando el menu "hamburguesa" situado en la parte superior derecha de la web, y aquí accedemos a `Inicio`.
+  2. Una vez aquí, nos saldrá un mensaje en la parte inferior derecha de la web que nos indicará que lo pulsemos sin somos propietarios de una empresa o queremos serlo. Lo clicamos.
+  3. Al acceder aquí, aparecerásn tres plances distintos de pago que usted deberá evaluar y posteriormente pagar para proseguir en el proceso.
+  4. Una vez ha pagado, le saldrá la opción de crear la empresa con un código único de entrada.
+  5. Al terminar el proceso, habrá sido redirigido a su empresa, donde aparecerá una opción de `Perfil` y `Gestor de Empresa`.
+  6. Si accedemos a `Perfil`, podremos aditar nuestro perfil como propietario de la empresa, de la misma manera que funciona el del cliente.
+  7. Si accedemos a `Gestor de Empresa`, podremos editar la información de la empresa, además de poder crear, editar o eliminar cualqueir actividad de esta.
+  Por otro lado, también podremos gestionar los usuarios la empresa así como también acceder a las notificaciones de esta, donde podremos aceptar o rechazar las peticiones de los usuarios de unirse a al empresa.
     
 ### 12.  EXPERIENCIAS APRENDIDAS A TENER EN CUENTA EN PRÓXIMOS PROYECTOS. <a name="id12"></a>
 ### 13.  CONCLUSIONES, COMENTARIOS Y VALORACIÓN FINAL. <a name="id13"></a>
