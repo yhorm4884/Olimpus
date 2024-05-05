@@ -1,12 +1,15 @@
-from .serializers import UsuarioSerializer, EmpresaSerializer, ActividadSerializer
+from .serializers import UsuarioSerializer, EmpresaSerializer, ActividadSerializer, NotificacionSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authentication import SessionAuthentication
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.shortcuts import get_object_or_404
+from notifications.models import Notificacion
 from rest_framework.response import Response
 from activities.models import  Actividad
 from companies.models import  Empresa
-from rest_framework import viewsets
+from django.http import JsonResponse
+from rest_framework import viewsets, status
 from users.models import  Usuario
 
 #csrf
@@ -41,3 +44,8 @@ class ActividadViewSet(viewsets.ModelViewSet):
 
     # def get_queryset(self):
     #     return self.queryset.filter(client=self.request.user.client)
+class NotificacionViewSet(viewsets.ViewSet):
+    queryset = Notificacion.objects.all()
+    serializer_class = NotificacionSerializer
+
+   

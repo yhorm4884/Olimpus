@@ -22,6 +22,9 @@ function Register() {
     const [fieldErrors, setFieldErrors] = useState({ username: false, telefono: false, DNI: false, correo: false, password1: false, password2: false });
     const [showPassword, setShowPassword] = useState({ password1: false, password2: false });
     const imageContainerRef = useRef(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -40,39 +43,97 @@ function Register() {
         setTooltipOpen(prev => ({ ...prev, [id]: !prev[id] }));
     };
 
+    const isValidDNI = (dni) => {
+        const dniPattern = /^\d{8}[A-Za-z]$/;
+        if (!dniPattern.test(dni)) {
+            return false;
+        }
+
+        const letter = dni.charAt(dni.length - 1);
+        const number = dni.substring(0, dni.length - 1);
+        const validLetters = "TRWAGMYFPDXBNJZSQVHLCKET";
+        const expectedLetter = validLetters.charAt(parseInt(number, 10) % 23);
+
+        return letter.toUpperCase() === expectedLetter;
+    };
+
     const validateFields = () => {
         const errors = {};
-        errors.username = username === '';
-        errors.telefono = telefono === '';
-        errors.DNI = DNI === '';
-        errors.correo = correo === '' || !/\S+@\S+\.\S+/.test(correo);
-        errors.password1 = password1 === '';
-        errors.password2 = password2 === '' || password1 !== password2;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        errors.username = username === '' ? "El nombre de usuario no puede estar vacío." : '';
+        errors.telefono = telefono === '' ? "El teléfono no puede estar vacío." : !/^\d{9}$/.test(telefono) ? "El teléfono debe tener 9 dígitos." : '';
+        errors.DNI = DNI === '' ? "El DNI no puede estar vacío." : !isValidDNI(DNI) ? "El DNI no es válido." : '';
+        errors.correo = correo === '' ? "El correo no puede estar vacío." : !emailRegex.test(correo) ? "El formato del correo es incorrecto." : '';
+        errors.password1 = password1 === '' ? "La contraseña no puede estar vacía." : '';
+        errors.password2 = password2 === '' ? "La confirmación de contraseña no puede estar vacía." : password1 !== password2 ? "Las contraseñas no coinciden." : '';
         setFieldErrors(errors);
-        return Object.values(errors).every(error => error === false);
+        return errors;
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateFields()) {
-            setAlert({ visible: true, color: 'danger', message: 'Por favor, corrige los errores en el formulario.' });
+        const errors = validateFields();
+        const errorMessages = Object.keys(errors)
+            .filter(key => errors[key] !== '')
+            .map(key => <li key={key}>{errors[key]}</li>);
+
+        if (errorMessages.length > 0) {
+            setAlert({
+                visible: true,
+                color: 'danger',
+                message: (
+                    <div>
+                        <p>Por favor, corrige los siguientes errores:</p>
+                        <ul>{errorMessages}</ul>
+                    </div>
+                )
+            });
             return;
         }
+
+        setIsSubmitting(true);
         const data = { username, telefono, DNI, correo, password1, password2, tipo_usuario: 'cliente', estado: 'activo' };
 
         try {
             const response = await axios.post('http://127.0.0.1:8000/users/register/', data, { withCredentials: true });
 
             if (response.status === 201) {
+                setIsRegistered(true);
+
                 const result = response.data;
                 setQrCode(result.qr_code);
-                setAlert({ visible: true, color: 'success', message: 'Registro exitoso. Por favor, escanea el QR para completar la configuración 2FA.' });
+                setAlert({
+                    visible: true,
+                    color: 'success',
+                    message: 'Registro exitoso. Por favor, escanea el QR para completar la configuración 2FA.'
+                });
             }
         } catch (error) {
             console.error('Registro fallido:', error.response || error);
-            const errorMessage = error.response?.data?.errors || 'Error desconocido al registrar.';
-            setAlert({ visible: true, color: 'danger', message: `Registro fallido: ${errorMessage}` });
-        }
+            let errorMessage = 'Error desconocido al registrar.';
+
+            // Verificar si la respuesta del servidor contiene información sobre errores específicos
+            if (error.response && error.response.data) {
+                const dataError = error.response.data.errors;
+                if (dataError === "UNIQUE constraint failed: users_usuario.DNI") {
+                    errorMessage = "Este DNI ya está siendo utilizado en otra cuenta.";
+                }
+                if (dataError === "UNIQUE constraint failed: auth_user.username") {
+                    errorMessage = "El nombre de usuario no está disponible.";
+                } else {
+                    // Aquí podrías manejar otros tipos de mensajes de error si los hubiera
+                    errorMessage = error.response.data.errors || errorMessage;
+                }
+            }
+
+            setAlert({
+                visible: true,
+                color: 'danger',
+                message: `Registro fallido: ${errorMessage}`
+            });
+            setIsSubmitting(false);
+        } 
     };
 
     useEffect(() => {
@@ -94,41 +155,6 @@ function Register() {
         // Limpieza al desmontar
         return () => container.removeEventListener('mousemove', handleMouseMove);
     }, []);
-
-    // const renderInput = (name, type, placeholder, labelText, tooltipText, value) => (
-    //     <FormGroup className="mb-3 position-relative">
-    //         <Label for={name}>
-    //             {labelText} <span className="text-danger">*</span>
-    //             <span style={{ fontWeight: "bold", cursor: "pointer" }} id={`${name}Tooltip`}>?</span>
-    //             <Tooltip
-    //                 placement="right"
-    //                 isOpen={tooltipOpen[`${name}Tooltip`]}
-    //                 target={`${name}Tooltip`}
-    //                 toggle={() => toggleTooltip(`${name}Tooltip`)}
-    //             >
-    //                 {tooltipText}
-    //             </Tooltip>
-    //         </Label>
-    //         <Input
-    //             type={type !== 'password' ? type : showPassword[name] ? 'text' : 'password'}
-    //             name={name}
-    //             id={name}
-    //             placeholder={placeholder}
-    //             value={value}
-    //             onChange={handleChange}
-    //             invalid={fieldErrors[name]}
-    //         />
-    //         {type === 'password' && (
-    //             <span
-    //                 onClick={() => setShowPassword({ ...showPassword, [name]: !showPassword[name] })}
-    //                 style={{ position: 'absolute', right: '10px', top: 'calc(40% - -10px)', cursor: 'pointer', zIndex: 5 }}
-    //             >
-    //                 <FontAwesomeIcon icon={showPassword[name] ? faEyeSlash : faEye} />
-    //             </span>
-    //         )}
-    //         {fieldErrors[name] && <p className="text-danger">Este campo es obligatorio.</p>}
-    //     </FormGroup>
-    // );
 
     return (
         <Container className="py-5">
@@ -161,6 +187,7 @@ function Register() {
                                             <Input
                                                 id="username"
                                                 name="username"
+                                                placeholder="Ej: usuario123"
                                                 onChange={handleChange}
                                                 value={username}
                                                 invalid={fieldErrors.username}
@@ -184,6 +211,7 @@ function Register() {
                                             <Input
                                                 id="DNI"
                                                 name="DNI"
+                                                placeholder="12345678A"
                                                 onChange={handleChange}
                                                 value={DNI}
                                                 invalid={fieldErrors.DNI}
@@ -209,6 +237,7 @@ function Register() {
                                             <Input
                                                 id="telefono"
                                                 name="telefono"
+                                                placeholder="600100200"
                                                 onChange={handleChange}
                                                 value={telefono}
                                                 invalid={fieldErrors.telefono}
@@ -233,6 +262,7 @@ function Register() {
                                                 id="correo"
                                                 name="correo"
                                                 type="email"
+                                                placeholder="ejemplo@dominio.com"
                                                 onChange={handleChange}
                                                 value={correo}
                                                 invalid={fieldErrors.correo}
@@ -308,9 +338,12 @@ function Register() {
                                     </Col>
                                 </Row>
                                 <div className="text-center">
-                                    <Button type="submit" color="primary" className="my-4">Registrar</Button>
+                                    <Button type="submit" color="primary" className="my-4" disabled={isRegistered}>
+                                        Registrar
+                                    </Button>
                                 </div>
                             </Form>
+
                             {qrCode && (
                                 <div className="position-fixed top-0 start-50 translate-middle-x mt-4" style={{ zIndex: 1050 }}>
                                     <Card className="bg-light shadow-lg border-0">

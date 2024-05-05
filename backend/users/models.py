@@ -42,25 +42,3 @@ class Usuario(models.Model):
     def __str__(self):
         return self.user.get_full_name() or self.user.username
 
-class ChatSession(models.Model):
-    """
-    Una sesión de chat representa una conversación entre un usuario y un administrador.
-    """
-    admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='admin_sessions')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_sessions')
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.admin.username} y {self.user.username} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
-
-class Message(models.Model):
-    """
-    Un mensaje dentro de una sesión de chat.
-    """
-    session = models.ForeignKey(ChatSession, on_delete=models.CASCADE, related_name='messages')
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='messages')
-    content = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Mensaje de {self.sender.username} - {self.timestamp.strftime('%Y-%m-%d %H:%M')}"

@@ -40,7 +40,9 @@ class Empresa(models.Model):
     cif = models.CharField(max_length=9)
     usuarios = models.ManyToManyField('users.Usuario', related_name='empresas', verbose_name=_('Usuarios'))
     direccion = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='user/%d/',
+    estado = models.BooleanField(default='True')
+
+    photo = models.ImageField(upload_to='companie/%d/',
         blank=True,
         validators=[FileExtensionValidator(['jpg', 'png'])],)
 

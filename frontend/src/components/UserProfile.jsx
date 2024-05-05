@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate   } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Calendar from 'react-widgets/Calendar';
 import { Modal, InputBase, Paper, Typography, Avatar, Grid, Box, TextField, Button, Card, CardContent, IconButton, Fab, Badge } from '@mui/material';
-import { Edit, Notifications, Send, Block  } from '@mui/icons-material';
+import { Edit, Notifications, Send, Block } from '@mui/icons-material';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import 'react-widgets/styles.css';
 import { Alert } from 'reactstrap';
@@ -11,7 +11,6 @@ import { Alert } from 'reactstrap';
 axios.defaults.withCredentials = true;
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -22,13 +21,15 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
-  const [showAlert, setShowAlert] = useState(false); 
+  const [showAlert, setShowAlert] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
-  const navigate = useNavigate();  
+
+
+  const navigate = useNavigate();
   const logoutUser = () => {
-    localStorage.removeItem('token');  
-    navigate('/logout');  
+    localStorage.removeItem('token');
+    navigate('/logout');
   };
 
   const [editData, setEditData] = useState({
@@ -53,10 +54,12 @@ const UserProfile = () => {
           });
           setActivities(response.data.actividades || []);
           filterActivitiesByDate(response.data.actividades || [], new Date());
+
         })
         .catch(error => console.error('Error fetching user data:', error));
     }
   }, [userId]);
+
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -68,6 +71,7 @@ const UserProfile = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -95,10 +99,10 @@ const UserProfile = () => {
       // Recargar los datos del usuario después de la actualización exitosa
       const updatedUserData = await axios.get(`http://127.0.0.1:8000/api/usuarios/${userId}/`, { withCredentials: true });
       setUserData(updatedUserData.data);
-      
+
     } catch (error) {
       console.error("Error:", error.response ? error.response.data : error);
-      setMessage(error.response.data.error.toString().slice(2,-2));
+      setMessage(error.response.data.error.toString().slice(2, -2));
       setError(true);
       setShowAlert(true);
       setTimeout(() => {
@@ -107,20 +111,20 @@ const UserProfile = () => {
       }, 3000);
     }
   };
+
   const handleSendMessage = (message) => {
     console.log(message); // Simula enviar mensaje
     setMessages([...messages, { content: message, sender: "Usuario", senderId: userId, isCurrentUser: true }]);
   };
+
   const handleAvatarChange = (event) => {
     if (event.target.files[0]) {
-        setEditData((prevData) => ({
-            ...prevData,
-            photo: event.target.files[0]
-        }));
+      setEditData((prevData) => ({
+        ...prevData,
+        photo: event.target.files[0]
+      }));
     }
-};
-
-
+  };
 
   const minDate = new Date();
   minDate.setHours(0, 0, 0, 0); // Remover las horas para comparar solo fechas
@@ -157,6 +161,7 @@ const UserProfile = () => {
       </CardContent>
     </Card>
   ));
+
   const handleDisableUser = async () => {
     try {
       const response = await axios.post(`http://127.0.0.1:8000/users/deactivate/${userId}/`);
@@ -182,16 +187,14 @@ const UserProfile = () => {
       }, 3000);
     }
   };
-  
-  
 
   if (!userData) {
     return <div>Cargando...</div>;
   }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Paper elevation={3} sx={{ p: 4, position: 'relative', mb: 4 }}>
-
         <Grid container spacing={3}>
           <Grid item xs={12} md={4} lg={3} align="center">
             <Card sx={{ p: 2 }}>
@@ -277,6 +280,7 @@ const UserProfile = () => {
             </Card>
           </Grid>
           <Grid item xs={12} md={8} lg={9}>
+
             <Box sx={{ mb: 2 }}>
               <Calendar
                 value={selectedDate}
@@ -306,24 +310,26 @@ const UserProfile = () => {
   );
 };
 
-const ChatMessage = ({ message, userId  }) => {
+const ChatMessage = ({ message, userId }) => {
   const isCurrentUser = message.senderId === userId;
-  <Box sx={{
-    display: 'flex',
-    justifyContent: isCurrentUser ? 'flex-end' : 'flex-start',
-    mb: 2,
-  }}>
-    <Paper sx={{
-      bgcolor: isCurrentUser ? 'primary.main' : 'grey.200',
-      color: isCurrentUser ? 'common.white' : 'text.primary',
-      p: 2,
-      maxWidth: '70%',
-      wordBreak: 'break-word',
+  return (
+    <Box sx={{
+      display: 'flex',
+      justifyContent: isCurrentUser ? 'flex-end' : 'flex-start',
+      mb: 2,
     }}>
-      <Typography variant="caption">{message.sender}</Typography>
-      <Typography variant="body1">{message.content}</Typography>
-    </Paper>
-  </Box>
+      <Paper sx={{
+        bgcolor: isCurrentUser ? 'primary.main' : 'grey.200',
+        color: isCurrentUser ? 'common.white' : 'text.primary',
+        p: 2,
+        maxWidth: '70%',
+        wordBreak: 'break-word',
+      }}>
+        <Typography variant="caption">{message.sender}</Typography>
+        <Typography variant="body1">{message.content}</Typography>
+      </Paper>
+    </Box>
+  );
 };
 
 // Componente de modal de chat

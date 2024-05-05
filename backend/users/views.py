@@ -17,9 +17,9 @@ from django.contrib.auth.models import User
 from django.utils.html import strip_tags
 from django.core.mail import send_mail
 from django.http import JsonResponse
+from companies.models import Empresa
+from users.models import Usuario
 from django.conf import settings
-from django.urls import reverse
-from .models import Usuario
 from io import BytesIO
 import qrcode
 import base64
@@ -131,12 +131,13 @@ def logout_view(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
+@csrf_exempt
 def forgot_password(request):
-    email = request.data.get('email')
+    data = json.loads(request.body)
+    email = data['email']
+    print(email)
     user = User.objects.filter(email=email).first()
-
+    print(user)
     if user:
         uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
@@ -301,6 +302,8 @@ def reactivar_usuario(request, user_id, token):
             return JsonResponse({'error': _('Esta cuenta no está bloqueada.')}, status=400)
     else:
         return JsonResponse({'error': _('El enlace de reactivación no es válido o ha expirado.')}, status=400)
+    
+
 # @api_view(['POST'])
 # @permission_classes([IsAuthenticated])
 # def create_chat_session(request):
