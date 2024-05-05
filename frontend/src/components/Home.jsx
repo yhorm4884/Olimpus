@@ -1,41 +1,37 @@
-// Home.js
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 function Home() {
+  const backgroundImage = 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'; // Imagen aleatoria de Unsplash para el fondo del Hero Section
+
   return (
     <div>
-      {/* Hero Section */}
-      <div className="hero-section bg-dark text-white text-center py-5">
-        <Container>
-          <Row>
-            <Col>
-              <h1 className="display-3">Bienvenidos a SPORTEVENTS</h1>
-              <p className="lead">El lugar para todos tus eventos deportivos favoritos desde 2024.</p>
-              <Button color="primary" size="lg">Descubre más</Button>
-            </Col>
-          </Row>
+      {/* Hero Section with Background Image */}
+      <div className="hero-section text-white text-center" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <Container className="py-5">
+          <h1 className="display-3">Bienvenidos a SPORTEVENTS</h1>
+          <p className="lead">El lugar para todos tus eventos deportivos favoritos desde 2024.</p>
         </Container>
       </div>
 
-      {/* Features Section */}
+      {/* Features Section with Bootstrap Icons */}
       <section className="py-5">
         <Container>
           <Row>
             <Col md="4" className="text-center">
-              <i className="ni ni-trophy" style={{ fontSize: '48px' }}></i>
-              <h3 className="mt-3">Competiciones</h3>
-              <p>Participa en competiciones locales e internacionales.</p>
+              <i className="bi bi-calendar-event" style={{ fontSize: '48px' }}></i>
+              <h3 className="mt-3">Organiza tu Día</h3>
+              <p>Organiza tus actividades diarias con nuestro sistema.</p>
             </Col>
             <Col md="4" className="text-center">
-              <i className="ni ni-world" style={{ fontSize: '48px' }}></i>
+              <i className="bi bi-people" style={{ fontSize: '48px' }}></i>
               <h3 className="mt-3">Comunidad</h3>
               <p>Únete a nuestra creciente comunidad de entusiastas del deporte.</p>
             </Col>
             <Col md="4" className="text-center">
-              <i className="ni ni-bell-55" style={{ fontSize: '48px' }}></i>
+              <i className="bi bi-bell" style={{ fontSize: '48px' }}></i>
               <h3 className="mt-3">Notificaciones</h3>
-              <p>Mantente al día con los últimos resultados y eventos.</p>
+              <p>Mantente al dia de tus notificaciones y nuestros avisos.</p>
             </Col>
           </Row>
         </Container>
@@ -56,24 +52,6 @@ function Home() {
         </Container>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-5">
-        <Container>
-          <Row className="justify-content-center">
-            <Col lg="8">
-              <h2 className="text-center">Contacto</h2>
-              <p className="text-center">
-                ¿Tienes preguntas o comentarios? No dudes en contactarnos.
-              </p>
-              {/* You can replace this part with a Contact Form component */}
-              <div className="text-center">
-                <Button color="default" size="lg">Envíanos un mensaje</Button>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
       {/* Footer */}
       <footer className="py-5 bg-dark">
         <Container>
@@ -89,4 +67,3 @@ function Home() {
 }
 
 export default Home;
-
