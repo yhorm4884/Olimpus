@@ -298,45 +298,37 @@ Para abordar las desviaciones en el cronograma, se han tomado medidas correctiva
 ### 9. GRADO DE CUMPLIMIENTO EN COSTE. <a name="id9"></a>
 
 #### Estrategias de Control de Costes
-- A pesar del presupuesto no monetario, es crucial adoptar prácticas de gestión que maximicen los recursos disponibles y aseguren el cumplimiento de los objetivos del proyecto sin desviaciones económicas. Las siguientes estrategias han sido adoptadas:
+- A pesar del presupuesto no monetario, fue crucial adoptar prácticas de gestión que maximizaron los recursos disponibles y aseguraron el cumplimiento de los objetivos del proyecto sin desviaciones económicas. Las siguientes estrategias son las que fueron adoptadas:
 
-    1. <b>Uso de Tecnologías y Herramientas Gratuitas:</b>
-        - Se ha optado por utilizar software y herramientas que ofrecen licencias gratuitas para uso educativo o son de código abierto, como React para el frontend, Django para el backend, y diversas librerías disponibles bajo licencias abiertas.
+  1. <b>Uso de Tecnologías y Herramientas Gratuitas:</b>
+      - Se ha optado por utilizar software y herramientas que ofrecen licencias gratuitas para uso educativo o son de código abierto, como React para el frontend, Django para el backend, y diversas librerías disponibles bajo licencias abiertas.
     
-    2. <b>Colaboración y Recursos Compartidos:</b>
-        - Aprovechando las redes académicas que dispone nuestro centro, incluyendo servidores de prueba y acceso a software especializado sin coste adicional.
+  2. <b>Colaboración y Recursos Compartidos:</b>
+      - Aprovechando las redes académicas que dispone nuestro centro, incluyendo servidores de prueba y acceso a software especializado sin coste adicional.
 
-    3. <b>Optimización del Tiempo y Esfuerzo:</b>
-        - Se ha establecido una planificación rigurosa y una división clara de responsabilidades para asegurar la eficiencia en el trabajo del equipo.
+  3. <b>Optimización del Tiempo y Esfuerzo:</b>
+      - Se ha establecido una planificación rigurosa y una división clara de responsabilidades para asegurar la eficiencia en el trabajo del equipo.
     
 #### Acciones para Detectar y Corregir Desviaciones
-1. Reuniones Regulares de Seguimiento:
+1. <b>Reuniones Regulares de Seguimiento:</b>
     - Se organizan reuniones semanales para revisar el progreso y ajustar la carga de trabajo según sea necesario, garantizando que el proyecto avance según lo planificado sin necesidad de recursos adicionales.
 
-2. Pruebas Continuas y Retroalimentación:
+2. <b>Pruebas Continuas y Retroalimentación:</b>
     - Implementación de ciclos de pruebas y test continuos para detectar errores y validar funcionalidades a tiempo, lo que ayuda a evitar trabajos dobles que consumirían más tiempo y esfuerzo.
 
-3. Evaluación Continua de Prioridades:
+3. <b>Evaluación Continua de Prioridades:</b>
     - Priorización constante de las tareas según su importancia y su viabilidad dentro del contexto del tiempo y los recursos disponibles.
 
-### 10.  CLAUSULAS. <a name="id10"></a>
+### 10.  CLÁUSULAS. <a name="id10"></a>
 
 #### Contexto de las Cláusulas
-1. Clausula de Retraso en la Entrega:
-    - <b>Descripción:</b> Si el proyecto se retrasa y no se cumple con los hitos establecidos en el cronograma académico.
-    - <b>Medida:</b> El equipo deberá notificar al supervisor académico con anticipación, proporcionando una evaluación detallada de las causas del retraso y un plan revisado para la finalización. 
 
-2. Clausula de Calidad y Revisión:
-    - <b>Descripción:</b> Cómo se controlará y asegurará la calidad del proyecto a lo largo de su desarrollo.
-    - <b>Medida:</b> El proyecto será sometido a revisiones periódicas por el supervisor académico, quien evaluará el progreso y la adherencia a los estándares académicos de calidad. Las correcciones y mejoras sugeridas deberán implementarse según lo indicado por las evaluaciones.
-
-3. Clausula de Contribución de los Miembros del Equipo:
-    - <b>Descripción:</b> Cómo se gestionará la contribución de cada miembro del equipo para asegurar la equidad y evitar desequilibrios en la carga de trabajo.
-    - <b>Medida:</b> Se requerirá que cada miembro del equipo documente sus contribuciones y participe equitativamente en todas las fases del proyecto. Las evaluaciones de desempeño individual serán parte de la evaluación final del proyecto.
-
-4. Clausula de Uso de Recursos Externos:
-    - <b>Descripción:</b> Uso de material con derechos de autor, software de pago o cualquier otro recurso que pueda tener implicaciones legales o éticas.
-    - <b>Medida:</b> Todo el material y software utilizado deberá cumplir con las licencias adecuadas y, en el caso de recursos académicos, deberá ser utilizado exclusivamente bajo los términos permitidos. 
+  |          Cláusula           |          Descripción        |            Medida           |
+  |-----------------------------|-----------------------------|-----------------------------|
+  |<b>Cláusula de Retraso en la Entrega</b>|Si el proyecto se retrasa y no se cumple con los requerimientos establecidos en el cronograma académico.|El equipo deberá notificar al profesor con anticipación, proporcionando una evaluación detallada de las causas del retraso y un plan revisado para la finalización.|
+  |<b>Cláusula de Calidad y Revisión</b>|Cómo se controlará y asegurará la calidad del proyecto a lo largo de su desarrollo.|El proyecto será sometido a revisiones periódicas por el profesor, quien evaluará el progreso y la adherencia a los estándares académicos de calidad. Las correcciones y mejoras sugeridas deberán implementarse según lo indicado por las evaluaciones.|
+  |<b>Cláusula de Contribución de los Miembros del Equipo</b>|Cómo se gestionará la contribución de cada miembro del equipo para asegurar la equidad y evitar desequilibrios en la carga de trabajo.|Se requerirá que cada miembro del equipo documente sus contribuciones y participe equitativamente en todas las fases del proyecto. Las evaluaciones de desempeño individual serán parte de la evaluación final del proyecto.|
+  |<b>Cláusula de Uso de Recursos Externos</b>|Uso de material con derechos de autor, software de pago o cualquier otro recurso que pueda tener implicaciones legales o éticas.|Todo el material y software utilizado deberá cumplir con las licencias adecuadas y, en el caso de recursos académicos, deberá ser utilizado exclusivamente bajo los términos permitidos. |
 
 ### 11.  PRODUCTO FINAL. <a name="id11"></a>
 
