@@ -150,7 +150,7 @@
 - Para los textos se utiliza la fuente <b>Betm-Black</b>, una tipografía moderna y en negrita que contribuye a un aspecto visual fuerte y decidido. Esta elección refuerza la accesibilidad y la facilidad de lectura en todas las interfaces de usuario, siendo ideal para destacar titulares y elementos clave sin sacrificar la claridad.
 
 #### Interfaz de Usuario (UI)
-- Poseemos una interfaz es minimalista, evitando la sobrecarga visual y destacando los elementos más importantes mediante el uso de colores y formas comunes. Además tenemos un diseño responsive que este garantizará una experiencia uniforme tanto en dispositivos móviles como en ordenadores.
+- Poseemos una interfaz minimalista, evitando la sobrecarga visual y destacando los elementos más importantes mediante el uso de colores y formas comunes. Además tenemos un diseño responsive que este garantizará una experiencia uniforme tanto en dispositivos móviles como en ordenadores.
 
 #### Experiencia de Usuario (UX)
 - La experiencia del usuario es más fluida, ya que nuestra aplicación posee una estructura de navegación que permite a los usuarios encontrar rápidamente lo que necesitan. Es importante destacar que tambien la interactividad es prioridad, ya que poseemos elementos como calendarios dinámicos y formularios interactivos para una gestión efectiva y sin esfuerzos.
@@ -163,7 +163,7 @@
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <p style="flex: 1; text-align: justify; margin-right: 20px;">
-    La primera fase inicial del desarrollo de SportEvents implicó una investigación exhaustiva para comprender que es loque necesita actualmente el mercado, en que están interesados tanto los clientes como comerciantes y sacarle rentabilidad a esto. En esta investigación comprobamos diferentes sistemas de gestión existentes, las características destacables de las operaciones deportivas, y las expectativas de los usuarios finales en términos de funcionalidad, accesibilidad y experiencia de usuario.
+    La primera fase inicial del desarrollo de SportEvents implicó una investigación exhaustiva para comprender que es lo que necesita actualmente el mercado, en que están interesados tanto los clientes como comerciantes y sacarle rentabilidad a esto. En esta investigación comprobamos diferentes sistemas de gestión existentes, las características destacables de las operaciones deportivas, y las expectativas de los usuarios finales en términos de funcionalidad, accesibilidad y experiencia de usuario.
   </p>
   <img src="https://octodex.github.com/images/inspectocat.jpg" alt="Inspectocat" style="flex-shrink: 0; width: 150px; height: 150px;">
 </div>
@@ -179,7 +179,7 @@
 
     - <b>Conexión entre Django y React :</b> Al no tener mucho conocimiento de como funcionaban las cookies entre django y react, nos vimos muy abrumados debido a que en ciertos navegadores no se procesaban las cookies como se debía y accedía al contenido sin estar iniciada la sesión del usuario.
 
-    - <b>Aprendizaje entre django y react :</b> Al principio no lo sabíamos pero la única forma que podemos comunicarnos entre react y django es mediante peticiones a las ip que realizan las consultas y siempre recibir y enviar un json de respuesta
+    - <b>Aprendizaje entre Django y React :</b> Al principio no lo sabíamos pero la única forma que podemos comunicarnos entre react y django es mediante peticiones a las ip que realizan las consultas y siempre recibir y enviar un json de respuesta
 
 #### Evaluación y Retroalimentación
 - Se realizaron pruebas continuas y se recogió retroalimentación de usuarios beta para iterar sobre el desarrollo. Esto fue crucial para desechar algunas ideas iniciales y mejorar otras, asegurando que la aplicación final realmente satisfaciera las necesidades del usuario y mejorara la gestión operativa de las empresas deportivas.
