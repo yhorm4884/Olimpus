@@ -126,7 +126,7 @@ function Home() {
               </Grid>
               <Grid item xs={12} sm={4} display="flex" flexDirection="column" alignItems="center">
                 <img src="https://avatars.githubusercontent.com/u/102224204?v=4" alt="Team Member 3" className="img-fluid w-50 rounded-circle mb-2" />
-                <Typography variant="h6" component="h3">Miguel Carballo Gonzales</Typography>
+                <Typography variant="h6" component="h3">Miguel Carballo González</Typography>
                 <Typography>Programador y encargado del despliegue</Typography>
               </Grid>
               <Grid item xs={12} sm={4} display="flex" flexDirection="column" alignItems="center">
