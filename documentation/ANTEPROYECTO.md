@@ -23,7 +23,7 @@
 + **Alumnos del grupo:** 
     - Badel Bonilla Simón
     - Faybezrdt Ramos Luis
-    - Miguel Carballo Gonzalez
+    - Miguel Carballo González
 + **Curso:** 2º Desarrollo de Aplicaciones Web
 + **Tutor:** Alejandro Martín Zarza
 
