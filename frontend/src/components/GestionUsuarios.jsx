@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   List, ListItem, ListItemText, ListItemAvatar, Avatar, ListItemSecondaryAction, IconButton,
-  CircularProgress, Alert, TextField, Box
+  CircularProgress, Alert, TextField, Box, Dialog, DialogTitle, DialogContent, DialogActions, Button
 } from '@mui/material';
 import BlockIcon from '@mui/icons-material/Block';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -12,6 +12,7 @@ const GestionUsuarios = ({ idEmpresa }) => {
   const [filtro, setFiltro] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [usuarioEliminar, setUsuarioEliminar] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -38,13 +39,23 @@ const GestionUsuarios = ({ idEmpresa }) => {
       });
   };
 
-  const eliminarUsuario = (idUsuario) => {
-    axios.delete(`http://127.0.0.1:8000/companies/eliminar-usuarios/${idUsuario}`)
+  const confirmarEliminarUsuario = (idUsuario) => {
+    setUsuarioEliminar(idUsuario);
+  };
+
+  const cancelarEliminarUsuario = () => {
+    setUsuarioEliminar(null);
+  };
+
+  const eliminarUsuario = () => {
+    axios.delete(`http://127.0.0.1:8000/companies/eliminar-usuarios/${usuarioEliminar}`)
       .then(() => {
-        setUsuarios(usuarios.filter(user => user.id !== idUsuario));
+        setUsuarios(usuarios.filter(user => user.id !== usuarioEliminar));
+        setUsuarioEliminar(null); // Resetear el usuario a eliminar
       })
       .catch(err => {
         setError('Error al eliminar el usuario');
+        setUsuarioEliminar(null); // Resetear el usuario a eliminar
       });
   };
 
@@ -60,7 +71,7 @@ const GestionUsuarios = ({ idEmpresa }) => {
   if (error) return <Alert severity="error">{error}</Alert>;
 
   return (
-    <Box sx={{ p: 2, bgcolor: 'background.paper' }}> {/* Contenedor con fondo blanco */}
+    <Box sx={{ p: 2, bgcolor: 'background.paper' }}>
       <TextField
         fullWidth
         label="Buscar Usuario"
@@ -69,24 +80,34 @@ const GestionUsuarios = ({ idEmpresa }) => {
         onChange={handleSearchChange}
         margin="normal"
       />
-      <List sx={{ bgcolor: 'white' }}> {/* Lista con fondo blanco */}
+      <List sx={{ bgcolor: 'white' }}>
         {filteredUsers.map(usuario => (
-          <ListItem key={usuario.id} sx={{ bgcolor: 'white' }}> {/* Cada item con fondo blanco */}
+          <ListItem key={usuario.id} sx={{ bgcolor: 'white' }}>
             <ListItemAvatar>
               <Avatar src={usuario.foto || "/default-profile.png"} />
             </ListItemAvatar>
             <ListItemText primary={usuario.username} secondary={`Estado: ${usuario.estado}`} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" onClick={() => bloquearUsuario(usuario.id)} disabled={usuario.estado === 'bloqueado'}>
-                <BlockIcon />
-              </IconButton>
-              <IconButton edge="end" onClick={() => eliminarUsuario(usuario.id)}>
+              
+              <IconButton edge="end" onClick={() => confirmarEliminarUsuario(usuario.id)}>
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
         ))}
       </List>
+
+      {/* Confirmación de eliminar usuario */}
+      <Dialog open={usuarioEliminar !== null} onClose={cancelarEliminarUsuario}>
+        <DialogTitle>Confirmar Eliminación</DialogTitle>
+        <DialogContent>
+          <p>¿Estás seguro de que deseas eliminar este usuario?</p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={cancelarEliminarUsuario}>Cancelar</Button>
+          <Button onClick={eliminarUsuario} variant="contained" color="error">Eliminar</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

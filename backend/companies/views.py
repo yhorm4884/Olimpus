@@ -207,23 +207,26 @@ def crear_sesion_checkout(request):
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 
+@csrf_exempt
 def lista_usuarios(request, id_empresa):
     usuario_actual = request.user.usuario
     # Comprobamos si el usuario actual tiene acceso a la empresa solicitada
     if usuario_actual.empresas.filter(id_empresa=id_empresa).exists() and usuario_actual.tipo_usuario in ['propietario', 'administrador']:
         empresa = Empresa.objects.get(id_empresa=id_empresa)
-        usuarios = empresa.usuarios.all()
+        usuarios = empresa.usuarios.filter(tipo_usuario='cliente')
         usuarios_data = [{'username': u.user.username, 'id': u.id, 'estado': u.estado} for u in usuarios]
         return JsonResponse({'usuarios': usuarios_data}, safe=False)
     else:
         return JsonResponse({'error': 'No autorizado'}, status=403)
-
+    
+@csrf_exempt
 def bloquear_usuario(request, id_usuario):
     if request.method == 'POST':
         usuario_a_bloquear = Usuario.objects.get(id=id_usuario)
         usuario_actual = request.user.usuario
-        # Verificamos si alguno de los usuarios está en la misma empresa y el usuario actual tiene permisos
-        if usuario_actual.empresas.filter(usuarios=usuario_a_bloquear).exists() and usuario_actual.tipo_usuario in ['propietario', 'administrador']:
+        empresa = usuario_actual.empresas.get()
+       
+        if usuario_a_bloquear in empresa.usuarios.all() and usuario_actual.tipo_usuario in ['propietario', 'administrador']:
             usuario_a_bloquear.estado = 'bloqueado'
             usuario_a_bloquear.save()
             return JsonResponse({'mensaje': 'Usuario bloqueado exitosamente'})
@@ -231,13 +234,18 @@ def bloquear_usuario(request, id_usuario):
             return JsonResponse({'error': 'No autorizado'}, status=403)
     else:
         return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+@csrf_exempt
 def eliminar_usuario(request, id_usuario):
     if request.method == 'DELETE':
         usuario_a_eliminar = Usuario.objects.get(id=id_usuario)
         usuario_actual = request.user.usuario
-        # Verificar que comparten empresa y que el usuario actual es propietario o administrador
-        if usuario_actual.empresas.filter(usuarios=usuario_a_eliminar).exists() and usuario_actual.tipo_usuario in ['propietario', 'administrador']:
-            usuario_a_eliminar.delete()
+        empresa = usuario_actual.empresas.get()
+       
+        if usuario_a_eliminar in empresa.usuarios.all() and usuario_actual.tipo_usuario in ['propietario', 'administrador']:
+
+           
+            empresa.usuarios.remove(usuario_a_eliminar)
             return JsonResponse({'mensaje': 'Usuario eliminado exitosamente'})
         else:
             return JsonResponse({'error': 'No autorizado'}, status=403)
