@@ -53,7 +53,6 @@ const UserProfile = () => {
             photo: response.data.photo || '',
           });
           setActivities(response.data.actividades || []);
-          filterActivitiesByDate(response.data.actividades || [], new Date());
 
         })
         .catch(error => console.error('Error fetching user data:', error));
@@ -129,21 +128,10 @@ const UserProfile = () => {
   const minDate = new Date();
   minDate.setHours(0, 0, 0, 0); // Remover las horas para comparar solo fechas
 
-  const filterActivitiesByDate = (activities, date) => {
-    const activitiesForDate = activities.filter((activity) => {
-      const startDate = new Date(activity.hora_entrada);
-      const endDate = new Date(activity.hora_salida);
-      return (
-        startDate.toDateString() === date.toDateString() ||
-        (startDate <= date && endDate >= date)
-      );
-    });
-    setSelectedDateActivities(activitiesForDate);
-  };
+  
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    filterActivitiesByDate(activities, date);
   };
 
   const activityCards = selectedDateActivities.map((activity, index) => (
@@ -285,10 +273,10 @@ const UserProfile = () => {
               <Calendar
                 value={selectedDate}
                 onChange={handleDateChange}
-                min={minDate}
-                dayPropGetter={(date) => ({
-                  className: date < minDate ? 'disabled-date' : '',
-                })}
+                // min={minDate}
+                // dayPropGetter={(date) => ({
+                  //className: date < minDate ? 'disabled-date' : '',
+                //})}
               />
             </Box>
             <Typography variant="h6" gutterBottom>

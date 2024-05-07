@@ -57,8 +57,8 @@ function Dashboard() {
     setOpenSnackbar(false);
   };
   const handleJoinCompany = async (companyId) => {
-    console.log(userId)
     localStorage.setItem('userId', userId);
+    localStorage.setItem('companyId', companyId);
     navigate(`/choose-plan/${companyId}`, { state: { userId } });
 
   };

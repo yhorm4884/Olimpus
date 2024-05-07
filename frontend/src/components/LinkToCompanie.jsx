@@ -5,9 +5,15 @@ import axios from 'axios';
 import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 
 function JoinEmpresa() {
+    
     const navigate = useNavigate();
     const { userId } = useParams();
     const [userData, setUserData] = useState(null); 
+    const [codigoEmpresa, setCodigoEmpresa] = useState('');
+    const [formReady, setFormReady] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false); // Estado para controlar si el botón está deshabilitado
+    const [alert, setAlert] = useState({ visible: false, color: '', message: '' });
+
     useEffect(() => {
         if (userId) {
           const url = `http://127.0.0.1:8000/api/usuarios/${userId}/`;
@@ -15,14 +21,25 @@ function JoinEmpresa() {
             .then(response => {
               console.log(response.data);
               setUserData(response.data); 
+              const url2 = `http://127.0.0.1:8000/api/empresas/${localStorage.getItem('companyId')}/`;
+              axios.get(url2, { withCredentials: true })
+                .then(response2 => {
+                  var codigo = response2.data.codigo_empresa;
+                  setCodigoEmpresa(codigo); 
+                  setFormReady(true); // Indicar que el formulario está listo para enviar
+                })
             })
             .catch(error => console.error('Error fetching user data:', error));
         }
       }, [userId]);
 
-    const [codigoEmpresa, setCodigoEmpresa] = useState('');
-    const [alert, setAlert] = useState({ visible: false, color: '', message: '' });
-    const [fieldErrors, setFieldErrors] = useState({ codigoEmpresa: false });
+    useEffect(() => {
+        // Simular clic del botón cuando el formulario esté listo
+        if (formReady) {
+            document.getElementById('submitButton').click();
+            setButtonDisabled(true); // Deshabilitar el botón después de hacer clic en él
+        }
+    }, [formReady]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,16 +49,15 @@ function JoinEmpresa() {
         }
     };
 
-    const validateFields = () => {
-        const errors = {};
-        errors.codigoEmpresa = codigoEmpresa === '';
-        setFieldErrors(errors);
-        return Object.values(errors).every(error => error === false);
-    };
-
     const handleSubmit = async (e) => {
-        e.preventDefault();
-    
+        e && e.preventDefault();
+        
+        // Verificar si el formulario está listo para enviar
+        if (!formReady) {
+            console.error('El formulario no está listo para enviar');
+            return;
+        }
+        
         try {
             const formData = new FormData();
             formData.append('codigoEmpresa', codigoEmpresa);
@@ -56,7 +72,7 @@ function JoinEmpresa() {
                 }, 4000);
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
             console.error('Unión fallida a la empresa:', error.response || error);
             setAlert({ visible: true, color: 'danger', message: `Unión fallida a la empresa: ${error.response.data.error}` });
         }
@@ -75,10 +91,8 @@ function JoinEmpresa() {
                 placeholder={placeholder}
                 value={value}
                 onChange={handleChange}
-                invalid={fieldErrors[name]}
                 required
             />
-            {fieldErrors[name] && <p className="text-danger">Este campo es obligatorio.</p>}
         </FormGroup>
     );
 
@@ -92,11 +106,11 @@ function JoinEmpresa() {
                                 <h2 className="text-center mb-4">Unirse a Empresa</h2>
                                 {alert.visible && <Alert color={alert.color}>{alert.message}</Alert>}
                                 <Form onSubmit={handleSubmit}>
-                                    {renderInput('codigoEmpresa', 'text', 'Código de la empresa', 'Código de la empresa', codigoEmpresa)}
+                                    {renderInput('codigoEmpresa', 'password', 'Código de la empresa', 'Código de la empresa', codigoEmpresa)}
                                     {/* Campo invisible para almacenar el usuario */}
                                     <input type="hidden" name="userId" value={userData?.id} />
                                     <div className="text-center">
-                                        <Button type="submit" color="primary" className="my-4">Unirse a Empresa</Button>
+                                        <Button id="submitButton" type="submit" color="primary" className="my-4" disabled={buttonDisabled}>Unirse a Empresa</Button>
                                     </div>
                                 </Form>
                             </CardBody>

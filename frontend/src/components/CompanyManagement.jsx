@@ -5,9 +5,9 @@ import { format, parseISO, isValid } from 'date-fns';
 import CompanyEdit from './CompanyEdit';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination,
-  TextField, Grid, Typography, Button, Checkbox, IconButton, Tooltip, Paper, TableSortLabel, List, ListItem, ListItemIcon, ListItemText, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
+  TextField, Grid, Snackbar, Typography, Button, Checkbox, IconButton, Tooltip, Paper, TableSortLabel, List, ListItem, ListItemIcon, ListItemText, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 } from '@mui/material';
-import { Add as AddIcon, Delete as DeleteIcon, Edit as EditIcon, FileDownload as FileDownloadIcon, Notifications as NotificationsIcon } from '@mui/icons-material';
+import { Add as AddIcon, Delete as DeleteIcon, Edit as EditIcon, FileDownload as FileDownloadIcon, Notifications as NotificationsIcon, Close as CloseIcon } from '@mui/icons-material';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import AddActivityForm from './AddActivityForm';
@@ -16,9 +16,9 @@ import GestionUsuarios from './GestionUsuarios';
 
 const Notifications = ({ userId }) => {
   const [notifications, setNotifications] = useState([]);
-
   const [selectedNotification, setSelectedNotification] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const [snackbar, setSnackbar] = useState({ open: false, message: '' });
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/notifications/list/${userId}/`)
@@ -39,18 +39,27 @@ const Notifications = ({ userId }) => {
   const handleUpdateNotification = (action) => {
     axios.post(`http://127.0.0.1:8000/notifications/update/${selectedNotification.id}/`, { action })
       .then(response => {
-        alert(response.data.message);
+        setSnackbar({ open: true, message: response.data.message });
         handleCloseDialog();
         setNotifications(notifications.filter(n => n.id !== selectedNotification.id));
       })
-      .catch(error => console.error('Error processing notification:', error));
+      .catch(error => {
+        setSnackbar({ open: true, message: 'Error processing notification' });
+        console.error('Error processing notification:', error);
+      });
   };
 
+  const handleCloseSnackbar = () => {
+    setSnackbar({ open: false, message: '' });
+  };
+
+  
   return (
     <div style={{ maxWidth: '360px' }}>
-      <List>
+      <Typography variant="h6" sx={{ mt: 2, mb: 2 }}>Notificaciones</Typography>
+      <List sx={{ bgcolor: 'background.paper' }}>
         {notifications.map(notification => (
-          <ListItem key={notification.id} button onClick={() => handleNotificationClick(notification)}>
+          <ListItem key={notification.id} button onClick={() => handleNotificationClick(notification)} sx={{ bgcolor: 'white', mb: 1, boxShadow: 1 }}>
             <ListItemIcon>
               <NotificationsIcon />
             </ListItemIcon>
@@ -74,9 +83,21 @@ const Notifications = ({ userId }) => {
           <Button onClick={handleCloseDialog}>Cerrar</Button>
         </DialogActions>
       </Dialog>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message={snackbar.message}
+        action={
+          <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseSnackbar}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        }
+      />
     </div>
   );
 };
+
 
 const ActivityList = ({ userId }) => {
   const [activities, setActivities] = useState([]);

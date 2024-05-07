@@ -1,67 +1,152 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import Slider from 'react-slick';
+import { Paper, Typography, Box, Container, Grid, Slide, useTheme, useMediaQuery } from '@mui/material';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './css/propio-css.css';  // Asegúrate de que los estilos estén correctamente definidos en este archivo
+import { useScrollTrigger } from '@mui/material';
+
+function SlideOnScroll({ children }) {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  return (
+    <Slide appear={false} direction="up" in={trigger}>
+      {children}
+    </Slide>
+  );
+}
 
 function Home() {
-  const backgroundImage = 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'; // Imagen aleatoria de Unsplash para el fondo del Hero Section
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+  };
 
   return (
     <div>
-      {/* Hero Section with Background Image */}
-      <div className="hero-section text-white text-center" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <Container className="py-5">
-          <h1 className="display-3">Bienvenidos a SPORTEVENTS</h1>
-          <p className="lead">El lugar para todos tus eventos deportivos favoritos desde 2024.</p>
-        </Container>
-      </div>
+      <Slider {...settings}>
+        <div>
+          <Paper
+            sx={{
+              backgroundImage: 'url(https://www.hopkinsmedicine.org/-/media/images/health/3_-wellness/sleep/group-kettlebell-exercise-hero.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              height: isMobile ? 300 : 500,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Typography variant={isMobile ? "h4" : "h3"} component="h1" color="primary.contrastText" sx={{ padding: 2, backgroundColor: 'rgba(0,0,0,0.5)' }}>
+              Bienvenidos a SPORTEVENTS
+            </Typography>
+          </Paper>
+        </div>
+        <div>
+          <Paper
+            sx={{
+              backgroundImage: 'url(https://i0.wp.com/www.muscleandfitness.com/wp-content/uploads/2018/11/Group-Fitness-Class-Performing-A-Variety-Of-Exercises-1.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              height: isMobile ? 300 : 500,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Typography variant={isMobile ? "h4" : "h3"} component="h1" color="primary.contrastText" sx={{ padding: 2, backgroundColor: 'rgba(0,0,0,0.5)' }}>
+              Organiza tus actividades
+            </Typography>
+          </Paper>
+        </div>
+      </Slider>
 
-      {/* Features Section with Bootstrap Icons */}
-      <section className="py-5">
-        <Container>
-          <Row>
-            <Col md="4" className="text-center">
-              <i className="bi bi-calendar-event" style={{ fontSize: '48px' }}></i>
-              <h3 className="mt-3">Organiza tu Día</h3>
-              <p>Organiza tus actividades diarias con nuestro sistema.</p>
-            </Col>
-            <Col md="4" className="text-center">
-              <i className="bi bi-people" style={{ fontSize: '48px' }}></i>
-              <h3 className="mt-3">Comunidad</h3>
-              <p>Únete a nuestra creciente comunidad de entusiastas del deporte.</p>
-            </Col>
-            <Col md="4" className="text-center">
-              <i className="bi bi-bell" style={{ fontSize: '48px' }}></i>
-              <h3 className="mt-3">Notificaciones</h3>
-              <p>Mantente al dia de tus notificaciones y nuestros avisos.</p>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+      <SlideOnScroll>
+        <Box sx={{ bgcolor: 'background.paper', p: 4 }}>
+          <Container maxWidth="lg">
+            <Typography variant="h4" component="h2" gutterBottom textAlign="center">
+              Sobre Nosotros
+            </Typography>
+            <Typography variant="body1" gutterBottom textAlign="center">
+              En SPORTEVENTS nos dedicamos a brindarte la mejor experiencia para organizar tu semana, conectando a fanáticos y atletas de todo el mundo.
+            </Typography>
+          </Container>
+        </Box>
+      </SlideOnScroll>
 
-      {/* About Section */}
-      <section className="py-5 bg-light">
-        <Container>
-          <Row className="justify-content-center">
-            <Col lg="8">
-              <h2 className="text-center">Sobre Nosotros</h2>
-              <p className="text-center">
-                En SPORTEVENTS nos dedicamos a brindarte la mejor experiencia en eventos deportivos,
-                conectando a fanáticos y atletas de todo el mundo.
-              </p>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+      <SlideOnScroll>
+        <Box sx={{ bgcolor: 'grey.200', p: 4 }}>
+          <Container maxWidth="lg">
+            <Typography variant="h4" component="h2" gutterBottom textAlign="center">
+              Qué Hacemos
+            </Typography>
+            <Grid container spacing={4} justifyContent="center">
+              <Grid item xs={12} md={4} textAlign="center">
+                <i className="bi bi-trophy" style={{ fontSize: '48px' }}></i>
+                <Typography variant="h6" component="h3">Eventos Competitivos</Typography>
+                <Typography>Organizamos y transmitimos competencias deportivas a nivel local.</Typography>
+              </Grid>
+              <Grid item xs={12} md={4} textAlign="center">
+                <i className="bi bi-people-fill" style={{ fontSize: '48px' }}></i>
+                <Typography variant="h6" component="h3">Comunidad</Typography>
+                <Typography>Creamos una comunidad donde los aficionados pueden conectarse y compartir su pasión por el deporte.</Typography>
+              </Grid>
+              <Grid item xs={12} md={4} textAlign="center">
+                <i className="bi bi-gear-fill" style={{ fontSize: '48px' }}></i>
+                <Typography variant="h6" component="h3">Tecnología Innovadora</Typography>
+                <Typography>Utilizamos la última tecnología para mejorar la experiencia de visualización de nuestros usuarios.</Typography>
+              </Grid>
+            </Grid>
+          </Container>
+        </Box>
+      </SlideOnScroll>
 
-      {/* Footer */}
-      <footer className="py-5 bg-dark">
-        <Container>
-          <Row>
-            <Col md="12" className="text-center">
-              <p className="text-white mb-0">© {new Date().getFullYear()} SPORTEVENTS. Todos los derechos reservados.</p>
-            </Col>
-          </Row>
-        </Container>
-      </footer>
+      <SlideOnScroll>
+        <Box sx={{ bgcolor: 'background.paper', p: 4 }}>
+          <Container maxWidth="lg">
+            <Typography variant="h4" component="h2" gutterBottom textAlign="center">
+              Conoce al Equipo
+            </Typography>
+            <Grid container spacing={4}>
+              <Grid item xs={12} sm={4} display="flex" flexDirection="column" alignItems="center">
+                <img src="https://avatars.githubusercontent.com/u/94459279?v=4" alt="Team Member 1" className="img-fluid w-50 rounded-circle mb-2" />
+                <Typography variant="h6" component="h3">Badel Bonilla Simón</Typography>
+                <Typography>Desarrollador Principal</Typography>
+              </Grid>
+              <Grid item xs={12} sm={4} display="flex" flexDirection="column" alignItems="center">
+                <img src="https://avatars.githubusercontent.com/u/102224204?v=4" alt="Team Member 3" className="img-fluid w-50 rounded-circle mb-2" />
+                <Typography variant="h6" component="h3">Miguel Carballo Gonzales</Typography>
+                <Typography>Programador y encargado del despliegue</Typography>
+              </Grid>
+              <Grid item xs={12} sm={4} display="flex" flexDirection="column" alignItems="center">
+                <img src="https://avatars.githubusercontent.com/u/99322335?v=4" alt="Team Member 2" className="img-fluid w-50 rounded-circle mb-2" />
+                <Typography variant="h6" component="h3">Afellay Ramos Luis</Typography>
+                <Typography>Diseño y Documentación</Typography>
+              </Grid>
+              
+            </Grid>
+          </Container>
+        </Box>
+      </SlideOnScroll>
+
+      <SlideOnScroll>
+        <Box sx={{ bgcolor: 'grey.900', color: 'grey.50', p: 3 }}>
+          <Container maxWidth="lg">
+            <Typography textAlign="center">© {new Date().getFullYear()} SPORTEVENTS. Todos los derechos reservados.</Typography>
+          </Container>
+        </Box>
+      </SlideOnScroll>
     </div>
   );
 }

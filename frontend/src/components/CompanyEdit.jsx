@@ -4,13 +4,14 @@ import { Avatar, TextField, Button, Paper, Typography, IconButton } from '@mui/m
 import { Save as SaveIcon, PhotoCamera as PhotoCameraIcon } from '@mui/icons-material';
 
 const CompanyEdit = ({ userId }) => {
-  const [company, setCompany] = useState({ nombre: '', estado: true, photo: '' });
+  const [company, setCompany] = useState({ nombre: '', estado: true, photo: '', ubicacion: '' });
   const fileInputRef = useRef(null);
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/companies/empresa/${userId}`)
       .then(response => {
         setCompany(response.data);
+        console.log(response.data)
       });
   }, [userId]);
 
@@ -33,9 +34,11 @@ const CompanyEdit = ({ userId }) => {
     const formData = new FormData();
     formData.append('nombre', company.nombre);
     formData.append('estado', company.estado);
+    formData.append('ubicacion', company.ubicacion);
     formData.append('photo', company.photo);
     axios.post(`http://127.0.0.1:8000/companies/empresa/${userId}/`, formData)
-      .then(() => alert('Empresa actualizada con éxito'));
+      .then(() => alert('Empresa actualizada con éxito'))
+      .catch(err => alert('Error al actualizar la empresa: ' + err.message));
   };
 
   const handleAvatarClick = () => {
@@ -46,7 +49,7 @@ const CompanyEdit = ({ userId }) => {
     <Paper style={{ padding: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="h6" style={{ alignSelf: 'start' }}>Editar Empresa</Typography>
       <IconButton onClick={handleAvatarClick} style={{ margin: '20px' }}>
-        <Avatar src={company.photo || '/path/to/default/avatar.jpg'} style={{ width: 90, height: 90 }} />
+        <Avatar src={company.photo} style={{ width: 90, height: 90 }} />
         <PhotoCameraIcon style={{ position: 'absolute', color: 'rgba(255, 255, 255, 0.7)' }} />
       </IconButton>
       <input
@@ -65,6 +68,15 @@ const CompanyEdit = ({ userId }) => {
           fullWidth
           margin="normal"
           value={company.nombre || ''}
+          onChange={handleInputChange}
+        />
+        <TextField
+          label="Ubicación de la empresa"
+          name="ubicacion"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={company.direccion || ''}
           onChange={handleInputChange}
         />
         <div>
