@@ -12,3 +12,4 @@ qrcode
 phonenumbers
 rest_framework_simplejwt
 stripe
+psycopg
