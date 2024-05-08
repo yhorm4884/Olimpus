@@ -22,7 +22,7 @@ ssh miguel@172.201.241.238 "
     supervisorctl restart olimpus
     deactivate
     cd frontend
-    sudo npm run build
+    npm run build
     cd
     sudo rm -r var/www/html/react/*
     sudo cp -r Olimpus/frontend/build/* var/www/html/react/
