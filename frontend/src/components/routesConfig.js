@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
@@ -17,18 +17,14 @@ import ChoosePlanScreen from './ChoosePlanScreen';
 import CompanyManagement from './CompanyManagement';
 import LinktoCompanie from './LinkToCompanie';
 
-const ProtectedRoute = ({ component: Component, isAuthenticated, userId, requiredUserId, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      isAuthenticated && (!requiredUserId || userId === requiredUserId) ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/login" />
-      )
-    }
-  />
-);
+const ProtectedRoute = ({ component: Component, isAuthenticated, userId, requiredUserId, history, ...rest }) => {
+  if (!isAuthenticated || (requiredUserId && userId !== requiredUserId)) {
+    history.push('/login');
+    return null;
+  }
+
+  return <Route {...rest} render={(props) => <Component {...props} />} />;
+};
 
 const App = () => {
   const [authState, setAuthState] = useState({
@@ -40,7 +36,7 @@ const App = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const authResponse = await fetch('https://backend.olimpus.arkania.es/users/check_user_authenticated/', {
+        const authResponse = await fetch('http://127.0.0.1:8000/users/check_user_authenticated/', {
           method: 'GET',
           credentials: 'include',
         });
