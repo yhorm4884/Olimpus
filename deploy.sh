@@ -16,12 +16,15 @@ ssh miguel@172.201.241.238 "
     cd backend
 	
   	pip install -r requirements.txt
+    pip install gunicorn
     cd ..
+    chmod +x run.sh
     supervisorctl restart olimpus
     deactivate
     cd frontend
     sudo npm run build
     cd
+    sudo rm -r var/www/html/react/*
     sudo cp -r Olimpus/frontend/build/* var/www/html/react/
     sudo chown -R www-data:www-data var/www/html/react
     
