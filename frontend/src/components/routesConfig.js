@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
@@ -58,59 +58,57 @@ const App = () => {
 
   return (
     <Router>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/reactivate/:userId/:token" component={ReactivateAccount} />
-        <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/reset-password/:uidb64/:token" component={ResetPasswordPage} />
-        <ProtectedRoute
-          path="/dashboard/user/:userId"
-          component={Dashboard}
-          isAuthenticated={authState.isAuthenticated}
-          userId={authState.userId}
-          requiredUserId={authState.userId}
-        />
-        <ProtectedRoute
-          path="/dashboard/profile/:userId"
-          component={UserProfile}
-          isAuthenticated={authState.isAuthenticated}
-          userId={authState.userId}
-          requiredUserId={authState.userId}
-        />
-        <ProtectedRoute
-          path="/dashboard/my-activities/:userId"
-          component={UserActivities}
-          isAuthenticated={authState.isAuthenticated}
-          userId={authState.userId}
-          requiredUserId={authState.userId}
-        />
-        <ProtectedRoute
-          path="/dashboard/activities/:companyId"
-          component={ActivityCalendar}
-          isAuthenticated={authState.isAuthenticated}
-          userId={authState.userId}
-        />
-        <ProtectedRoute
-          path="/dashboard/company-management/:userId"
-          component={CompanyManagement}
-          isAuthenticated={authState.isAuthenticated}
-          userId={authState.userId}
-          requiredUserId={authState.userId}
-        />
-        <Route path="/register-companie" component={RegisterEmpresa} />
-        <Route path="/choose-plan/:companyId" component={ChoosePlanScreen} />
-        <ProtectedRoute
-          path="/dashboard/link-to-companie/:userId"
-          component={LinktoCompanie}
-          isAuthenticated={authState.isAuthenticated}
-          userId={authState.userId}
-          requiredUserId={authState.userId}
-        />
-        <Route exact path="/" component={Home} />
-        <Route component={NotFound} />
-      </Switch>
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <Route path="/logout" component={Logout} />
+      <Route path="/reactivate/:userId/:token" component={ReactivateAccount} />
+      <Route path="/forgot-password" component={ForgotPassword} />
+      <Route path="/reset-password/:uidb64/:token" component={ResetPasswordPage} />
+      <ProtectedRoute
+        path="/dashboard/user/:userId"
+        component={Dashboard}
+        isAuthenticated={authState.isAuthenticated}
+        userId={authState.userId}
+        requiredUserId={authState.userId}
+      />
+      <ProtectedRoute
+        path="/dashboard/profile/:userId"
+        component={UserProfile}
+        isAuthenticated={authState.isAuthenticated}
+        userId={authState.userId}
+        requiredUserId={authState.userId}
+      />
+      <ProtectedRoute
+        path="/dashboard/my-activities/:userId"
+        component={UserActivities}
+        isAuthenticated={authState.isAuthenticated}
+        userId={authState.userId}
+        requiredUserId={authState.userId}
+      />
+      <ProtectedRoute
+        path="/dashboard/activities/:companyId"
+        component={ActivityCalendar}
+        isAuthenticated={authState.isAuthenticated}
+        userId={authState.userId}
+      />
+      <ProtectedRoute
+        path="/dashboard/company-management/:userId"
+        component={CompanyManagement}
+        isAuthenticated={authState.isAuthenticated}
+        userId={authState.userId}
+        requiredUserId={authState.userId}
+      />
+      <Route path="/register-companie" component={RegisterEmpresa} />
+      <Route path="/choose-plan/:companyId" component={ChoosePlanScreen} />
+      <ProtectedRoute
+        path="/dashboard/link-to-companie/:userId"
+        component={LinktoCompanie}
+        isAuthenticated={authState.isAuthenticated}
+        userId={authState.userId}
+        requiredUserId={authState.userId}
+      />
+      <Route exact path="/" component={Home} />
+      <Route component={NotFound} />
     </Router>
   );
 };
