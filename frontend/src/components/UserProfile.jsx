@@ -41,7 +41,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (userId) {
-      const url = `http://127.0.0.1:8000/api/usuarios/${userId}/`;
+      const url = `http://backend.olimpus.arkania.es/api/usuarios/${userId}/`;
       axios.get(url, { withCredentials: true })
         .then(response => {
           console.log(response.data);
@@ -83,7 +83,7 @@ const UserProfile = () => {
     }
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/users/update-profile/", formData);
+      const response = await axios.post("http://backend.olimpus.arkania.es/users/update-profile/", formData);
 
       console.log("Perfil actualizado", response.data);
       setMessage("Perfil actualizado");
@@ -96,7 +96,7 @@ const UserProfile = () => {
       }, 3000);
 
       // Recargar los datos del usuario después de la actualización exitosa
-      const updatedUserData = await axios.get(`http://127.0.0.1:8000/api/usuarios/${userId}/`, { withCredentials: true });
+      const updatedUserData = await axios.get(`http://backend.olimpus.arkania.es/api/usuarios/${userId}/`, { withCredentials: true });
       setUserData(updatedUserData.data);
 
     } catch (error) {
@@ -152,7 +152,7 @@ const UserProfile = () => {
 
   const handleDisableUser = async () => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/users/deactivate/${userId}/`);
+      const response = await axios.post(`http://backend.olimpus.arkania.es/users/deactivate/${userId}/`);
       console.log(response)
       setMessage("Usuario desactivado exitosamente. Serás redirigido a la página de inicio.");
       setError(false);

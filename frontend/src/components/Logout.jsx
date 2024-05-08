@@ -14,7 +14,7 @@ export const Logout = () => {
     const logoutUser = async () => {
       try {
         // Intenta realizar la solicitud de logout
-        const response = await axios.get("http://127.0.0.1:8000/users/logout/", {}, { withCredentials: true });
+        const response = await axios.get("http://backend.olimpus.arkania.es/users/logout/", {}, { withCredentials: true });
         setMessage(response.data.success || 'Has cerrado sesión exitosamente. En 5 segundos se cerrará esta pestaña');
         setIsLoading(false);
         setError(false); // Resetea el estado de error en caso de éxito

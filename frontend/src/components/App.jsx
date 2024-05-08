@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const authResponse = await fetch('http://127.0.0.1:8000/users/check_user_authenticated/', {
+        const authResponse = await fetch('http://backend.olimpus.arkania.es/users/check_user_authenticated/', {
           method: 'GET',
           credentials: 'include',
         });

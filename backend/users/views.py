@@ -112,13 +112,13 @@ def login_view(request):
         resultado_verificacion = device.verify_token(otp_token) if device else False
         print("Resultado de la verificación del token:", resultado_verificacion)
 
-        # if device and resultado_verificacion:
-        login(request, user)  # Esto establecerá la sesión para el usuario
-        actividades = list(usuario_info.actividades_participadas.values('id', 'nombre', 'observaciones'))
-        print("Actividades del usuario:", actividades)
-        return JsonResponse({'success': 'User authenticated', 'id': usuario_info.id, 'actividades': actividades}, status=200)
-        # else:
-            # return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
+        if device and resultado_verificacion:
+            login(request, user)  # Esto establecerá la sesión para el usuario
+            actividades = list(usuario_info.actividades_participadas.values('id', 'nombre', 'observaciones'))
+            print("Actividades del usuario:", actividades)
+            return JsonResponse({'success': 'User authenticated', 'id': usuario_info.id, 'actividades': actividades}, status=200)
+        else:
+            return JsonResponse({'error': 'Invalid OTP token or no TOTP device associated'}, status=400)
         
     else:
         # Maneja el caso de credenciales inválidas

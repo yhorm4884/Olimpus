@@ -12,7 +12,7 @@ function ForgotPassword() {
         setMessage('');
         setError('');
         try {
-            await axios.post('http://localhost:8000/users/forgot-password/', { email });
+            await axios.post('http://backend.olimpus.arkania.es/users/forgot-password/', { email });
             setMessage('Si tu correo electrónico está registrado, recibirás instrucciones para restablecer tu contraseña.');
         } catch (error) {
             setError('Algo salió mal. Por favor, intenta nuevamente.');

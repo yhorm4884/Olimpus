@@ -96,7 +96,7 @@ function Register() {
         const data = { username, telefono, DNI, correo, password1, password2, tipo_usuario: 'cliente', estado: 'activo' };
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/users/register/', data, { withCredentials: true });
+            const response = await axios.post('http://backend.olimpus.arkania.es/users/register/', data, { withCredentials: true });
 
             if (response.status === 201) {
                 setIsRegistered(true);

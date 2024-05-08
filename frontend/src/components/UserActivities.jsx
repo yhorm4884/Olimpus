@@ -33,7 +33,7 @@ const UserActivities = () => {
 
   const fetchAvailableActivities = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/activities/actividades-empresa/${userId}`);
+      const response = await axios.get(`http://backend.olimpus.arkania.es/activities/actividades-empresa/${userId}`);
       setAvailableActivities(response.data.actividades);
     } catch (error) {
       console.error('Error al obtener actividades disponibles:', error);
@@ -42,7 +42,7 @@ const UserActivities = () => {
 
   const fetchParticipatingActivities = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/activities/misactividades/${userId}`);
+      const response = await axios.get(`http://backend.olimpus.arkania.es/activities/misactividades/${userId}`);
       setParticipatingActivities(response.data.actividades);
     } catch (error) {
       console.error('Error al obtener actividades participadas:', error);
@@ -51,7 +51,7 @@ const UserActivities = () => {
 
   const handleJoinActivity = async (actividadId) => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/notifications/solicitar-unirse-actividad/', {
+      const response = await axios.post('http://backend.olimpus.arkania.es/notifications/solicitar-unirse-actividad/', {
         user_id: userId,
         actividad_id: actividadId
       });

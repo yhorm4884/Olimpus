@@ -74,8 +74,8 @@ function Login() {
     }
 
     try {
-      await axios.get("http://127.0.0.1:8000/api/setcsrf/");
-      const loginResponse = await axios.post("http://127.0.0.1:8000/users/login/", {
+      await axios.get("http://backend.olimpus.arkania.es/api/setcsrf/");
+      const loginResponse = await axios.post("http://backend.olimpus.arkania.es/users/login/", {
         username: credentials.username,
         password: credentials.password,
         otpToken: credentials.otpToken,
@@ -118,7 +118,7 @@ function Login() {
           
           <div className="crop-container px-lg-5 py-lg-5" ref={imageContainerRef}>
             {/* <img src="https://via.placeholder.com/500" alt="Imagen de Gym o Deporte" className="img-fluid" />  */}
-            <img src="./media/prueba.jpg" alt="Imagen de Gym o Deporte" className="crop-image" />
+            <img src="https://backend.olimpus.arkania.es/media/prueba.jpg" alt="Imagen de Gym o Deporte" className="crop-image" />
           </div>
         </Col>
         <Col lg="6">

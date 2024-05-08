@@ -9,7 +9,7 @@ const ActivityCalendar = () => {
     // Ruta del endpoint para obtener las actividades, ajusta según tu configuración de backend
     const fetchActividades = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/actividades');
+        const response = await axios.get('http://backend.olimpus.arkania.es/api/actividades');
         console.log(response.data);
         setActividades(response.data); // Asume que la respuesta viene en un formato adecuado
       } catch (error) {
