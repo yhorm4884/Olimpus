@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation, Navigate } from 'react-router-dom';
 import { Avatar } from '@mui/material';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import axios from 'axios';
@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const authResponse = await fetch('http://127.0.0.1:8000/users/check_user_authenticated/', {
+        const authResponse = await fetch('http://localhost:8000/users/check_user_authenticated/', {
           method: 'GET',
           credentials: 'include',
         });
@@ -103,13 +103,20 @@ function RoutesWithBreadcrumbs({ authState }) {
     <>
       {routeExists && location.pathname !== '/' && authState.isAuthenticated && <BreadcrumbComponent authState={authState} />}
       <Routes>
-        {routesConfig.map(({ path, Component }, index) => (
-          <Route key={index} path={path} element={<Component />} />
+        {routesConfig.map(({ path, Component, isPrivate }, index) => (
+          <Route
+            key={index}
+            path={path}
+            element={isPrivate ? <PrivateRouteWrapper Component={Component} isAuthenticated={authState.isAuthenticated} /> : <Component />}
+          />
         ))}
       </Routes>
     </>
   );
 }
 
+function PrivateRouteWrapper({ Component, isAuthenticated }) {
+  return isAuthenticated ? <Component /> : <Navigate to="/login" replace />;
+}
 
 export default App;
