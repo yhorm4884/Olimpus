@@ -69,3 +69,20 @@ h1{
   top: 30%;
   left: 35%;
 }
+
+nav.MuiTypography-root.MuiTypography-body1.MuiBreadcrumbs-root.css-51la7g-MuiTypography-root-MuiBreadcrumbs-root{
+  background-color: #e6e1cf;
+}
+
+nav.MuiTypography-root.MuiTypography-body1.MuiBreadcrumbs-root.css-51la7g-MuiTypography-root-MuiBreadcrumbs-root *{
+  font-family: 'Betm-Black' !important;
+}
+
+.user-info {
+  text-align: center;
+}
+
+.MuiAvatar-root.MuiAvatar-circular.MuiAvatar-colorDefault.css-11drvgn-MuiAvatar-root{
+  margin: auto;
+  margin-top: 5%;
+}

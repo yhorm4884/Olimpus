@@ -37,10 +37,12 @@
     top: 0;
     right: 0;
     /* Cambiado para que aparezca desde la derecha */
-    background-color: #111;
+    background-color: #212529;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    border-left: solid #2d9ffb 3px;
+    border-top: 25px solid transparent;
 }
 
 .sidebar.open {
@@ -52,7 +54,7 @@
 .close-btn {
     position: absolute;
     top: 0;
-    left: 10px;
+    right: 10px;
     /* Cambiado para alinear a la izquierda */
     font-size: 2rem;
     background: none;
