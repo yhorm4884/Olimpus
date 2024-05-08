@@ -82,8 +82,11 @@ function Login() {
       });
       
       console.log('Autenticación exitosa:', loginResponse.data.id);
-      navigate(`/dashboard/user/${loginResponse.data.id}`);
-      //window.location.reload();
+      
+      // window.location.reload();
+      window.location.href =(`/cargando/${loginResponse.data.id}`);
+     
+      
     } catch (error) {
       console.error('Error en la autenticación:', error.response ? error.response.data : error);
       setAlertMessage(error.response.data.error.toString());
@@ -118,7 +121,7 @@ function Login() {
           
           <div className="crop-container px-lg-5 py-lg-5" ref={imageContainerRef}>
             {/* <img src="https://via.placeholder.com/500" alt="Imagen de Gym o Deporte" className="img-fluid" />  */}
-            <img src="https://backend.olimpus.arkania.es/media/prueba.jpg" alt="Imagen de Gym o Deporte" className="crop-image" />
+            <img src="./media/prueba.jpg" alt="Imagen de Gym o Deporte" className="crop-image" />
           </div>
         </Col>
         <Col lg="6">

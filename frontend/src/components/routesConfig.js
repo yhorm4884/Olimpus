@@ -15,9 +15,12 @@ import RegisterEmpresa from './RegisterCompanie';
 import ChoosePlanScreen from './ChoosePlanScreen';
 import CompanyManagement from './CompanyManagement';
 import LinktoCompanie from './LinkToCompanie';
+import LoadingScreen from './Cargando';
+
+
 
 const routesConfig = [
-  { path: "/login", name: "Iniciar sesión", Component: Login },
+  { path: "/login", name: "Iniciar sesión", Component: Login},
   { path: "/register", name: "Registrarse", Component: Register },
   { path: "/logout", name: "Cerrar sesión", Component: Logout },
   { path: "/reactivate/:userId/:token", name: "Reactivar cuenta", Component: ReactivateAccount },
@@ -34,6 +37,7 @@ const routesConfig = [
   { path: "/dashboard/link-to-companie/:userId", name: "Vincular a la empresa", Component: LinktoCompanie, isPrivate: true }, 
   { path: "/", name: "Inicio", Component: Home },
   { path: "*", name: "No encontrado", Component: NotFound },
+  { path: "/cargando/:userId", name: "cargando", Component: LoadingScreen },
 ];
 
 export default routesConfig;
