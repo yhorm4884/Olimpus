@@ -17,6 +17,7 @@ ssh miguel@172.201.241.238 "
         pip install gunicorn	
   	pip install -r requirements.txt
     pip install gunicorn
+    python manage.py collectstatic
     cd ..
     chmod +x run.sh
     supervisorctl restart olimpus
