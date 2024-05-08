@@ -9,7 +9,7 @@ function RegisterEmpresa() {
     const [userData, setUserData] = useState(null);
     useEffect(() => {
         if (userId) {
-            axios.get(`http://backend.olimpus.arkania.es/api/usuarios/${userId}/`, { withCredentials: true })
+            axios.get(`https://backend.olimpus.arkania.es/api/usuarios/${userId}/`, { withCredentials: true })
                 .then(response => {
                     setUserData(response.data);
                 })
@@ -74,7 +74,7 @@ function RegisterEmpresa() {
         formData.append('direccion', direccion);
 
         try {
-            const response = await axios.post('http://backend.olimpus.arkania.es/companies/register/', formData, { withCredentials: true });
+            const response = await axios.post('https://backend.olimpus.arkania.es/companies/register/', formData, { withCredentials: true });
             if (response.status === 201) {
                 setAlert({ visible: true, color: 'success', message: 'Registro exitoso.' });
                 navigate(`/dashboard/user/${response.data.userid}`);

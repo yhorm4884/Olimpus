@@ -17,7 +17,7 @@ function Dashboard() {
   useEffect(() => {
     console.log(userId);
     if (userId) {
-      const url = `http://backend.olimpus.arkania.es/api/usuarios/${userId}/`;
+      const url = `https://backend.olimpus.arkania.es/api/usuarios/${userId}/`;
       axios.get(url, { withCredentials: true })
         .then(response => {
           console.log("Datos", response.data);
@@ -31,7 +31,7 @@ function Dashboard() {
           console.error('Error fetching user data:', error);
         });
 
-      const companiesUrl = `http://backend.olimpus.arkania.es/api/empresas`;
+      const companiesUrl = `https://backend.olimpus.arkania.es/api/empresas`;
       axios.get(companiesUrl)
         .then(response => {
           console.log("Empresas", response.data);

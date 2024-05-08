@@ -27,7 +27,7 @@ const handleJoinCompany = async (plan,cantidad) => {
         formData.append('cantidad', cantidad);
     
 
-    const response = await axios.post('http://backend.olimpus.arkania.es/companies/crear-sesion-checkout/', formData, { withCredentials: true });
+    const response = await axios.post('https://backend.olimpus.arkania.es/companies/crear-sesion-checkout/', formData, { withCredentials: true });
     
 
     

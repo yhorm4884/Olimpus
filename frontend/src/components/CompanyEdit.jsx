@@ -8,7 +8,7 @@ const CompanyEdit = ({ userId }) => {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    axios.get(`http://backend.olimpus.arkania.es/companies/empresa/${userId}`)
+    axios.get(`https://backend.olimpus.arkania.es/companies/empresa/${userId}`)
       .then(response => {
         setCompany(response.data);
         console.log(response.data)
@@ -36,7 +36,7 @@ const CompanyEdit = ({ userId }) => {
     formData.append('estado', company.estado);
     formData.append('ubicacion', company.ubicacion);
     formData.append('photo', company.photo);
-    axios.post(`http://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData)
+    axios.post(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData)
       .then(() => alert('Empresa actualizada con éxito'))
       .catch(err => alert('Error al actualizar la empresa: ' + err.message));
   };
