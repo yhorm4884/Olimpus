@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Grid, Paper, Typography, Button, IconButton, Snackbar, Card, CardMedia, CardContent, Divider, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation, Navigate } from 'react-router-dom';
 
 function Dashboard() {
   const { userId } = useParams();
@@ -149,18 +150,23 @@ function Dashboard() {
       <Grid item xs={12} md={6}>
           <Paper sx={{ p: 3, textAlign: 'center' }}>
             <Typography variant="h6">Perfil del Usuario</Typography>
-            <Button component="a" href={`/dashboard/profile/${userId}`} style={{ marginTop: '10px' }}>
-              Ver Perfil
-            </Button>
+              <NavLink to={`/dashboard/profile/${userId}`} style={{ textDecoration: 'none' }}>
+                <Button style={{ marginTop: '10px' }}>
+                  Ver Perfil
+                </Button>
+              </NavLink>
           </Paper>
         </Grid>
         {['cliente'].includes(userData?.tipo_usuario) && (
                 <Grid item xs={12} md={6}>
                     <Paper sx={{ p: 3, textAlign: 'center' }}>
                         <Typography variant="h6">Calendario de Actividades</Typography>
-                        <Button component="a" href={`/dashboard/my-activities/${userId}`} style={{ marginTop: '10px' }}>
-                            Ver Actividades
-                          </Button>
+                        
+                          <NavLink to={`/dashboard/my-activities/${userId}`} style={{ textDecoration: 'none' }}>
+                            <Button style={{ marginTop: '10px' }}>
+                              Ver Actividades
+                            </Button>
+                          </NavLink>
                     </Paper>
                 </Grid>
             )}
