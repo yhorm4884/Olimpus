@@ -74,16 +74,19 @@ function Login() {
     }
 
     try {
-      await axios.get("http://127.0.0.1:8000/api/setcsrf/");
-      const loginResponse = await axios.post("http://127.0.0.1:8000/users/login/", {
+      await axios.get("http://localhost:8000/api/setcsrf/");
+      const loginResponse = await axios.post("http://localhost:8000/users/login/", {
         username: credentials.username,
         password: credentials.password,
         otpToken: credentials.otpToken,
       });
       
       console.log('Autenticación exitosa:', loginResponse.data.id);
-      navigate(`/dashboard/user/${loginResponse.data.id}`);
-      //window.location.reload();
+      
+      // window.location.reload();
+      window.location.href =(`/cargando/${loginResponse.data.id}`);
+     
+      
     } catch (error) {
       console.error('Error en la autenticación:', error.response ? error.response.data : error);
       setAlertMessage(error.response.data.error.toString());
