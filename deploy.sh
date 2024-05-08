@@ -14,7 +14,7 @@ ssh miguel@172.201.241.238 "
 	python3 -m venv --prompt . .venv
 	source .venv/bin/activate
     cd backend
-	
+        pip install gunicorn	
   	pip install -r requirements.txt
     cd ..
     supervisorctl restart olimpus
