@@ -20,7 +20,7 @@ function CompanyDetails() {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const response = await axios.get(`AIzaSyApOpETUbx2DCzD58lLsYc-bMHHT9yvpu8/api/empresas/${companyId}`);
+        const response = await axios.get(`https://backend.olimpus.arkania.es/api/empresas/${companyId}/`);
         setCompany(response.data);
         if (response.data.direccion) {
           const locationResponse = await axios.get('https://backend.olimpus.arkania.es/api/geocode/', { params: { address: response.data.direccion } });

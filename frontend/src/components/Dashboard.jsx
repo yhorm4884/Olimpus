@@ -71,7 +71,7 @@ function Dashboard() {
   const renderCompanies = () => {
     return companies.map((company) => (
       <Grid item xs={12} sm={6} md={4} key={company.id_empresa}>
-        <Card onClick={() => navigate(`/company-details/${company.id_empresa}`)} style={{ cursor: 'pointer' }}>
+        <Card onClick={() => navigate(`/dashboard/company-details/${company.id_empresa}`)} style={{ cursor: 'pointer' }}>
           <CardMedia
             component="img"
             height="140"
