@@ -9,7 +9,7 @@ const NotFound = () => {
   return (
     <Container component="main" maxWidth="xs" style={{ textAlign: 'center', marginTop: '50px' }}>
       <img
-        src="/media/404.jpg" // Reemplaza con la URL de una imagen adecuada
+        src="https://backend.olimpus.arkania.es/media/404.jpg" // Reemplaza con la URL de una imagen adecuada
         alt="Page not found"
         style={{ width: '100%', marginBottom: '24px' }}
       />
