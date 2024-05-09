@@ -16,5 +16,5 @@ urlpatterns = [
     # Agrega las rutas del enrutador a las rutas principales
     path('', include(router.urls)),
     path('setcsrf/', set_csrf_cookie, name='set-csrf-cookie'),
-    path('geocode/', views.geocode_address, name='geocode_address')
+    path('geocode/', geocode_address, name='geocode_address')
 ]
