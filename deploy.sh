@@ -6,15 +6,13 @@ git commit -m "Subida de Olimpus"
 git push
 
 ssh miguel@172.201.241.238 "
-        cd Olimpus
-        git pull
-       
-       
+    cd Olimpus
+    git pull
 	sudo rm -r .venv/
 	python3 -m venv --prompt . .venv
 	source .venv/bin/activate
     cd backend
-        pip install gunicorn	
+    pip install gunicorn	
   	pip install -r requirements.txt
     pip install gunicorn
     python manage.py collectstatic

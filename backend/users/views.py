@@ -274,7 +274,7 @@ def desactivar_usuario(request, user_id):
     # Genera el token
     token = default_token_generator.make_token(usuario.user)
     # Construye la URL de React para reactivación
-    reactivation_url = f"http://localhost:3000/reactivate/{usuario.user.id}/{token}"
+    reactivation_url = f"https://olimpus.arkania.es/reactivate/{usuario.user.id}/{token}"
 
     email_body = _(
         "Tu cuenta ha sido desactivada. Para reactivarla, por favor sigue este enlace: {}"

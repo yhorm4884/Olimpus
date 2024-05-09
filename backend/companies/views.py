@@ -197,8 +197,8 @@ def crear_sesion_checkout(request):
                     },
                 ],
                 mode='payment',
-                success_url='http://localhost:3000/dashboard/link-to-companie/'+str(data.get('userId')), #esto son urls que gestiona el react
-                cancel_url='http://localhost:3000/choose-plan/'+str(data.get('userId')),
+                success_url='https://olimpus.arkania.es/dashboard/link-to-companie/'+str(data.get('userId')), #esto son urls que gestiona el react
+                cancel_url='https://olimpus.arkania.es/choose-plan/'+str(data.get('userId')),
             )
             
             return JsonResponse({'sessionId': session.id})
