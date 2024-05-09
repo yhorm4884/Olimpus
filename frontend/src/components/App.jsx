@@ -22,6 +22,7 @@ function App() {
     const checkAuth = async () => {
       try {
         const authResponse = await fetch('https://backend.olimpus.arkania.es/users/check_user_authenticated/', {
+
           method: 'GET',
           credentials: 'include',
         });
