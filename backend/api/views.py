@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from rest_framework import viewsets, status
 from users.models import  Usuario
 from django.conf import settings
+import requests
 
 #csrf
 @api_view(['GET'])
