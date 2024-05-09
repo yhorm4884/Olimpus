@@ -180,6 +180,11 @@ EMAIL_HOST_PASSWORD = 'xqoslwlyktqrdmxa'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
+#API GOOGLE
+GOOGLE_MAPS_API_KEY = config('API_KEY_MAPS', default='KEY')
+
+
+# Configuración de CSRF
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
@@ -187,7 +192,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://olimpus.arkania.es'
 ]
 
-# Configuración de CSRF
+
 SESSION_COOKIE_SAMESITE = 'Lax'  # O 'Strict' según tu necesidad
 CSRF_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_SECURE = True
