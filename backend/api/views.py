@@ -19,6 +19,26 @@ from users.models import  Usuario
 def set_csrf_cookie(request):
     return Response("CSRF Cookie set.")
     
+def geocode_address(request):
+    address = request.GET.get('address', '')
+    if not address:
+        return JsonResponse({'error': 'Address parameter is missing'}, status=400)
+
+    params = {
+        'address': address,
+        'key': settings.GOOGLE_MAPS_API_KEY
+    }
+    response = requests.get('https://maps.googleapis.com/maps/api/geocode/json', params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        if data['status'] == 'OK':
+            return JsonResponse(data['results'][0]['geometry']['location'])
+        else:
+            return JsonResponse({'error': 'Geocoding failed', 'message': data['status']}, status=500)
+    else:
+        return JsonResponse({'error': 'Failed to contact Google Maps API'}, status=response.status_code)
+
 class UsuarioViewSet(viewsets.ModelViewSet):
     # authentication_classes=[ SessionAuthentication ]
     # permission_classes = [IsAuthenticated]
