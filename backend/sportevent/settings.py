@@ -28,7 +28,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-&krn@nwbq65e(upd#u-^7i8)bb5z2j!l-10b9p^(dya7)v3o97'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=config.boolean)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=config.list)
 
@@ -45,7 +45,7 @@ LANGUAGES = [
 # REST_FRAMEWORK = {
 #      'DEFAULT_AUTHENTICATION_CLASSES': [
 #         'rest_framework.authentication.SessionAuthentication',
-#       ],
+#],
 #       'DEFAULT_PERMISSION_CLASSES':[
 #         'rest_framework.permissions.IsAuthenticated'
 #     ]
@@ -71,13 +71,13 @@ INSTALLED_APPS = [
     'qrcode',
     'django_otp',
     'django_otp.plugins.otp_totp',
-    'django_filters', 
+    'django_filters',
     'corsheaders',
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware', 
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -99,6 +99,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -110,12 +111,23 @@ WSGI_APPLICATION = 'sportevent.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME', default='olimpus'),
+        'USER': config('DB_USERNAME', default='olimpus_user'),
+        'PASSWORD': config('DB_PASSWORD', default='olimpus2024'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default=5432, cast=int)
     }
 }
+
 
 
 # Password validation
@@ -124,7 +136,7 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
+            },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
@@ -152,7 +164,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -174,10 +187,14 @@ SESSION_COOKIE_SAMESITE = 'none'
 CSRF_COOKIE_SAMESITE = 'none'
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:3000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:3000','http://backend.olimpus.arkania.es','http://olimpus.arkania.es','https://backend.olimpus.arkania.es','https://olimpus.arkania.es']
 CORS_ALLOWED_WHITELIST = [
     'http://127.0.0.1:3000',
     'http://127.0.0.1:8000',
     'http://localhost:3000',
     'http://localhost:8000',
+    'http://backend.olimpus.arkania.es',
+    'http://olimpus.arkania.es',
+    'https://backend.olimpus.arkania.es',
+    'https://olimpus.arkania.es',
 ]

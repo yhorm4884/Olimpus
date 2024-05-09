@@ -21,7 +21,7 @@ const Notifications = ({ userId }) => {
   const [snackbar, setSnackbar] = useState({ open: false, message: '' });
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/notifications/list/${userId}/`)
+    axios.get(`https://backend.olimpus.arkania.es/notifications/list/${userId}/`)
       .then(response => {
         setNotifications(response.data);
       });
@@ -37,7 +37,7 @@ const Notifications = ({ userId }) => {
   };
 
   const handleUpdateNotification = (action) => {
-    axios.post(`http://127.0.0.1:8000/notifications/update/${selectedNotification.id}/`, { action })
+    axios.post(`https://backend.olimpus.arkania.es/notifications/update/${selectedNotification.id}/`, { action })
       .then(response => {
         setSnackbar({ open: true, message: response.data.message });
         handleCloseDialog();
@@ -115,7 +115,7 @@ const ActivityList = ({ userId }) => {
  
   const fetchActivities = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/activities/actividades/${userId}`);
+      const response = await axios.get(`https://backend.olimpus.arkania.es/activities/actividades/${userId}`);
       const formattedActivities = response.data.map(activity => ({
         ...activity,
         formattedEntranceTime: format(new Date(activity.hora_entrada), 'dd/MM/yyyy HH:mm'),
@@ -195,8 +195,8 @@ const ActivityList = ({ userId }) => {
 
   const handleSaveActivity = async ({ activityData, userId, isEdit = false }) => {
     const endpoint = isEdit
-      ? `http://127.0.0.1:8000/activities/edit_actividad/${currentActivity.id}/`
-      : `http://127.0.0.1:8000/activities/add_actividad/${userId}/`;
+      ? `https://backend.olimpus.arkania.es/activities/edit_actividad/${currentActivity.id}/`
+      : `https://backend.olimpus.arkania.es/activities/add_actividad/${userId}/`;
 
     try {
       console.log("Endpoint:", endpoint, "Data:", activityData);
@@ -238,7 +238,7 @@ const ActivityList = ({ userId }) => {
 
   const handleDeleteSelected = () => {
     if (selectedActivities.length > 0) {
-      axios.post(`http://127.0.0.1:8000/activities/delete/`, { ids: selectedActivities })
+      axios.post(`https://backend.olimpus.arkania.es/activities/delete/`, { ids: selectedActivities })
         .then(response => {
           alert('Actividades eliminadas con éxito.');
           // Actualizar las actividades mostradas tras eliminar
@@ -257,7 +257,7 @@ const ActivityList = ({ userId }) => {
   };
   const handleDeleteActivity = async (activityId) => {
     try {
-        const response = await axios.post(`http://127.0.0.1:8000/activities/delete_single/`, { id: activityId });
+        const response = await axios.post(`https://backend.olimpus.arkania.es/activities/delete_single/`, { id: activityId });
         alert(response.data.message);
         // Refresca la lista tras eliminar
         fetchActivities();
@@ -268,7 +268,7 @@ const ActivityList = ({ userId }) => {
   };
 
   const fetchEmpresas = () => {
-    axios.get('http://127.0.0.1:8000/api/empresas/')
+    axios.get('https://backend.olimpus.arkania.es/api/empresas/')
       .then(response => {
         // Filtrar para obtener empresas donde el usuario actual es propietario
         const empresasPropietario = response.data.filter(empresa =>

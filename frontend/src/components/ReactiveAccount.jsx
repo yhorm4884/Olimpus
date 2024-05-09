@@ -9,7 +9,7 @@ function ReactivateAccount() {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/users/reactivate/${userId}/${token}`)
+    axios.get(`https://backend.olimpus.arkania.es/users/reactivate/${userId}/${token}`)
       .then(response => {
         setMessage('Tu cuenta ha sido reactivada exitosamente.');
         setIsError(false);

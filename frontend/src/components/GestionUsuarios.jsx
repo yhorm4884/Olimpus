@@ -16,7 +16,7 @@ const GestionUsuarios = ({ idEmpresa }) => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://127.0.0.1:8000/companies/listar-usuarios/${idEmpresa}`)
+    axios.get(`https://backend.olimpus.arkania.es/companies/listar-usuarios/${idEmpresa}`)
       .then(response => {
         setUsuarios(response.data.usuarios);
         setLoading(false);
@@ -28,7 +28,7 @@ const GestionUsuarios = ({ idEmpresa }) => {
   }, [idEmpresa]);
 
   const bloquearUsuario = (idUsuario) => {
-    axios.post(`http://127.0.0.1:8000/companies/bloquear-usuarios/${idUsuario}`)
+    axios.post(`https://backend.olimpus.arkania.es/companies/bloquear-usuarios/${idUsuario}`)
       .then(() => {
         setUsuarios(usuarios.map(user => 
           user.id === idUsuario ? { ...user, estado: 'bloqueado' } : user
@@ -48,7 +48,7 @@ const GestionUsuarios = ({ idEmpresa }) => {
   };
 
   const eliminarUsuario = () => {
-    axios.delete(`http://127.0.0.1:8000/companies/eliminar-usuarios/${usuarioEliminar}`)
+    axios.delete(`https://backend.olimpus.arkania.es/companies/eliminar-usuarios/${usuarioEliminar}`)
       .then(() => {
         setUsuarios(usuarios.filter(user => user.id !== usuarioEliminar));
         setUsuarioEliminar(null); // Resetear el usuario a eliminar

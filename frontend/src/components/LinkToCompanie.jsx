@@ -16,12 +16,12 @@ function JoinEmpresa() {
 
     useEffect(() => {
         if (userId) {
-          const url = `http://127.0.0.1:8000/api/usuarios/${userId}/`;
+          const url = `https://backend.olimpus.arkania.es/api/usuarios/${userId}/`;
           axios.get(url, { withCredentials: true })
             .then(response => {
               console.log(response.data);
               setUserData(response.data); 
-              const url2 = `http://127.0.0.1:8000/api/empresas/${localStorage.getItem('companyId')}/`;
+              const url2 = `https://backend.olimpus.arkania.es/api/empresas/${localStorage.getItem('companyId')}/`;
               axios.get(url2, { withCredentials: true })
                 .then(response2 => {
                   var codigo = response2.data.codigo_empresa;
@@ -63,7 +63,7 @@ function JoinEmpresa() {
             formData.append('codigoEmpresa', codigoEmpresa);
             formData.append('userId', userData?.id);
     
-            const response = await axios.post('http://127.0.0.1:8000/companies/join/', formData, { withCredentials: true });
+            const response = await axios.post('https://backend.olimpus.arkania.es/companies/join/', formData, { withCredentials: true });
     
             if (response.status === 200) {
                 setAlert({ visible: true, color: 'success', message: 'Solicitud unión enviada correctamente. Por favor espere a que el administrador acepte su petición.' });

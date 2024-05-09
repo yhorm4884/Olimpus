@@ -12,7 +12,7 @@ function ResetPasswordPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/users/serve-qr-code/${uidb64}/${token}/`)
+        axios.get(`https://backend.olimpus.arkania.es/users/serve-qr-code/${uidb64}/${token}/`)
             .then(response => {
                 setQrCode(response.data.qr_code);
                 console.log(response.data)
@@ -30,7 +30,7 @@ function ResetPasswordPage() {
         }
 
         try {
-            await axios.post('http://localhost:8000/users/reset-password-confirm/', {
+            await axios.post('https://backend.olimpus.arkania.es/users/reset-password-confirm/', {
                 uidb64, token, new_password: newPassword
             });
             console.log('Contraseña restablecida correctamente');
