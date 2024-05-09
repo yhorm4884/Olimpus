@@ -45,7 +45,7 @@ const CompanyEdit = ({ userId }) => {
     fileInputRef.current.click();
   };
   const imageUrl = company?.foto ? `https://backend.olimpus.arkania.es${company.photo}` : "https://via.placeholder.com/150";
-
+  console.log(imageUrl)
   return (
     <Paper style={{ padding: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="h6" style={{ alignSelf: 'start' }}>Editar Empresa</Typography>

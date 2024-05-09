@@ -22,9 +22,13 @@ function CompanyDetails() {
       try {
         const response = await axios.get(`https://backend.olimpus.arkania.es/api/empresas/${companyId}/`);
         setCompany(response.data);
+        console.log(response.data)
         if (response.data.direccion) {
-          const locationResponse = await axios.get('https://backend.olimpus.arkania.es/api/geocode/', { params: { address: response.data.direccion } });
-          setCoords(locationResponse.data);
+            console.log(response.data.direccion)
+            const locationResponse = await axios.get('https://backend.olimpus.arkania.es/api/geocode/', { params: { address: response.data.direccion } });
+            console.log(locationResponse)
+            setCoords(locationResponse.data);
+
         }
         setIsLoading(false);
       } catch (err) {
