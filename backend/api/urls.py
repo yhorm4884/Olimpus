@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UsuarioViewSet, EmpresaViewSet,NotificacionViewSet, ActividadViewSet, set_csrf_cookie
+from .views import UsuarioViewSet, EmpresaViewSet,NotificacionViewSet, ActividadViewSet, set_csrf_cookie, geocode_address
 
 # Define el enrutador
 router = DefaultRouter()
@@ -16,5 +16,5 @@ urlpatterns = [
     # Agrega las rutas del enrutador a las rutas principales
     path('', include(router.urls)),
     path('setcsrf/', set_csrf_cookie, name='set-csrf-cookie'),
-
+    path('geocode/', views.geocode_address, name='geocode_address')
 ]
