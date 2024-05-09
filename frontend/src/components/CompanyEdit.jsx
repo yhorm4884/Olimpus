@@ -8,7 +8,7 @@ const CompanyEdit = ({ userId }) => {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    axios.get(`https://backend.olimpus.arkania.es/companies/empresa/${userId}`)
+    axios.get(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`)
       .then(response => {
         setCompany(response.data);
         console.log(response.data)
