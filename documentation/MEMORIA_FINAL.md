@@ -1,12 +1,12 @@
 <p align="center">
   <img src="./pictures/logo.png" style="width:100px"><br>
-  <strong>MEMORIA FINAL</strong>
+  <strong>FINAL REPORT</strong>
 </p>
 
 ***
 
 <p align="center">
-  <strong>Autor/es:</strong>
+  <strong>Authors:</strong>
   <table align="center">
   <tr>
   <td><img src="https://avatars.githubusercontent.com/u/94459279?v=4" width="200px"></td>
@@ -14,9 +14,9 @@
   <td><img src="https://avatars.githubusercontent.com/u/99322335?v=4" width="200px"></td>
   </tr>
   <tr>
-  <td><a href="https://github.com/yhorm4884">Badel Bonilla Simón</a> <br> 💻 Programación</td>
-  <td><a href="https://github.com/Miguelcg03">Miguel Carballo González</a> <br> 🌐 Despliegue/Programación</td>
-  <td><a href="https://github.com/Afe11ay">Afellay Ramos Luis</a> <br> 📖 Documentación</td>
+  <td><a href="https://github.com/yhorm4884">Badel Bonilla Simón</a> <br> 💻 Programming</td>
+  <td><a href="https://github.com/Miguelcg03">Miguel Carballo González</a> <br> 🌐 Deployment/Programming</td>
+  <td><a href="https://github.com/Afe11ay">Afellay Ramos Luis</a> <br> 📖 Documentation</td>
   </tr>
   </table>
 </p>
@@ -24,7 +24,7 @@
 ***
 
 <p align="center">
-  <strong>Fecha:</strong> 01-05-2024
+  <strong>Date:</strong> May 1, 2024
 </p>
 
 <p align="center">
@@ -42,102 +42,90 @@
 <br>
 
 <p align="center">
-  <strong>ÍNDICE</strong>
+  <strong>INDEX</strong>
 </p>
 
-1. [***INTRODUCCIÓN.***](#id1)
-2. [***TECNOLOGÍAS UTILIZADAS.***](#id2)
-3. [***GUÍA DE ESTILO DE LA WEB.***](#id3)
-4. [***INVESTIGACIÓN.***](#id4)
-5. [***DERECHOS DE AUTOR.***](#id5)
-6. [***RIESGOS Y MEDIDAS.***](#id6)
-7. [***GRADO DE CUMPLIMIENTO EN ALCANCE.***](#id7)
-8. [***GRADO DE CUMPLIMIENTO EN TIEMPO.***](#id8)
-9. [***GRADO DE CUMPLIMIENTO EN COSTE.***](#id9)
-10. [***PRODUCTO FINAL.***](#id10)
-11. [***EXPERIENCIAS APRENDIDAS A TENER EN CUENTA EN PRÓXIMOS PROYECTOS.***](#id11)
-12. [***CONCLUSIONES, COMENTARIOS Y VALORACIÓN FINAL.***](#id12)
-
+1. [***INTRODUCTION.***](#id1)
+2. [***TECHNOLOGIES USED.***](#id2)
+3. [***WEB STYLE GUIDE.***](#id3)
+4. [***RESEARCH.***](#id4)
+5. [***COPYRIGHT.***](#id5)
+6. [***RISKS AND MEASURES.***](#id6)
+7. [***DEGREE OF COMPLIANCE IN SCOPE.***](#id7)
+8. [***DEGREE OF COMPLIANCE IN TIME.***](#id8)
+9. [***DEGREE OF COMPLIANCE IN COST.***](#id9)
+10. [***FINAL PRODUCT.***](#id10)
+11. [***LEARNED EXPERIENCES TO BE CONSIDERED IN FUTURE PROJECTS.***](#id11)
+12. [***CONCLUSIONS, COMMENTS, AND FINAL ASSESSMENT.***](#id12)
 
 <br>
 <br>
 
-
-### 1. INTRODUCCIÓN. <a name="id1"></a>
+### 1. INTRODUCTION. <a name="id1"></a>
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <p style="flex: 1; text-align: justify; margin-right: 20px;">
-    SportEvents es una página web que hemos diseñado para facilitar la gestión a las empresas deportivas. Dentro de estas es posible administrar todas las actividades y clientes actuales en la empresa, de manera eficiente y rápida. Te proporcionamos todas las herramientas necesarias para optimizar tus operaciones y ofrecer la mejor experiencia a tus clientes.
+    SportEvents is a web page we have designed to facilitate management for sports companies. Within these, it is possible to manage all current activities and clients in the company efficiently and quickly. We provide you with all the necessary tools to optimize your operations and offer the best experience to your clients.
   </p>
   <img src="https://octodex.github.com/images/scottocat.jpg" alt="calendar" style="flex-shrink: 0; width: 100px; height: 100px;">
 </div>
 
-### Características Principales
+### Main Features
 
-- <p style="text-align: justify"><b>Gestión de Actividades:</b> Programa y administra una amplia variedad de actividades deportivas, desde clases grupales hasta eventos especiales.</p>
-- <p style="text-align: justify"><b>Programación de Horarios:</b> Crea y gestiona horarios flexibles para tus actividades deportivas, permitiendo una fácil reserva y asignación de espacios.</p>
-- <p style="text-align: justify"><b>Gestión de Clientes:</b> Mantén un registro detallado de tus clientes, incluyendo información personal, historial de participación y preferencias.
-- <p style="text-align: justify"><b>Comunicación Integrada:</b> Facilita la comunicación con tus clientes mediante herramientas integradas de mensajería y notificaciones.</p>
-- <p style="text-align: justify"><b>Informes y Análisis:</b> Accede a datos y métricas clave para evaluar el rendimiento de tu empresa y tomar decisiones informadas.</p>
-
+- <p style="text-align: justify"><b>Activity Management:</b> Schedule and manage a wide variety of sports activities, from group classes to special events.</p>
+- <p style="text-align: justify"><b>Scheduling:</b> Create and manage flexible schedules for your sports activities, allowing easy reservation and allocation of spaces.</p>
+- <p style="text-align: justify"><b>Client Management:</b> Maintain a detailed record of your clients, including personal information, participation history, and preferences.</p>
+- <p style="text-align: justify"><b>Integrated Communication:</b> Facilitate communication with your clients through integrated messaging and notification tools.</p>
+- <p style="text-align: justify"><b>Reports and Analysis:</b> Access key data and metrics to assess your business performance and make informed decisions.</p>
 
 <br>
 <br>
 
+### 2. TECHNOLOGIES USED. <a name="id2"></a>
 
-### 2. TECNOLOGÍAS UTILIZADAS. <a name="id2"></a>
-
-#### Software Utilizado:
+#### Software Used:
 
 ##### Backend:
 
-| Tecnología | Badge | Descripción |
+| Technology | Badge | Description |
 |---|---|---|
-| **Python 3.10.7** | ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge) | [Python 3.10.7](https://www.python.org/downloads/release/python-3107/): Lenguaje de programación utilizado para escribir la lógica del backend de la aplicación. |
-| **Django 5.0.4** | ![Django Badge](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=fff&style=for-the-badge) | [Django 5.0.4](https://docs.djangoproject.com/en/5.0/releases/5.0.4/): Framework de desarrollo web de alto nivel, lo hemos utilizado para la construcción de la parte backend de la aplicación (vistas, enlaces, acciones). |
-| **Django REST Framework 3.15** | ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) | [Django REST Framework 3.15](https://www.django-rest-framework.org/community/release-notes/#315x-series): Biblioteca que facilita la creación de API RESTful en Django. |
-| **PostgreSQL 16.2** | ![PostgreSQL Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=for-the-badge) | [PostgreSQL 16.2](https://www.postgresql.org/docs/16/release-16-2.html): Sistema de gestión de bases de datos relacional, utilizado como base de datos principal. |
-| **SQLite 3.45.3** | ![SQLite Badge](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=fff&style=for-the-badge) | [SQLite 3.45.3](https://www.sqlite.org/releaselog/3_45_3.html): Sistema de gestión de bases de datos relacional, utilizado como base de datos de desarrollo y pruebas en los primeros momentos del desarrollo. |
-| **Stripe** | ![Stripe Badge](https://img.shields.io/badge/Stripe-626CD9?logo=stripe&logoColor=white&style=for-the-badge) | [Stripe](https://stripe.com): Plataforma de pagos utilizada para gestionar transacciones seguras y eficientes en línea. |
+| **Python 3.10.7** | ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge) | [Python 3.10.7](https://www.python.org/downloads/release/python-3107/): Programming language used to write the backend logic of the application. |
+| **Django 5.0.4** | ![Django Badge](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=fff&style=for-the-badge) | [Django 5.0.4](https://docs.djangoproject.com/en/5.0/releases/5.0.4/): High-level web development framework, used for building the backend part of the application (views, links, actions). |
+| **Django REST Framework 3.15** | ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) | [Django REST Framework 3.15](https://www.django-rest-framework.org/community/release-notes/#315x-series): Library that facilitates the creation of RESTful APIs in Django. |
+| **PostgreSQL 16.2** | ![PostgreSQL Badge](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=for-the-badge) | [PostgreSQL 16.2](https://www.postgresql.org/docs/16/release-16-2.html): Relational database management system, used as the main database. |
+| **SQLite 3.45.3** | ![SQLite Badge](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=fff&style=for-the-badge) | [SQLite 3.45.3](https://www.sqlite.org/releaselog/3_45_3.html): Relational database management system, used as a development and testing database in the early stages of development. |
+| **Stripe** | ![Stripe Badge](https://img.shields.io/badge/Stripe-626CD9?logo=stripe&logoColor=white&style=for-the-badge) | [Stripe](https://stripe.com): Payment platform used to manage secure and efficient online transactions. |
 
 ##### Frontend:
 
-| Tecnología | Badge | Descripción |
+| Technology | Badge | Description |
 |---|---|---|
-| **React 18.2.0** | ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge) | [React 18.2.0](https://legacy.reactjs.org/versions/): Biblioteca de JavaScript utilizada para la construcción de la interfaz de usuario. |
-| **React Router 6.22.3** | ![React Router Badge](https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=for-the-badge) | [React Router 6.22.3](https://reactrouter.com/en/6.22.0): Componente de enrutamiento para la navegación entre las diferentes vistas. |
-| **Axios 1.6.8** | ![Axios Badge](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge) | [Axios 1.6.8](https://www.npmjs.com/package/axios): Cliente HTTP que nos ha ayudado a realizar las solicitudes HTTP entre el backend y frontend. |
-| **Webpack 5.91.0** | ![Webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=000&style=for-the-badge) | [Webpack 5.91.0](https://www.npmjs.com/package/webpack): Empaquetador de módulos utilizado para compilar y empaquetar el código fuente dentro de JavaScript. |
-| **Babel 7.24.4** | ![Babel Badge](https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=000&style=for-the-badge) | [Babel 7.24.4](https://www.npmjs.com/package/@babel/core): Herramienta utilizada para compilar código JavaScript. |
-| **MUI (Material-UI) 5.8.6** | ![MUI Badge](https://img.shields.io/badge/MUI-007FFF?logo=mui&logoColor=fff&style=for-the-badge) | [MUI 5.8.6](https://mui.com/): Biblioteca de componentes React para un desarrollo más rápido y fácil de interfaces de usuario atractivas y profesionalmente diseñadas. |
+| **React 18.2.0** | ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge) | [React 18.2.0](https://legacy.reactjs.org/versions/): JavaScript library used for building the user interface. |
+| **React Router 6.22.3** | ![React Router Badge](https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=for-the-badge) | [React Router 6.22.3](https://reactrouter.com/en/6.22.0): Routing component for navigating between different views. |
+| **Axios 1.6.8** | ![Axios Badge](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge) | [Axios 1.6.8](https://www.npmjs.com/package/axios): HTTP client that has helped us make HTTP requests between the backend and frontend. |
+| **Webpack 5.91.0** | ![Webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=000&style=for-the-badge) | [Webpack 5.91.0](https://www.npmjs.com/package/webpack): Module bundler used to compile and package the source code into JavaScript. |
+| **Babel 7.24.4** | ![Babel Badge](https://img.shields.io/badge/Babel-F9DC3E?logo=babel&logoColor=000&style=for-the-badge) | [Babel 7.24.4](https://www.npmjs.com/package/@babel/core): Tool used to compile JavaScript code. |
+| **MUI (Material-UI) 5.8.6** | ![MUI Badge](https://img.shields.io/badge/MUI-007FFF?logo=mui&logoColor=fff&style=for-the-badge) | [MUI 5.8.6](https://mui.com/): React component library for faster and easier development of attractive and professionally designed user interfaces. |
 
+#### Necessary Hardware:
 
+##### Server:
+- **CPU**: A CPU with multiple cores and support for virtualization is recommended.
+- **RAM**: We recommend a minimum of 8 GB of RAM, as React itself requires the installation of many packages and libraries.
+- **Storage**: It's important to use SSD drives for faster speeds, with enough storage space for application files and the database.
+- **Connectivity**: A high-speed internet connection is mandatory to handle user requests and actions as quickly as possible.
 
+##### Network:
+- The server should be configured to allow HTTP (port 80) and HTTPS (port 443) traffic to and from the server.
+- A valid domain name should be configured with appropriate DNS records to allow users to access the application.
 
-#### Hardware Necesario:
+### 3. WEB STYLE GUIDE. <a name="id3"></a>
 
-##### Servidor:
-- **CPU**: Se recomienda una CPU con múltiples núcleos y soporte para virtualización.
-
-- **Memoria RAM**: Recomendamos un mínimo de 8 GB de RAM ya que el propio react al tener cierta cantidad de paquetes y librerías necesita instalar muchos componentes.
-
-- **Almacenamiento**: Es importante utilizar unidades SSD para una mayor velocidad, con suficiente espacio de almacenamiento para los archivos de la aplicación y la base de datos.
-
-- **Conectividad**: Obligatoriamente es necesario una buena conexión a Internet y de alta velocidad para que tanto el usuario como en el servidor se puedan hacer las solicitudes de usuarios y acciones lo antes posible.
-
-##### Red:
-- Se debe configurar el servidor para permitir el tráfico HTTP (puerto 80) y HTTPS (puerto 443) desde y hacia el servidor.
-
-- Se debe configurar un nombre de dominio válido y registrar registros DNS adecuados para que los usuarios puedan acceder a la aplica
-
-
-### 3. GUIA DE ESTILO DE LA WEB. <a name="id3"></a>
-
-#### Diseño y Estilo
+#### Design and Style
 <table style="border: none">
   <tr>
     <td>
-        El diseño de SportEvents se inspira en su <a src="documentation\Logo-SportEvents.webp"><b>logo</b></a>, utilizando una paleta de colores compuesta por azul, amarillo y negro, los cuales reflejan energía, dinamismo y profesionalismo. El <b style="color: cyan">azul</b> transmite serenidad y confianza, esencial para una plataforma de gestión; el <b style="color: yellow">amarillo</b> aporta vitalidad y optimismo, aludiendo a la energía deportiva; y el <b style="color: black">negro</b> ofrece un contraste fuerte que acentúa la seriedad y el enfoque de la plataforma.
+        The design of SportEvents is inspired by its <a src="documentation\Logo-SportEvents.webp"><b>logo</b></a>, using a color palette composed of blue, yellow, and black, which reflect energy, dynamism, and professionalism. The <b style="color: cyan">blue</b> conveys serenity and trust, essential for a management platform; the <b style="color: yellow">yellow</b> brings vitality and optimism, alluding to the sports energy; and the <b style="color: black">black</b> provides a strong contrast that accentuates the seriousness and focus of the platform.
     </td>
     <td>
 
@@ -146,247 +134,247 @@
   </tr>
 </table>
 
-#### Tipografía
-- Para los textos se utiliza la fuente <b>Betm-Black</b>, una tipografía moderna y en negrita que contribuye a un aspecto visual fuerte y decidido. Esta elección refuerza la accesibilidad y la facilidad de lectura en todas las interfaces de usuario, siendo ideal para destacar titulares y elementos clave sin sacrificar la claridad.
+#### Typography
+- For texts, the <b>Betm-Black</b> font is used, a modern and bold typography that contributes to a strong and decisive visual appearance. This choice reinforces accessibility and readability across all user interfaces, ideal for highlighting headlines and key elements without sacrificing clarity.
 
-#### Interfaz de Usuario (UI)
-- Poseemos una interfaz minimalista, evitando la sobrecarga visual y destacando los elementos más importantes mediante el uso de colores y formas comunes. Además tenemos un diseño responsive que este garantizará una experiencia uniforme tanto en dispositivos móviles como en ordenadores.
+#### User Interface (UI)
+- We have a minimalist interface, avoiding visual overload and highlighting the most important elements using common colors and shapes. Additionally, we have a responsive design that will ensure a uniform experience both on mobile devices and computers.
 
-#### Experiencia de Usuario (UX)
-- La experiencia del usuario es más fluida, ya que nuestra aplicación posee una estructura de navegación que permite a los usuarios encontrar rápidamente lo que necesitan. Es importante destacar que tambien la interactividad es prioridad, ya que poseemos elementos como calendarios dinámicos y formularios interactivos para una gestión efectiva y sin esfuerzos.
+#### User Experience (UX)
+- The user experience is more fluid, as our application has a navigation structure that allows users to quickly find what they need. It is important to highlight that interactivity is a priority, as we have elements such as dynamic calendars and interactive forms for effective and effortless management.
 
-#### Consistencia
-- Toda la aplicación mantendrá una coherencia estética con el logo y colores corporativos, asegurando que los usuarios identifiquen y se familiaricen rápidamente con la marca SportEvents.
+#### Consistency
+- The entire application will maintain aesthetic coherence with the logo and corporate colors, ensuring that users quickly identify and become familiar with the SportEvents brand.
 
-### 4. INVESTIGACIÓN. <a name="id4"></a>
-#### Investigación Preliminar
+### 4. RESEARCH. <a name="id4"></a>
+#### Preliminary Research
 
 <div style="display: flex; align-items: center; justify-content: space-between;">
   <p style="flex: 1; text-align: justify; margin-right: 20px;">
-    La primera fase inicial del desarrollo de SportEvents implicó una investigación exhaustiva para comprender que es lo que necesita actualmente el mercado, en que están interesados tanto los clientes como comerciantes y sacarle rentabilidad a esto. En esta investigación comprobamos diferentes sistemas de gestión existentes, las características destacables de las operaciones deportivas, y las expectativas de los usuarios finales en términos de funcionalidad, accesibilidad y experiencia de usuario.
+    The initial phase of the development of SportEvents involved exhaustive research to understand the current market needs, what clients and merchants are interested in, and how to profit from it. In this research, we examined various existing management systems, notable features of sports operations, and the end-users' expectations in terms of functionality, accessibility, and user experience.
   </p>
   <img src="https://octodex.github.com/images/inspectocat.jpg" alt="Inspectocat" style="flex-shrink: 0; width: 150px; height: 150px;">
 </div>
 
 
-#### Tecnologías y Herramientas
+#### Technologies and Tools
 
-- Se investigaron diversas tecnologías y frameworks para seleccionar los más adecuados para el proyecto. Por ejemplo, se exploraron diferentes soluciones para el backend como Node.js y Django, evaluando su escalabilidad, seguridad y facilidad de integración con otras herramientas. Para el frontend, se consideraron frameworks como React y Angular, decidiéndose por React debido a su eficiencia en la actualización de interfaces de usuario en tiempo real y su vasta comunidad de desarrolladores.
+- Various technologies and frameworks were researched to select the most suitable for the project. For example, different solutions for the backend such as Node.js and Django were explored, evaluating their scalability, security, and ease of integration with other tools. For the frontend, frameworks such as React and Angular were considered, deciding on React due to its efficiency in updating user interfaces in real time and its vast developer community.
 <img src="https://www.saaspegasus.com/static/images/web/modern-javascript/django-react-header.51a983c82dcb.png">
 
-#### Desafios y Soluciones
-- Durante el desarrollo, no todo funcionó a la primera. Algunos de los desafíos incluyeron:
+#### Challenges and Solutions
+- During development, not everything worked on the first try. Some of the challenges included:
 
-    - <b>Conexión entre Django y React :</b> Al no tener mucho conocimiento de como funcionaban las cookies entre django y react, nos vimos muy abrumados debido a que en ciertos navegadores no se procesaban las cookies como se debía y accedía al contenido sin estar iniciada la sesión del usuario.
+    - <b>Connection between Django and React:</b> Without much knowledge of how cookies worked between Django and React, we were overwhelmed because in certain browsers the cookies were not processed as they should have been, allowing access to content without the user's session being started.
 
-    - <b>Aprendizaje entre Django y React :</b> Al principio no lo sabíamos pero la única forma que podemos comunicarnos entre react y django es mediante peticiones a las ip que realizan las consultas y siempre recibir y enviar un json de respuesta
+    - <b>Learning between Django and React:</b> At first, we didn't know, but the only way we can communicate between React and Django is by making requests to the IPs that make the queries and always sending and receiving a JSON response.
 
-#### Evaluación y Retroalimentación
-- Se realizaron pruebas continuas y se recogió retroalimentación de usuarios beta para iterar sobre el desarrollo. Esto fue crucial para desechar algunas ideas iniciales y mejorar otras, asegurando que la aplicación final realmente satisfaciera las necesidades del usuario y mejorara la gestión operativa de las empresas deportivas.
+#### Evaluation and Feedback
+- Continuous testing was carried out, and feedback was collected from beta users to iterate on the development. This was crucial to discard some initial ideas and improve others, ensuring that the final application truly met user needs and enhanced the operational management of sports companies.
 
 <hr>
 
- - La investigación y el desarrollo de SportEvents han sido un proceso de aprendizaje continuo, adaptación y refinamiento. Gracias a la investigación meticulosa y la retroalimentación activa de los usuarios, hemos logrado crear una solución que no solo cumple con los requisitos técnicos sino que también ofrece una experiencia de usuario excepcional.
+ - The research and development of SportEvents have been a continuous learning, adaptation, and refinement process. Thanks to meticulous research and active user feedback, we have managed to create a solution that not only meets the technical requirements but also offers an exceptional user experience.
 
 
-### 5. DERECHOS DE AUTOR. <a name="id5"></a>
+### 5. COPYRIGHT. <a name="id5"></a>
 
- En SportEvents, tomamos muy en serio la gestión de derechos de autor para asegurar tanto la operación legal como el desarrollo sostenible de nuestra plataforma. Aquí detallamos cómo gestionamos tanto el contenido multimedia propio como el software de terceros:
+ At SportEvents, we take copyright management very seriously to ensure both legal operation and sustainable development of our platform. Here we detail how we manage both our own multimedia content and third-party software:
 
-#### Contenido Multimedia de Producción Propia
+#### Self-Produced Multimedia Content
 
-- **Imágenes y Diseños Gráficos:**
+- **Images and Graphic Designs:**
 
   ![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)</br> 
-  Desarrollados con herramientas de inteligencia artificial avanzada como [OpenAI's GPT-4](https://openai.com/index/gpt-4). Todos los gráficos son compartidos bajo la [licencia Creative Commons Attribution-ShareAlike (CC BY-SA)](https://creativecommons.org/licenses/by-sa/4.0/deed.es), que permite su uso y modificación siempre que se brinde reconocimiento apropiado y se redistribuya bajo la misma licencia.
+  Developed using advanced artificial intelligence tools like [OpenAI's GPT-4](https://openai.com/index/gpt-4). All graphics are shared under the [Creative Commons Attribution-ShareAlike (CC BY-SA) license](https://creativecommons.org/licenses/by-sa/4.0/deed.es), which allows their use and modification as long as appropriate recognition is provided and redistributed under the same license.
 
 <br>
 
-- **Videos Promocionales:**</br> 
+- **Promotional Videos:**</br> 
   [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)</br> 
-  Generados mediante tecnologías de video basadas en inteligencia artificial de OpenAI. Publicados bajo la misma <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">licencia CC BY-SA</a>, garantizando la libertad de uso siempre que se otorgue el crédito correspondiente y se comparta de igual manera.
+  Generated using artificial intelligence-based video technologies from OpenAI. Published under the same <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA license</a>, ensuring freedom of use as long as the corresponding credit is given and shared in the same way.
 
 <br>
 
-#### Software y Librerías de Terceros
+#### Third-Party Software and Libraries
 
-- **React (Biblioteca de JavaScript para interfaces de usuario):**  
+- **React (JavaScript Library for User Interfaces):**  
   ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=for-the-badge)  
-  Empleada bajo la [licencia MIT](https://opensource.org/licenses/MIT), esta licencia permite el libre uso, copia, modificación y distribución del software. React es ampliamente reconocido por su eficiencia en la creación de interfaces dinámicas.
+  Used under the [MIT license](https://opensource.org/licenses/MIT), this license allows free use, copying, modification, and distribution of the software. React is widely recognized for its efficiency in creating dynamic interfaces.
 
-- **Django (Framework de desarrollo web):**  
+- **Django (Web Development Framework):**  
   ![Django Badge](https://img.shields.io/badge/Django-092E20?logo=django&logoColor=fff&style=for-the-badge)  
-  Operado bajo la [licencia BSD](https://opensource.org/licenses/BSD-3-Clause), que es altamente flexible y permite prácticamente cualquier uso del software, siempre y cuando se mantenga el crédito a los autores originales. Django es favorito por su robustez y facilidad de uso para construir aplicaciones web complejas.
+  Operated under the [BSD license](https://opensource.org/licenses/BSD-3-Clause), which is highly flexible and allows virtually any use of the software, as long as the original authors are credited. Django is favored for its robustness and ease of use in building complex web applications.
 
-- **Argon Design System React (Sistema de diseño para React):**  
+- **Argon Design System React (Design System for React):**  
   ![Argon Badge](https://img.shields.io/badge/Argon_Design-00AAF2?logo=argon&logoColor=fff&style=for-the-badge)  
-  Implementado bajo la [licencia MIT](https://opensource.org/licenses/MIT), Argon proporciona un entorno enriquecido para desarrolladores, ofreciendo acceso a una gama extensa de componentes estilizados y documentación completa, facilitando el desarrollo de interfaces atractivas y coherentes.
+  Implemented under the [MIT license](https://opensource.org/licenses/MIT), Argon provides a rich environment for developers, offering access to an extensive range of stylized components and complete documentation, facilitating the development of attractive and coherent interfaces.
 
-#### Justificación de Uso
-La elección de materiales bajo licencias flexibles como MIT y BSD, junto con la utilización de tecnologías avanzadas para la creación de contenido, refleja nuestro compromiso con la escalabilidad y la innovación en SportEvents. Seleccionamos herramientas y contenidos no solo por su excelencia técnica y funcionalidad sino también por la viabilidad legal de su uso, lo que nos permite adaptarnos fácilmente a futuras expansiones y modificaciones.
-
-
-### 6. RIESGOS Y MEDIDAS. <a name="id6"></a>
-
-#### Identificación de Riesgos 
-- Durante el desarrollo de SportEvents, se identificaron varios riesgos técnicos y operacionales. Estos incluyeron la gestión de la perdida de cookies en los navegadores, la seguridad de los datos, y la integración de múltiples sistemas y tecnologías de terceros.
-
-#### Problemas y Soluciones Implementadas
-1. <b>Gestión de Alta Concurrencia:</b>
-    - <b>Problema con las cookies:</b> El sistema inicialmente tardaba en cargar o no se cargaba correctamente por las cookies.
-    - <b>Medida:</b> Se implementó una arquitectura basada en microservicios para mejorar la escalabilidad y la gestión de la carga. Además, se integraron soluciones de caching y se optimizaron las consultas a la base de datos para reducir la latencia.
-
-2. <b>Seguridad de los Datos:</b>
-    - <b>Problema:</b> Vulnerabilidades en la protección de datos personales y de pago, exponiendo la plataforma a riesgos de seguridad.
-    - <b>Medida:</b> Se fortalecieron las políticas de seguridad, autenticación de dos factores, y auditorías de seguridad regulares para identificar y mitigar vulnerabilidades.
+#### Justification for Use
+Choosing materials under flexible licenses like MIT and BSD, along with the use of advanced technologies for content creation, reflects our commitment to scalability and innovation at SportEvents. We select tools and content not only for their technical excellence and functionality but also for the legal feasibility of their use, which allows us to easily adapt to future expansions and modifications.
 
 
-#### Evaluación Continua de Riesgos
-- Para asegurar la resiliencia continua de SportEvents frente a riesgos emergentes, se ha establecido un proceso de revisión de riesgos que incluye evaluaciones regulares, pruebas de penetración y simulacros de estrés. Este enfoque proactivo ayuda a identificar y mitigar riesgos antes de que puedan impactar significativamente en la operación del servicio.
+### 6. RISKS AND MEASURES. <a name="id6"></a>
 
-### 7. GRADO DE CUMPLIMIENTO EN ALCANCE. <a name="id7"></a>
+#### Identification of Risks 
+- During the development of SportEvents, several technical and operational risks were identified. These included managing the loss of cookies in browsers, data security, and the integration of multiple third-party systems and technologies.
 
-#### Evaluación del Cumplimiento de Funcionalidades Proyectadas
-El desarrollo de SportEvents se planificó con un conjunto de funcionalidades clave diseñadas para optimizar la gestión de empresas deportivas. A continuación, se detalla cuáles de estas funcionalidades se han implementado con éxito y cuáles no, así como las razones detrás de estos resultados.
+#### Issues and Implemented Solutions
+1. <b>High-Concurrency Management:</b>
+    - <b>Cookie Issues:</b> The system initially took a long time to load or did not load properly due to cookies.
+    - <b>Measure:</b> A microservices architecture was implemented to improve scalability and load management. In addition, caching solutions were integrated, and database queries were optimized to reduce latency.
 
-#### Funcionalidades Implementadas con Éxito
+2. <b>Data Security:</b>
+    - <b>Issue:</b> Vulnerabilities in the protection of personal and payment data, exposing the platform to security risks.
+    - <b>Measure:</b> Security policies were strengthened, two-factor authentication was implemented, and regular security audits were conducted to identify and mitigate vulnerabilities.
 
-| Número | Funcionalidad                           | Estado               | Descripción                                                                                                   | Justificación                                                                                                                                                           |
+
+#### Ongoing Risk Evaluation
+- To ensure the ongoing resilience of SportEvents against emerging risks, a risk review process has been established that includes regular assessments, penetration testing, and stress simulations. This proactive approach helps identify and mitigate risks before they can significantly impact the operation of the service.
+
+### 7. DEGREE OF COMPLIANCE IN SCOPE. <a name="id7"></a>
+
+#### Evaluation of Compliance with Projected Functionalities
+The development of SportEvents was planned with a set of key functionalities designed to optimize the management of sports companies. Below, we detail which of these functionalities have been successfully implemented and which have not, along with the reasons behind these outcomes.
+
+#### Successfully Implemented Functionalities
+
+| Number | Functionality                           | Status               | Description                                                                                                   | Justification                                                                                                                                                           |
 |--------|-----------------------------------------|----------------------|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1      | Gestión de Horarios y Eventos           | Implementado con éxito | Los propietarios pueden crear, modificar y eliminar horarios y eventos deportivos de manera eficiente.        | Esta funcionalidad se priorizó debido a su importancia central para la operación diaria de las empresas deportivas.                                                      |
-| 2      | Registro y Administración de Clientes   | Implementado con éxito | Sistema completo para registrar clientes y gestionar sus datos e historial de actividades.                    | La implementación se facilitó utilizando tecnologías modernas que soportan la gestión de datos de manera segura y escalable.                                             |
-| 3      | Sistema de Reservas en Línea            | Implementado con éxito | Los clientes pueden reservar clases y eventos directamente a través de la plataforma.                         | La integración de un sistema de reservas en tiempo real ha mejorado significativamente la experiencia del usuario.                                                      |
-| 4      | Integración de Pagos en Línea           | Implementado con éxito | Permite procesar pagos en línea asegurando transacciones seguras y eficientes.                                | Estas herramientas han proporcionado valiosos insights para la toma de decisiones estratégicas y la mejora continua.                                                   |
+| 1      | Scheduling and Event Management           | Successfully implemented | Owners can create, modify, and delete schedules and sports events efficiently.        | This functionality was prioritized due to its central importance to the daily operation of sports companies.                                                      |
+| 2      | Registration and Management of Clients   | Successfully implemented | Comprehensive system for registering clients and managing their data and activity history.                    | Implementation was facilitated using modern technologies that support secure and scalable data management.                                             |
+| 3      | Online Reservation System            | Successfully implemented | Clients can book classes and events directly through the platform.                         | The integration of a real-time reservation system has significantly improved the user experience.                                                      |
+| 4      | Online Payment Integration           | Successfully implemented | Enables online payment processing ensuring secure and efficient transactions.                                | These tools have provided valuable insights for strategic decision-making and continuous improvement.                                                   |
 
-#### Funcionalidades No Implementadas
+#### Non-Implemented Functionalities
 
-| Número | Funcionalidad         | Estado         | Descripción                                                                                                  | Justificación                                                                                                                                                           |
+| Number | Functionality         | Status         | Description                                                                                                  | Justification                                                                                                                                                           |
 |--------|-----------------------|----------------|--------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1      | Chat Directo con Cliente | No implementado | Una funcionalidad para permitir la comunicación en tiempo real entre los clientes y el servicio de soporte o administración. | A pesar de su planificación inicial, esta funcionalidad fue pospuesta debido a prioridades en el desarrollo de otras áreas críticas y limitaciones de recursos. Es un objetivo para futuras actualizaciones de la plataforma. |
+| 1      | Direct Chat with Client | Not implemented | A functionality to allow real-time communication between clients and support or administration service. | Despite its initial planning, this functionality was postponed due to priorities in the development of other critical areas and resource limitations. It is a goal for future updates of the platform. |
 
-#### Análisis y Proyecciones Futuras
-Aunque se han implementado con éxito la mayoría de las funcionalidades esenciales y avanzadas, la implementación del chat directo con el cliente es un objetivo pendiente que se reconoce como vital para mejorar aún más la comunicación y la satisfacción del cliente. Se planifica abordar esta funcionalidad en el próximo ciclo de desarrollo.
+#### Analysis and Future Projections
+Although most of the essential and advanced functionalities have been successfully implemented, the implementation of direct chat with clients is a pending goal that is recognized as vital to further improving communication and client satisfaction. It is planned to address this functionality in the next development cycle.
 
 
-### 8. GRADO DE CUMPLIMIENTO EN TIEMPO. <a name="id8"></a>
+### 8. DEGREE OF COMPLIANCE IN TIME. <a name="id8"></a>
 
-#### Evaluación de la Adherencia al Cronograma Proyectado
-El cumplimiento de los plazos establecidos es crucial para la gestión eficaz del proyecto SportEvents. A continuación, se presenta un resumen de las fases del proyecto, indicando su cumplimiento y las justificaciones pertinentes.
+#### Evaluation of Adherence to Projected Schedule
+Compliance with established deadlines is crucial for the effective management of the SportEvents project. Below is a summary of the project phases, indicating their compliance and the relevant justifications.
 
-#### Fases Cumplidas según lo Programado
+#### Phases Completed According to Schedule
 
-| Fase                                        | Cumplimiento            | Justificación |
+| Phase                                        | Compliance            | Justification |
 |---------------------------------------------|-------------------------|---------------|
-| Inicio del Proyecto y Definición de Requerimientos | Realizado dentro del plazo | La fase inicial fue completada a tiempo gracias a una preparación y coordinación efectiva entre todos los equipos involucrados. |
-| Desarrollo de Funcionalidades Principales (Registro de Usuarios, Gestión de Eventos) | Realizado dentro del plazo | El desarrollo de estas funcionalidades clave se planificó meticulosamente, y se asignaron recursos adicionales para garantizar su finalización en el tiempo estipulado. |
-| Pruebas Iniciales y Feedback de Usuarios Beta | Realizado dentro del plazo | La recolección de feedback y las pruebas se realizaron según lo planificado debido a una excelente respuesta de los usuarios beta y una gestión eficaz del proceso de pruebas. |
+| Project Initiation and Requirements Definition | Completed on time | The initial phase was completed on time thanks to effective preparation and coordination among all teams involved. |
+| Development of Main Functionalities (User Registration, Event Management) | Completed on time | The development of these key functionalities was meticulously planned, and additional resources were allocated to ensure their completion within the stipulated time. |
+| Initial Testing and Beta User Feedback | Completed on time | The collection of feedback and testing was carried out as planned due to excellent responses from beta users and effective management of the testing process. |
 
-#### Fases con Desviaciones de la Planificación
+#### Phases with Deviations from Planning
 
-| Fase                                        | Cumplimiento            | Justificación | Badge |
+| Phase                                        | Compliance            | Justification | Badge |
 |---------------------------------------------|-------------------------|---------------|-------|
-| Integración de Pagos en Línea               | Ligeramente retrasado   | Aunque se finalizó con éxito, esta fase experimentó un ligero retraso debido a la complejidad técnica y los desafíos en la integración de Stripe para análisis avanzados de datos y pagos seguros. | ![Stripe Badge](https://img.shields.io/badge/Stripe-626CD9?logo=stripe&logoColor=white&style=for-the-badge) |
-| Implementación del Chat Directo con el Cliente | No iniciado            | Esta funcionalidad no se inició según lo planificado por priorización de recursos hacia áreas con mayor impacto inmediato en la experiencia del usuario y operatividad de la plataforma. | ![LiveChat Badge](https://img.shields.io/badge/LiveChat-FF5100?logo=livechat&logoColor=fff&style=for-the-badge) |
+| Online Payment Integration               | Slightly delayed   | Although successfully completed, this phase experienced a slight delay due to technical complexity and challenges in integrating Stripe for advanced data analysis and secure payments. | ![Stripe Badge](https://img.shields.io/badge/Stripe-626CD9?logo=stripe&logoColor=white&style=for-the-badge) |
+| Implementation of Direct Chat with the Client | Not started            | This functionality was not started as planned due to prioritization of resources towards areas with greater immediate impact on user experience and platform operability. | ![LiveChat Badge](https://img.shields.io/badge/LiveChat-FF5100?logo=livechat&logoColor=fff&style=for-the-badge) |
 
-#### Evaluación y Medidas Correctivas
-Para abordar las desviaciones en el cronograma, se han tomado medidas correctivas incluyendo la reasignación de recursos, la optimización de procesos y la implementación de herramientas de gestión de proyectos más eficientes. Además, se ha incrementado la comunicación entre los equipos para mejorar la coordinación y anticipación de posibles retrasos.
+#### Evaluation and Corrective Measures
+To address deviations in the schedule, corrective measures have been taken including the reallocation of resources, process optimization, and the implementation of more efficient project management tools. Additionally, communication among teams has been increased to improve coordination and anticipate possible delays.
 
   
-### 9. GRADO DE CUMPLIMIENTO EN COSTE. <a name="id9"></a>
+### 9. DEGREE OF COMPLIANCE IN COST. <a name="id9"></a>
 
-#### Estrategias de Control de Costes
-- A pesar del presupuesto no monetario, fue crucial adoptar prácticas de gestión que maximizaron los recursos disponibles y aseguraron el cumplimiento de los objetivos del proyecto sin desviaciones económicas. Las siguientes estrategias son las que fueron adoptadas:
+#### Cost Control Strategies
+- Despite the non-monetary budget, it was crucial to adopt management practices that maximized available resources and ensured compliance with project objectives without economic deviations. The following strategies were adopted:
 
-  1. <b>Uso de Tecnologías y Herramientas Gratuitas:</b>
-      - Se ha optado por utilizar software y herramientas que ofrecen licencias gratuitas para uso educativo o son de código abierto, como React para el frontend, Django para el backend, y diversas librerías disponibles bajo licencias abiertas.
+  1. <b>Use of Free Technologies and Tools:</b>
+      - We opted to use software and tools that offer free licenses for educational use or are open-source, such as React for the frontend, Django for the backend, and various libraries available under open licenses.
     
-  2. <b>Colaboración y Recursos Compartidos:</b>
-      - Aprovechando las redes académicas que dispone nuestro centro, incluyendo servidores de prueba y acceso a software especializado sin coste adicional.
+  2. <b>Collaboration and Shared Resources:</b>
+      - Leveraging the academic networks available at our center, including test servers and access to specialized software at no additional cost.
 
-  3. <b>Optimización del Tiempo y Esfuerzo:</b>
-      - Se ha establecido una planificación rigurosa y una división clara de responsabilidades para asegurar la eficiencia en el trabajo del equipo.
+  3. <b>Optimization of Time and Effort:</b>
+      - A rigorous planning and a clear division of responsibilities were established to ensure team efficiency.
     
-#### Acciones para Detectar y Corregir Desviaciones
-1. <b>Reuniones Regulares de Seguimiento:</b>
-    - Se organizan reuniones semanales para revisar el progreso y ajustar la carga de trabajo según sea necesario, garantizando que el proyecto avance según lo planificado sin necesidad de recursos adicionales.
+#### Actions to Detect and Correct Deviations
+1. <b>Regular Monitoring Meetings:</b>
+    - Weekly meetings are organized to review progress and adjust workload as needed, ensuring that the project progresses as planned without the need for additional resources.
 
-2. <b>Pruebas Continuas y Retroalimentación:</b>
-    - Implementación de ciclos de pruebas y test continuos para detectar errores y validar funcionalidades a tiempo, lo que ayuda a evitar trabajos dobles que consumirían más tiempo y esfuerzo.
+2. <b>Continuous Testing and Feedback:</b>
+    - Implementation of continuous testing and feedback cycles to detect errors and validate functionalities on time, helping to avoid rework that would consume more time and effort.
 
-3. <b>Evaluación Continua de Prioridades:</b>
-    - Priorización constante de las tareas según su importancia y su viabilidad dentro del contexto del tiempo y los recursos disponibles.
+3. <b>Continuous Evaluation of Priorities:</b>
+    - Constant prioritization of tasks based on their importance and feasibility within the context of time and available resources.
 
-### 10.  CLÁUSULAS. <a name="id10"></a>
+### 10.  CLAUSES. <a name="id10"></a>
 
-#### Contexto de las Cláusulas
+#### Context of the Clauses
 
-  |          Cláusula           |          Descripción        |            Medida           |
+  |          Clause           |          Description        |            Measure           |
   |-----------------------------|-----------------------------|-----------------------------|
-  |<b>Cláusula de Retraso en la Entrega</b>|Si el proyecto se retrasa y no se cumple con los requerimientos establecidos en el cronograma académico.|El equipo deberá notificar al profesor con anticipación, proporcionando una evaluación detallada de las causas del retraso y un plan revisado para la finalización.|
-  |<b>Cláusula de Calidad y Revisión</b>|Cómo se controlará y asegurará la calidad del proyecto a lo largo de su desarrollo.|El proyecto será sometido a revisiones periódicas por el profesor, quien evaluará el progreso y la adherencia a los estándares académicos de calidad. Las correcciones y mejoras sugeridas deberán implementarse según lo indicado por las evaluaciones.|
-  |<b>Cláusula de Contribución de los Miembros del Equipo</b>|Cómo se gestionará la contribución de cada miembro del equipo para asegurar la equidad y evitar desequilibrios en la carga de trabajo.|Se requerirá que cada miembro del equipo documente sus contribuciones y participe equitativamente en todas las fases del proyecto. Las evaluaciones de desempeño individual serán parte de la evaluación final del proyecto.|
-  |<b>Cláusula de Uso de Recursos Externos</b>|Uso de material con derechos de autor, software de pago o cualquier otro recurso que pueda tener implicaciones legales o éticas.|Todo el material y software utilizado deberá cumplir con las licencias adecuadas y, en el caso de recursos académicos, deberá ser utilizado exclusivamente bajo los términos permitidos. |
+  |<b>Delay in Delivery Clause</b>|If the project is delayed and does not meet the requirements established in the academic schedule.|The team must notify the professor in advance, providing a detailed assessment of the causes of the delay and a revised plan for completion.|
+  |<b>Quality and Review Clause</b>|How quality will be controlled and assured throughout the project's development.|The project will be subjected to periodic reviews by the professor, who will assess progress and adherence to academic standards of quality. Corrections and improvements suggested should be implemented as indicated by the evaluations.|
+  |<b>Contribution of Team Members Clause</b>|How the contribution of each team member will be managed to ensure equity and avoid imbalances in the workload.|Each team member is required to document their contributions and participate equitably in all phases of the project. Individual performance evaluations will be part of the final project assessment.|
+  |<b>Use of External Resources Clause</b>|Use of copyrighted material, paid software, or any other resource that may have legal or ethical implications.|All material and software used must comply with appropriate licenses and, in the case of academic resources, must be used exclusively under the terms permitted. |
 
-### 11.  PRODUCTO FINAL. <a name="id11"></a>
+### 11.  FINAL PRODUCT. <a name="id11"></a>
 
-#### Descripción del Producto Final
-- SportEvents es una plataforma web diseñada para gestionar eficientemente empresas deportivas, permitiendo la administración integral de horarios, actividades, y clientes. La interfaz es intuitiva y accesible, optimizada tanto para dispositivos móviles como para escritorio, garantizando una experiencia de usuario fluida y coherente.
+#### Description of the Final Product
+- SportEvents is a web platform designed to efficiently manage sports companies, allowing comprehensive management of schedules, activities, and clients. The interface is intuitive and accessible, optimized for both mobile devices and desktops, ensuring a fluid and consistent user experience.
 
-#### Manual de Uso Básico General
-  1. Acceda a SportEvents e inicie sesión o regístrese si no tiene una cuenta en nuestra página web.
-  2. Una vez ha accedido, puede navegar a su `Perfil` seleccionando el menú "hamburguesa" situado en la parte superior derecha de la web, y aquí accedemos a `Perfil`.
-  3. Aquí podrá actualizar su información personal, así como también su imagen de perfil haciendo click en el botón con un símbolo de lápiz.
+#### Basic General Usage Manual
+  1. Access SportEvents and log in or register if you do not have an account on our website.
+  2. Once you have accessed, you can navigate to your `Profile` by selecting the "hamburger" menu located at the top right of the web, and here we access `Profile`.
+  3. Here you can update your personal information, as well as your profile picture by clicking on the button with a pencil symbol.
 
-#### Manual de Uso Básico como Cliente
-  1. Si es usuario de nuestra web, y desea unirse a alguna empresa deportiva, debe de ir a la página de inicio de su perfil seleccionando el menú "hamburguesa" situado en la parte superior derecha de la web, y aquí accedemos a `Inicio`.
-  2. Aquí en la sección de empresas disponibles podrá ver todas las empresas públicas disponibles que hay en la web. Una vez encontrado la empresa deseada, deberá de dar click en esta, aquí saldrá un cuadro sobre la información de la misma, además de un botón que dirá si desea unirse a la empresa.
-  Al pulsar en dicho botón, se le enviará una petición al empresario para que este la pueda o no aceptar.
-  3. Una vez el empresario ha aceptado la petición, si accedemos a la pestaña de `Actividades Disponibles` ubicada en el inicio de nuestro perfil, podremos ver todas las actividades que nos pertenecen.
+#### Basic Usage Manual as a Client
+  1. If you are a user of our website, and want to join a sports company, you must go to the home page of your profile by selecting the "hamburger" menu located at the top right of the web, and here we access `Home`.
+  2. Here in the section of available companies you will be able to see all the public companies available on the web. Once you have found the desired company, you must click on it, here a box will appear about the information of the same, in addition to a button that will say if you want to join the company.
+  By clicking on this button, a request will be sent to the businessman so that he can accept or not.
+  3. Once the businessman has accepted the request, if we access the `Available Activities` tab located at the start of our profile, we will be able to see all the activities that belong to us.
 
-#### Manual de Uso Básico como Propietario
-  1. Si es usuario de nuestra web, pero quiere añadir su empresa a nuestra web, deberá de acceder al inicio de su perfil seleccionando el menú "hamburguesa" situado en la parte superior derecha de la web, y aquí accedemos a `Inicio`.
-  2. Una vez aquí, saldrá un mensaje en la parte inferior derecha de la web que nos indicará que lo pulsemos sin somos propietarios de una empresa o queremos serlo. Lo clicamos.
-  3. Al acceder aquí, aparecerás tres planes distintos de pago que usted deberá evaluar y posteriormente pagar para proseguir en el proceso.
-  4. Una vez ha pagado, le saldrá la opción de crear la empresa con un código único de entrada.
-  5. Al terminar el proceso, habrá sido redirigido a su empresa, donde aparecerá una opción de `Perfil` y `Gestor de Empresa`.
-  6. Si accedemos a `Perfil`, podremos aditar nuestro perfil como propietario de la empresa, de la misma manera que funciona el del cliente.
-  7. Si accedemos a `Gestor de Empresa`, podremos editar la información de la empresa, además de poder crear, editar o eliminar cualqueir actividad de esta.
-  Por otro lado, también podrá gestionar los usuarios la empresa así como también acceder a las notificaciones de esta, donde podremos aceptar o rechazar las peticiones de los usuarios de unirse a la empresa.
+#### Basic Usage Manual as Owner
+  1. If you are a user of our website, but want to add your company to our website, you must access the start of your profile by selecting the "hamburger" menu located at the top right of the web, and here we access `Home`.
+  2. Once here, a message will appear in the lower right part of the web indicating that we click on it if we are owners of a company or want to be. We click on it.
+  3. Upon accessing here, three different payment plans will appear that you must evaluate and subsequently pay to proceed in the process.
+  4. Once you have paid, you will have the option to create the company with a unique entry code.
+  5. At the end of the process, you will have been redirected to your company, where an option of `Profile` and `Company Manager` will appear.
+  6. If we access `Profile`, we will be able to edit our profile as the owner of the company, in the same way that the client's works.
+  7. If we access `Company Manager`, we will be able to edit the company's information, in addition to being able to create, edit or delete any activity of this.
+  On the other hand, you will also be able to manage the company's users as well as access the notifications of this, where we can accept or reject the users' requests to join the company.
     
-### 12.  EXPERIENCIAS APRENDIDAS A TENER EN CUENTA EN PRÓXIMOS PROYECTOS. <a name="id12"></a>
-- A lo largo del desarrollo de SportEvents, el equipo ha adquirido valiosas experiencias que serán cruciales para la mejora continua y la eficacia en futuros proyectos. A continuación, se enumerarán algunas de las lecciones más importantes aprendidas:
+### 12.  LEARNED EXPERIENCES TO BE CONSIDERED IN FUTURE PROJECTS. <a name="id12"></a>
+- Throughout the development of SportEvents, the team has acquired valuable experiences that will be crucial for continuous improvement and effectiveness in future projects. Below, some of the most important lessons learned are listed:
 </br>
 
-|       Título            |             Lección            |             Aplicación Futura            |
+|       Title            |             Lesson            |             Future Application            |
 |-------------------------|--------------------------------|------------------------------------------|
-| <b>Planificación y Gestión del Tiempo</b> | La importancia de una planificación detallada. | Implementar técnicas de gestión de proyectos como el método Scrum para mejorar la planificación.   |
-| <b>Colaboración y Comunicación</b> | La comunicación efectiva es fundamental.       | Fomentar un entorno donde las reuniones regulares y las actualizaciones de estado sean la norma.    |
-| <b>Uso de Tecnología y Herramientas</b> | La selección adecuada de tecnología es crítica. | Realizar una evaluación profunda de las herramientas antes de decidir cuáles implementar.           |
-| <b>Gestión de Riesgos</b> | Los riesgos subestimados pueden impactar negativamente. | Desarrollar y mantener un plan de gestión de riesgos dinámico que sea revisado y actualizado regularmente.    |
-| <b>Pruebas y Calidad</b> | Las pruebas exhaustivas son cruciales.         | Integrar pruebas en cada etapa del desarrollo, utilizando metodologías de pruebas automáticas y manuales.    |
+| <b>Planning and Time Management</b> | The importance of detailed planning. | Implement project management techniques such as the Scrum method to improve planning.   |
+| <b>Collaboration and Communication</b> | Effective communication is essential.       | Foster an environment where regular meetings and status updates are the norm.    |
+| <b>Use of Technology and Tools</b> | Proper technology selection is critical. | Conduct a thorough evaluation of tools before deciding which ones to implement.           |
+| <b>Risk Management</b> | Underestimated risks can negatively impact. | Develop and maintain a dynamic risk management plan that is reviewed and updated regularly.    |
+| <b>Testing and Quality</b> | Exhaustive testing is crucial.         | Integrate testing at every development stage, using both automatic and manual testing methodologies.    |
 
 
-### 13.  CONCLUSIONES, COMENTARIOS Y VALORACIÓN FINAL. <a name="id13"></a>
-#### Conclusión General del Proyecto
+### 13.  CONCLUSIONS, COMMENTS, AND FINAL ASSESSMENT. <a name="id13"></a>
+#### General Conclusion of the Project
 
-- SportEvents ha sido un proyecto desafiante, diseñado para facilitar la gestión de empresas deportivas a través de una plataforma intuitiva y multifuncional. El desarrollo del proyecto permitió al equipo enfrentar y superar diversos desafíos técnicos y de gestión, lo cual ha resultado en un producto robusto que satisface las necesidades básicas de nuestros usuarios objetivo y proporciona una base sólida para futuras expansiones.
+- SportEvents has been a challenging project, designed to facilitate the management of sports companies through an intuitive and multifunctional platform. The development of the project allowed the team to face and overcome various technical and management challenges, which resulted in a robust product that meets the basic needs of our target users and provides a solid foundation for future expansions.
 
-#### Comentarios sobre el Desarrollo
+#### Comments on Development
 
-- El proceso de desarrollo de SportEvents ha destacado la importancia de una planificación detallada y la adaptabilidad en la gestión de proyectos. La colaboración dentro del equipo fue crucial para superar los obstáculos y para implementar soluciones diferentes que se ajustaran a los requisitos del proyecto. El uso de tecnologías modernas y de código abierto no solo facilitó una implementación eficiente sino que también mantuvo los costos operativos al mínimo, lo cual era esencial dado el presupuesto.
+- The development process of SportEvents has highlighted the importance of detailed planning and adaptability in project management. Collaboration within the team was crucial to overcome obstacles and to implement different solutions that suited the project's requirements. The use of modern and open-source technologies not only facilitated efficient implementation but also kept operational costs to a minimum, which was essential given the budget.
 
-#### Valoración de las Funcionalidades Implementadas
+#### Assessment of Implemented Functionalities
 
-- Todas las funcionalidades principales, como la gestión de eventos, registro de clientes, sistema de reservas en línea, y la integración de pagos, fueron implementadas con éxito y han funcionado conforme a las expectativas.
+- All the main functionalities, such as event management, client registration, online reservation system, and payment integration, were successfully implemented and have functioned according to expectations.
 
-#### Lecciones Aprendidas
+#### Learned Lessons
 
-- Las lecciones aprendidas durante este proyecto han sido varias y de mucha valía. La importancia de realizar pruebas exhaustivas, la necesidad de una comunicación efectiva dentro del equipo y la adaptación a feedback en tiempo real son aspectos que serán llevados a futuros proyectos. La experiencia ha mostrado cómo la adaptabilidad puede ser crucial cuando se enfrentan desafíos inesperados.
+- The lessons learned during this project have been several and of great value. The importance of conducting thorough tests, the need for effective communication within the team, and adapting to real-time feedback are aspects that will be carried into future projects. The experience has shown how adaptability can be crucial when facing unexpected challenges.
 
-#### Perspectivas Futuras
+#### Future Perspectives
 
-- Mirando hacia el futuro, existe un claro potencial para expandir SportEvents, no solo en términos de nuevas funcionalidades, sino también en la escalabilidad de la plataforma para manejar un mayor número de usuarios y operaciones más complejas. La experiencia adquirida y la infraestructura tecnológica ya establecida ofrecen una excelente base para estos desarrollos.
+- Looking ahead, there is clear potential to expand SportEvents, not only in terms of new functionalities but also in the scalability of the platform to handle a larger number of users and more complex operations. The experience gained and the technological infrastructure already established provide an excellent foundation for these developments.
 
-#### Conclusión Final
+#### Final Conclusion
 
-- SportEvents es un desafío de lo que un equipo comprometido y motivado puede lograr, incluso con recursos limitados. Este proyecto no solo cumplió con sus objetivos iniciales sino que también proporcionó un aprendizaje significativo y estableció un sólido fundamento para futuros desafíos profesionales y académicos.
+- SportEvents is a testament to what a committed and motivated team can achieve, even with limited resources. This project not only met its initial objectives but also provided significant learning and established a solid foundation for future professional and academic challenges.
