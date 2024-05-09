@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, useLocation, Navigate } from 'react-router-dom';
 import { Avatar } from '@mui/material';
 import { Navbar, NavbarBrand } from 'reactstrap';
-import axios from 'axios';
 import BreadcrumbComponent from './BreadcrumbComponent';
 import routesConfig from './routesConfig';
 
@@ -19,10 +18,13 @@ function App() {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   useEffect(() => {
+    const storedAuth = localStorage.getItem('authState');
+    if (storedAuth) {
+      setAuthState(JSON.parse(storedAuth));
+    }
     const checkAuth = async () => {
       try {
         const authResponse = await fetch('https://backend.olimpus.arkania.es/users/check_user_authenticated/', {
-
           method: 'GET',
           credentials: 'include',
         });
@@ -33,7 +35,20 @@ function App() {
             userId: data.userId,
             photo: data.photo
           });
+          localStorage.setItem('authState', JSON.stringify({
+            isAuthenticated: true,
+            userId: data.userId,
+            photo: data.photo
+          }));
         }
+        else {
+          // Asegurar que el estado de no autenticado se refleje en localStorage
+          localStorage.setItem('authState', JSON.stringify({
+            isAuthenticated: false,
+            userId: null,
+            photo: ''
+          }));
+        }  
       } catch (error) {
         console.error('Error fetching auth status:', error);
       }
