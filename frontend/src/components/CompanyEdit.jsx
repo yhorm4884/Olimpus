@@ -44,12 +44,13 @@ const CompanyEdit = ({ userId }) => {
   const handleAvatarClick = () => {
     fileInputRef.current.click();
   };
+  const imageUrl = company?.foto ? `https://backend.olimpus.arkania.es${company.photo}` : "https://via.placeholder.com/150";
 
   return (
     <Paper style={{ padding: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="h6" style={{ alignSelf: 'start' }}>Editar Empresa</Typography>
       <IconButton onClick={handleAvatarClick} style={{ margin: '20px' }}>
-        <Avatar src={company.photo} style={{ width: 90, height: 90 }} />
+        <Avatar src={imageUrl} style={{ width: 90, height: 90 }} />
         <PhotoCameraIcon style={{ position: 'absolute', color: 'rgba(255, 255, 255, 0.7)' }} />
       </IconButton>
       <input
