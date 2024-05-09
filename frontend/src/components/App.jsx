@@ -46,7 +46,7 @@ function App() {
     <Router>
       <div>
         <Navbar color="dark" dark expand="md">
-          <img src="../../media/logo.png" alt="Logo SportEvent" className="logo-nav" />
+          <img src="https://backend.olimpus.arkania.es/media/logo.png" alt="Logo SportEvent" className="logo-nav" />
           <NavbarBrand href="/">SPORTEVENTS</NavbarBrand>
           <button onClick={toggleSidebar} className="menu-button">☰</button>
         </Navbar>

@@ -180,21 +180,19 @@ EMAIL_HOST_PASSWORD = 'xqoslwlyktqrdmxa'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
-# Configuración de CSRF
-SESSION_COOKIE_SAMESITE = 'none'
-CSRF_COOKIE_SAMESITE = 'none'
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:3000','http://backend.olimpus.arkania.es','http://olimpus.arkania.es','https://backend.olimpus.arkania.es','https://olimpus.arkania.es']
-CORS_ALLOWED_WHITELIST = [
-    'http://127.0.0.1:3000',
-    'http://127.0.0.1:8000',
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://backend.olimpus.arkania.es',
-    'http://olimpus.arkania.es',
+CORS_ALLOWED_ORIGINS = [
     'https://backend.olimpus.arkania.es',
-    'https://olimpus.arkania.es',
+    'https://olimpus.arkania.es'
+]
+
+# Configuración de CSRF
+SESSION_COOKIE_SAMESITE = 'Lax'  # O 'Strict' según tu necesidad
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = [
+    'https://backend.olimpus.arkania.es',
+    'https://olimpus.arkania.es'
 ]
