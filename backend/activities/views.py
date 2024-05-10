@@ -11,7 +11,7 @@ import json
 def mostrarActividades(request, user_id):
     try:
         usuario = Usuario.objects.get(pk=user_id)  # Asegurando que buscamos por el ID correcto en el User
-        empresas_usuario = Empresa.objects.filter(usuarios__id=usuario.user.id)  # Obtenemos las empresas del usuario
+        empresas_usuario = Empresa.objects.filter(usuarios__id=usuario.id)  # Obtenemos las empresas del usuario
     except Usuario.DoesNotExist:
         return JsonResponse({'error': 'Usuario no encontrado'}, status=404)
 
@@ -32,12 +32,19 @@ def mostrarActividades(request, user_id):
 def actividades_disponibles(request, user_id):
     try:
         usuario = Usuario.objects.get(pk=user_id)
+        
         # Buscar las empresas relacionadas con el usuario
-        empresas_usuario = Empresa.objects.filter(usuarios__id=usuario.user.id)
+        empresas_usuario = Empresa.objects.filter(usuarios__id=usuario.id)
+        
+
+        
+
+
         print("Usuario", usuario, "Empresa usuario", empresas_usuario)
+       
         # Filtrar actividades por las empresas del usuario y que no incluyan al usuario como participante
         actividades = Actividad.objects.filter(empresa__in=empresas_usuario).exclude(participantes_actividad=usuario)
-
+        
         data = [{
             'codigo_actividad': act.codigo_actividad,
             'nombre': act.nombre,

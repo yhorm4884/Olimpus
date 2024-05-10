@@ -29,7 +29,7 @@ const routesConfig = [
 
   { path: "/dashboard/user/:userId", name: "Dashboard", Component: Dashboard, isPrivate: true }, 
   { path: "/dashboard/profile/:userId", name: "Perfil", Component: UserProfile, isPrivate: true }, 
-  { path: "/dashboard/my-activities/:userId", name: "Mis Actividades", Component: UserActivities, isPrivate: true }, 
+  { path: "/dashboard/my-activities/:userId", name: "Mis Actividades", Component: UserActivities,}, 
   { path: "/dashboard/activities/:companyId", name: "Actividades", Component: ActivityCalendar, isPrivate: true },
   { path: "/dashboard/company-management/:userId", name: "Gestión de la empresa", Component: CompanyManagement, }, 
 
