@@ -55,14 +55,112 @@ function CompanyDetails() {
   if (error || loadError) {
     return <Typography>Error: {error || loadError}</Typography>;
   }
+  const authStateJSON = localStorage.getItem('authState');
 
-  return (
-    <Box sx={{ p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Card sx={{ maxWidth: 600 }}>
+  const authState = JSON.parse(authStateJSON);
+
+  const userId = parseInt(authState.userId);
+
+  let userInCompany = false;
+  for (let i = 0; i < company.usuarios.length; i++) {
+    if (company.usuarios[i].id === userId) {
+      userInCompany = true;
+      break;
+    }
+  }
+
+
+  // return (
+  //   <Box sx={{ p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  //     <Card sx={{ maxWidth: 600 }}>
+  //       <CardMedia
+  //         component="img"
+  //         height="140"
+  //         image={company?.photo || "https://via.placeholder.com/150"}
+  //         alt="Imagen de la Empresa"
+  //       />
+  //       <CardContent>
+  //         <Typography gutterBottom variant="h5" component="div">
+  //           {company?.nombre}
+  //         </Typography>
+  //         <Typography variant="body2" color="text.secondary">
+  //           Dirección: {company?.direccion}
+  //         </Typography>
+  //         <Typography variant="body2" color="text.secondary">
+  //           Descripción: {company?.descripcion}
+  //         </Typography>
+  //       </CardContent>
+  //       {coords && (
+  //         <GoogleMap
+  //           mapContainerStyle={mapStyles}
+  //           zoom={15}
+  //           center={coords}
+  //         >
+  //           <Marker position={coords} />
+  //         </GoogleMap>
+  //       )}
+  //       <CardActions>
+  //         <Button variant="contained" color="primary" onClick={() => navigate(-1)} sx={{ margin: '20px' }}>
+  //           Volver
+  //         </Button>
+  //         {!userInCompany && (
+  //           <Button variant="outlined" color="primary" onClick={() => navigate(`/choose-plan/${companyId}`,  { state: { userId: localStorage.getItem('userId')} })}>
+  //             Unirse a esta Empresa
+  //           </Button>
+  //         )}
+  //       </CardActions>
+  //     </Card>
+  //   </Box>
+  // );
+  if (!userInCompany) {
+    return (
+      <Box sx={{ p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Card sx={{ maxWidth: 600 }}>
+          <CardMedia
+            component="img"
+            height="140"
+            image={company?.photo || "https://via.placeholder.com/150"}
+            alt="Imagen de la Empresa"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {company?.nombre}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Dirección: {company?.direccion}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Descripción: {company?.descripcion}
+            </Typography>
+          </CardContent>
+          {coords && (
+            <GoogleMap
+              mapContainerStyle={mapStyles}
+              zoom={15}
+              center={coords}
+            >
+              <Marker position={coords} />
+            </GoogleMap>
+          )}
+          <CardActions>
+            <Button variant="contained" color="primary" onClick={() => navigate(-1)} sx={{ margin: '20px' }}>
+              Volver
+            </Button>
+            <Button variant="outlined" color="primary" onClick={() => navigate(`/choose-plan/${companyId}`, { state: { userId } })}>
+              Unirse a esta Empresa
+            </Button>
+          </CardActions>
+        </Card>
+      </Box>
+    );
+  } else {
+    return (
+      <Box sx={{ p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Card sx={{ maxWidth: 600 }}>
         <CardMedia
           component="img"
           height="140"
-          image={company?.foto || "https://via.placeholder.com/150"}
+          image={company?.photo || "https://via.placeholder.com/150"}
           alt="Imagen de la Empresa"
         />
         <CardContent>
@@ -85,17 +183,18 @@ function CompanyDetails() {
             <Marker position={coords} />
           </GoogleMap>
         )}
-        <CardActions>
-          <Button variant="contained" color="primary" onClick={() => navigate(-1)} sx={{ margin: '20px' }}>
-            Volver
-          </Button>
-          <Button variant="outlined" color="primary" onClick={() => navigate(`/choose-plan/${companyId}`, { state: { userId: localStorage.getItem('userId') } })}>
-            Unirse a esta Empresa
-          </Button>
-        </CardActions>
-      </Card>
-    </Box>
-  );
+          <CardActions>
+            <Button variant="contained" color="primary" onClick={() => navigate(-1)} sx={{ margin: '20px' }}>
+              Volver
+            </Button>
+            <Typography variant="body2" color="text.secondary">
+              Ya eres parte de esta empresa.
+            </Typography>
+          </CardActions>
+        </Card>
+      </Box>
+    );
+  }
 }
 
 export default CompanyDetails;

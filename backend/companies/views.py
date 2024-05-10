@@ -197,6 +197,7 @@ def crear_sesion_checkout(request):
                     },
                 ],
                 mode='payment',
+                
                 success_url='https://olimpus.arkania.es/dashboard/link-to-companie/'+str(data.get('userId')), #esto son urls que gestiona el react
                 cancel_url='https://olimpus.arkania.es/choose-plan/'+str(data.get('userId')),
             )

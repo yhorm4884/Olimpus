@@ -13,12 +13,18 @@ const ChoosePlanScreen = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const userId = state.userId;
+  const authStateJSON = localStorage.getItem('authState');
+
+  const authState = JSON.parse(authStateJSON);
+
+  const userId = authState.userId;
+
+  
 
 
 const handleJoinCompany = async (plan,cantidad) => {
   try {
-    
+    localStorage.setItem('companyId', companyId);
     const stripe = await loadStripe('pk_test_51PBBogCeiEB5qy1OhkW7TkY7h8gcMkNRT0wpwJaOwcKoszgJRzjCQBaycVNBynhbL4tq51IWKZdLrUSHLP4epx26000xfbFJ8r');
 
     const formData = new FormData();

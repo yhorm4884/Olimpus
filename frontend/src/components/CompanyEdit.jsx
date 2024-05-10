@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Avatar, TextField, Button, Paper, Typography, IconButton } from '@mui/material';
 import { Save as SaveIcon, PhotoCamera as PhotoCameraIcon } from '@mui/icons-material';
+import CompanyDetails from './CompanyDetails';
 
 const CompanyEdit = ({ userId }) => {
   const [company, setCompany] = useState({ nombre: '', estado: true, photo: '', ubicacion: '' });
@@ -44,13 +45,12 @@ const CompanyEdit = ({ userId }) => {
   const handleAvatarClick = () => {
     fileInputRef.current.click();
   };
-  const imageUrl = company?.foto ? `https://backend.olimpus.arkania.es${company.photo}` : "https://via.placeholder.com/150";
-  console.log(imageUrl)
+  
   return (
     <Paper style={{ padding: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="h6" style={{ alignSelf: 'start' }}>Editar Empresa</Typography>
       <IconButton onClick={handleAvatarClick} style={{ margin: '20px' }}>
-        <Avatar src={imageUrl} style={{ width: 90, height: 90 }} />
+        <Avatar src={company.photo} style={{ width: 90, height: 90 }} />
         <PhotoCameraIcon style={{ position: 'absolute', color: 'rgba(255, 255, 255, 0.7)' }} />
       </IconButton>
       <input

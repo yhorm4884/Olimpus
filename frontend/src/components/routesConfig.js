@@ -35,8 +35,8 @@ const routesConfig = [
 
   { path: "/dashboard/company-details/:companyId", name: "Detalles Empresa", Component: CompanyDetails, }, 
   { path: "/register-companie", name: "Registrar empresa", Component: RegisterEmpresa, isPrivate: true },
-  { path: "/choose-plan/:companyId", name: "Elegir plan", Component: ChoosePlanScreen, isPrivate: true }, 
-  { path: "/dashboard/link-to-companie/:userId", name: "Vincular a la empresa", Component: LinktoCompanie, isPrivate: true }, 
+  { path: "/choose-plan/:companyId", name: "Elegir plan", Component: ChoosePlanScreen, }, 
+  { path: "/dashboard/link-to-companie/:userId", name: "Vincular a la empresa", Component: LinktoCompanie, }, 
   { path: "/cargando/:userId", name: "cargando", Component: LoadingScreen },
   { path: "/", name: "Inicio", Component: Home },
   { path: "*", name: "No encontrado", Component: NotFound },
