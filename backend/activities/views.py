@@ -105,19 +105,18 @@ def add_actividad(request, user_id):
         response = HttpResponse("\n\n\n\n\n\n Datos:" + str(data), content_type="text/plain")
 
         
-        # empresa = Empresa.objects.get(usuarios__id=user_id)  # Asumimos que el usuario pertenece a una empresa
-        # nueva_actividad = Actividad.objects.create(
-        #     codigo_actividad = ['codigo_actividad'],
-        #     nombre=data['nombre'],
-        #     hora_entrada=data['hora_entrada'],
-        #     hora_salida=data['hora_salida'],
-        #     personas=data['personas'],
-        #     lugar=data['lugar'],
-        #     observaciones=data.get('observaciones', ''),
-        #     empresa=empresa
-        # )
-        # return JsonResponse({'message': 'Actividad creada con éxito', 'id': nueva_actividad.id}, status=201)
-        return response
+        empresa = Empresa.objects.get(usuarios__id=user_id)  # Asumimos que el usuario pertenece a una empresa
+        nueva_actividad = Actividad.objects.create(
+            codigo_actividad = data['codigo_actividad'],
+            nombre=data['nombre'],
+            hora_entrada=data['hora_entrada'],
+            hora_salida=data['hora_salida'],
+            personas=data['personas'],
+            lugar=data['lugar'],
+            observaciones=data.get('observaciones', ''),
+            empresa=empresa
+        )
+        return JsonResponse({'message': 'Actividad creada con éxito', 'id': nueva_actividad.id}, status=201)
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 @csrf_exempt
