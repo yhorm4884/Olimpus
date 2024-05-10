@@ -67,18 +67,29 @@ def notificacion_update(request, notificacion_id):
         action = data.get('action')
 
         if action == 'aceptar':
-            if "Solicitud de unión a la empresa" in notificacion.actividad.nombre:
+            actividad = notificacion.actividad
+            current_participants_count = actividad.participantes_actividad.count()
+
+            if current_participants_count >= actividad.personas:
+                # Si se alcanza o supera la capacidad máxima, envía un mensaje de error
+                return JsonResponse({'error': 'Debe aumentar la cantidad de personas para poder aceptarlo'}, status=400)
+
+            if "Solicitud de unión a la empresa" in actividad.nombre:
                 print("La actividad es una solicitud de unión a la empresa")
-                empresa = notificacion.actividad.empresa
+                empresa = actividad.empresa
                 empresa.usuarios.add(notificacion.usuario_cliente)
                 empresa.save()
             else:
-                notificacion.actividad.participantes_actividad.add(notificacion.usuario_cliente)
-            notificacion.delete()
+                actividad.participantes_actividad.add(notificacion.usuario_cliente)
+
+            # No eliminamos la notificación aquí, solo cambiamos su estado
+            notificacion.estado = 'aceptada'
+            notificacion.save()
+
             return JsonResponse({'message': 'Solicitud aceptada, usuario añadido a la actividad.'}, status=200)
 
         elif action == 'rechazar':
-            # Crear una nueva notificación para el usuario cliente y eliminar la solicitud actual
+            # Crear una nueva notificación para el usuario cliente
             Notificacion.objects.create(
                 actividad=notificacion.actividad,
                 usuario_cliente=notificacion.usuario_cliente,
@@ -86,7 +97,8 @@ def notificacion_update(request, notificacion_id):
                 estado='rechazada',
                 fecha_creacion=timezone.now()
             )
-            notificacion.delete()
+            notificacion.estado = 'rechazada'
+            notificacion.save()
             return JsonResponse({'message': 'Solicitud rechazada, el usuario ha sido informado.'}, status=200)
 
     except Notificacion.DoesNotExist:

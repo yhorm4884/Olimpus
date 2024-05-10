@@ -36,10 +36,6 @@ def actividades_disponibles(request, user_id):
         # Buscar las empresas relacionadas con el usuario
         empresas_usuario = Empresa.objects.filter(usuarios__id=usuario.id)
         
-
-        
-
-
         print("Usuario", usuario, "Empresa usuario", empresas_usuario)
        
         # Filtrar actividades por las empresas del usuario y que no incluyan al usuario como participante
@@ -107,6 +103,7 @@ def add_actividad(request, user_id):
         print("\n\n\n\n\n\n Datos:", data)
         empresa = Empresa.objects.get(usuarios__id=user_id)  # Asumimos que el usuario pertenece a una empresa
         nueva_actividad = Actividad.objects.create(
+            codigo_actividad = ['codigo_actividad'],
             nombre=data['nombre'],
             hora_entrada=data['hora_entrada'],
             hora_salida=data['hora_salida'],

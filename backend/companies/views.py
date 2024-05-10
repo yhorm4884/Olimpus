@@ -90,10 +90,11 @@ def empresa_detail(request, user_id):
         empresa.direccion = request.POST.get('direccion', empresa.direccion)
         empresa.codigo_empresa = request.POST.get('codigo_empresa', empresa.codigo_empresa)
         empresa.cif = request.POST.get('cif', empresa.cif)
-
+        empresa.photo = request.FILES.get('photo')
         # Manejar la carga de archivos
         if 'photo' in request.FILES:
-            empresa.photo = request.FILES['photo']
+            
+            empresa.photo = request.FILES.get('photo')
 
         # Opcional: Validar CIF si decides habilitar validación nuevamente
         # try:
