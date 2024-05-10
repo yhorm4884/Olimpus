@@ -161,7 +161,7 @@ function Register() {
             <Row className="justify-content-center align-items-center">
                 <Col lg="6">
                     <div className="crop-container px-lg-5 py-lg-5" ref={imageContainerRef}>
-                        <img src="./media/prueba.jpg" alt="Imagen de Gym o Deporte" className="crop-image" />
+                        <img src="https://backend.olimpus.arkania.es/media/prueba.jpg" alt="Imagen de Gym o Deporte" className="crop-image" />
                     </div>
                 </Col>
                 <Col lg="6">
