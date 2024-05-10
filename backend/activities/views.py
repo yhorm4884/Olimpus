@@ -1,6 +1,8 @@
 from rest_framework.decorators import api_view, permission_classes
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import AllowAny
+from django.http import JsonResponse, HttpResponse
+
 from activities.models import Actividad
 from django.http import JsonResponse
 from companies.models import Empresa
@@ -100,19 +102,23 @@ def actividad_detail(request, actividad_id):
 def add_actividad(request, user_id):
     if request.method == 'POST':
         data = json.loads(request.body)
-        print("\n\n\n\n\n\n Datos:", data)
-        empresa = Empresa.objects.get(usuarios__id=user_id)  # Asumimos que el usuario pertenece a una empresa
-        nueva_actividad = Actividad.objects.create(
-            codigo_actividad = ['codigo_actividad'],
-            nombre=data['nombre'],
-            hora_entrada=data['hora_entrada'],
-            hora_salida=data['hora_salida'],
-            personas=data['personas'],
-            lugar=data['lugar'],
-            observaciones=data.get('observaciones', ''),
-            empresa=empresa
-        )
-        return JsonResponse({'message': 'Actividad creada con éxito', 'id': nueva_actividad.id}, status=201)
+        response = HttpResponse("\n\n\n\n\n\n Datos:" + str(data), content_type="text/plain")
+
+        
+        # empresa = Empresa.objects.get(usuarios__id=user_id)  # Asumimos que el usuario pertenece a una empresa
+        # nueva_actividad = Actividad.objects.create(
+        #     codigo_actividad = ['codigo_actividad'],
+        #     nombre=data['nombre'],
+        #     hora_entrada=data['hora_entrada'],
+        #     hora_salida=data['hora_salida'],
+        #     personas=data['personas'],
+        #     lugar=data['lugar'],
+        #     observaciones=data.get('observaciones', ''),
+        #     empresa=empresa
+        # )
+        # return JsonResponse({'message': 'Actividad creada con éxito', 'id': nueva_actividad.id}, status=201)
+        return response
+
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 @csrf_exempt
 def edit_actividad(request, actividad_id):
