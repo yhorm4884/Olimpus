@@ -111,10 +111,6 @@ div.MuiBox-root div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3 hr{
   display: none;
 }
 
-div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3 {
-  margin-left: 0;
-}
-
 h4.MuiTypography-root.MuiTypography-h4.MuiTypography-gutterBottom{
   margin-left: 25px;
 }
@@ -125,6 +121,11 @@ div.MuiBox-root hr.MuiDivider-root.MuiDivider-fullWidth{
 
 div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3 {
   padding-left: 40px;
+  padding-right: 40px;
+}
+
+div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3 div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.MuiGrid-grid-md-4 {
+  padding-left: 10px;
 }
 
 div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3 div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3{
