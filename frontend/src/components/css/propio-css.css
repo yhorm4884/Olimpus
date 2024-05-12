@@ -147,6 +147,19 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
   box-shadow: none;
 }
 
-.MuiTypography-root.MuiTypography-body1 {
+.MuiTypography-root.MuiTypography-body1,
+.MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom{
   font-family: 'Betm-Black' !important;
+}
+
+.rm-calendar-container{
+  background-color: #e6e1cf;
+}
+
+.rw-calendar-transition.rw-calendar-month.rw-nav-view.rw-calendar-grid{
+  background-color: #e6e1cf;
+}
+
+.rw-cell-off-range{
+  color: #fdc41b;
 }
