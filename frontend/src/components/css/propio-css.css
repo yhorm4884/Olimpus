@@ -148,11 +148,15 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
 }
 
 .MuiTypography-root.MuiTypography-body1,
-.MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom{
+.MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom,
+.MuiTypography-root.MuiTypography-h4,
+.MuiTypography-root.MuiTypography-h6,
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary,
+.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButton-colorPrimary{
   font-family: 'Betm-Black' !important;
 }
 
-.rm-calendar-container{
+.rm-calendar-contained{
   background-color: #e6e1cf;
 }
 
@@ -161,5 +165,10 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
 }
 
 .rw-cell-off-range{
-  color: #fdc41b;
+  color: #fdc41b !important;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root div:nth-child(2){
+  width: 78px !important;
+  margin: 40px !important;
 }
