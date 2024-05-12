@@ -141,3 +141,12 @@ p.MuiTypography-root.MuiTypography-body2{
 p.MuiTypography-root.MuiTypography-body2{
   margin-left: 25px;
 }
+
+div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.MuiTypography-root.MuiTypography-body1 {
+  font-family: 'Betm-Black' !important;
+}
