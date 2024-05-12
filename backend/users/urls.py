@@ -17,9 +17,9 @@ urlpatterns = [
     path('prueba', views.prueba, name='prueba'),
     path('deactivate/<int:user_id>/', views.desactivar_usuario, name='desactivar_usuario'),
     path('reactivate/<int:user_id>/<str:token>/', views.reactivar_usuario, name='reactivar_usuario'),
-    
-    # path('chat/session/', views.create_chat_session, name='create-chat-session'),
-    # path('chat/message/', views.post_message, name='post-message'),
+    path('/<int:user_id>/conversaciones/', views.lista_conversaciones, name='lista_conversaciones'),
+    path('conversaciones/<int:id>/', views.detalle_conversacion, name='detalle_conversacion'),
+    path('iniciar-conversacion/', views.iniciar_conversacion, name='iniciar_conversacion'),
 
 ]
 if settings.DEBUG:

@@ -42,3 +42,22 @@ class Usuario(models.Model):
     def __str__(self):
         return self.user.get_full_name() or self.user.username
 
+class Conversacion(models.Model):
+    propietario = models.ForeignKey(Usuario, related_name='conversaciones_propietario', on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Usuario, related_name='conversacion_cliente', on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"Conversación entre {self.propietario.user.username} y {self.cliente.user.username}"
+
+class Mensaje(models.Model):
+    conversacion = models.ForeignKey(Conversacion, related_name='mensajes', on_delete=models.CASCADE)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='mensajes_enviados', on_delete=models.CASCADE)
+    contenido = models.TextField()
+    fecha_hora = models.DateTimeField(auto_now_add=True)
+    leido = models.BooleanField(default=False)  # Campo para marcar si el mensaje ha sido leído
+
+    def __str__(self):
+        return f"Mensaje de {self.sender.username} el {self.fecha_hora.strftime('%Y-%m-%d %H:%M')}"
+
+    class Meta:
+        ordering = ['fecha_hora']

@@ -16,7 +16,7 @@ const UserProfile = () => {
   const { userId } = useParams();
   const [userData, setUserData] = useState(null);
   const [activities, setActivities] = useState([]);
-  const [selectedDateActivities, setSelectedDateActivities] = useState([]);
+  // const [selectedDateActivities, setSelectedDateActivities] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState('');
@@ -53,6 +53,8 @@ const UserProfile = () => {
             photo: response.data.photo || '',
           });
           setActivities(response.data.actividades || []);
+          
+
 
         })
         .catch(error => console.error('Error fetching user data:', error));
@@ -111,9 +113,24 @@ const UserProfile = () => {
     }
   };
 
-  const handleSendMessage = (message) => {
-    console.log(message); // Simula enviar mensaje
-    setMessages([...messages, { content: message, sender: "Usuario", senderId: userId, isCurrentUser: true }]);
+  const toggleChat = async () => {
+    setShowChat(!showChat);
+    if (!showChat && userData.tipo_usuario === 'cliente' && userData.propietarioId) {
+      try {
+        // Intenta cargar mensajes de una conversación existente
+        const response = await axios.get(`/api/conversaciones/entre/${userId}/${userData.propietarioId}`);
+        setMessages(response.data.messages || []);
+      } catch (error) {
+        // Si no hay mensajes/conversación, inicia una nueva
+        console.log('No existe conversación, iniciando una nueva');
+        await axios.post('/api/conversaciones/iniciar', { cliente_id: userId, propietario_id: userData.propietarioId });
+      }
+    }
+  };
+  
+  const determinarPropietarioId = () => {
+    // Retorna el ID del propietario basado en los datos del usuario
+    return userData?.propietarioId || null;
   };
 
   const handleAvatarChange = (event) => {
@@ -128,7 +145,7 @@ const UserProfile = () => {
   const minDate = new Date();
   minDate.setHours(0, 0, 0, 0); // Remover las horas para comparar solo fechas
 
-  
+
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -273,10 +290,10 @@ const UserProfile = () => {
               <Calendar
                 value={selectedDate}
                 onChange={handleDateChange}
-                // min={minDate}
-                // dayPropGetter={(date) => ({
-                  //className: date < minDate ? 'disabled-date' : '',
-                //})}
+              // min={minDate}
+              // dayPropGetter={(date) => ({
+              //className: date < minDate ? 'disabled-date' : '',
+              //})}
               />
             </Box>
             <Typography variant="h6" gutterBottom>
@@ -289,11 +306,20 @@ const UserProfile = () => {
         </Grid>
 
       </Paper>
-      <Fab color="primary" aria-label="chat" onClick={() => setShowChat(true)} sx={{ position: 'fixed', bottom: 16, right: 16 }}>
+      {userData.tipo_usuario === 'cliente' && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={startConversation}
+          disabled={!chatPartnerId}
+        >
+          Iniciar Conversación con Propietario
+        </Button>
+      )}
+      <Fab color="primary" aria-label="chat" onClick={toggleChat} sx={{ position: 'fixed', bottom: 16, right: 16 }}>
         <ChatBubbleOutlineIcon />
       </Fab>
-      <ChatModal open={showChat} onClose={() => setShowChat(false)} messages={messages} onSendMessage={handleSendMessage} userId={userId} />
-
+      <ChatModal open={showChat} onClose={() => setShowChat(false)} messages={messages} userId={userId} propietarioId={determinarPropietarioId()} />
     </Box>
   );
 };
@@ -320,24 +346,24 @@ const ChatMessage = ({ message, userId }) => {
   );
 };
 
-// Componente de modal de chat
-const ChatModal = ({ open, onClose, messages, onSendMessage, userId }) => {
+const ChatModal = ({ open, onClose, messages, userId, propietarioId }) => {
   const [input, setInput] = useState('');
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (input.trim()) {
-      console.log(input);
-      onSendMessage(input);
+      const response = await axios.post('/api/mensajes/enviar', {
+        contenido: input,
+        sender_id: userId,
+        conversacion_id: propietarioId // Asegúrate de que este ID sea correcto para la conversación
+      });
+      setMessages([...messages, response.data]);
       setInput('');
     }
   };
 
   return (
-    <Modal open={open} onClose={onClose} aria-labelledby="chat-modal-title">
-      <Box sx={{
-        position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-        width: '90%', bgcolor: 'background.paper', boxShadow: 24, p: 4, maxHeight: '80%', overflow: 'auto'
-      }}>
+    <Modal open={open} onClose={onClose}>
+      <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '90%', bgcolor: 'background.paper', boxShadow: 24, p: 4, maxHeight: '80%', overflow: 'auto' }}>
         <Typography id="chat-modal-title" variant="h6" color="primary" sx={{ mb: 2 }}>
           Chat
         </Typography>

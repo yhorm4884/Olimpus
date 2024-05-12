@@ -5,6 +5,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django.contrib.auth import authenticate, login, logout
 from django.utils.encoding import force_bytes,force_str
+from users.models import Usuario, Conversacion, Mensaje
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
@@ -12,13 +13,15 @@ from django.core.exceptions import ValidationError
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from django.core.serializers import serialize
 from django.middleware.csrf import get_token
 from django.contrib.auth.models import User
 from django.utils.html import strip_tags
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from companies.models import Empresa
-from users.models import Usuario
+
+
 from django.conf import settings
 from io import BytesIO
 import qrcode
@@ -303,22 +306,49 @@ def reactivar_usuario(request, user_id, token):
     else:
         return JsonResponse({'error': _('El enlace de reactivación no es válido o ha expirado.')}, status=400)
     
+def lista_conversaciones(request, user_id):
+    if request.method == 'GET':
+        usuario = get_object_or_404(Usuario, id=user_id)
+        if usuario.tipo_usuario == 'propietario':
+            conversaciones = Conversacion.objects.filter(propietario=usuario)
+        else:
+            conversaciones = Conversacion.objects.filter(cliente=usuario)
+        data = serialize('json', conversaciones, use_natural_foreign_keys=True, fields=('id', 'propietario', 'cliente'))
+        return JsonResponse(data, safe=False)
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
+    
+@csrf_exempt  # Considerar el manejo adecuado de CSRF si es una aplicación en producción
+def detalle_conversacion(request, id):
+    if request.method == 'GET':
+        conversacion = get_object_or_404(Conversacion, id=id)
+        mensajes = Mensaje.objects.filter(conversacion=conversacion).order_by('fecha_hora')
+        data = serialize('json', mensajes, use_natural_foreign_keys=True, fields=('sender', 'contenido', 'fecha_hora', 'leido'))
+        return JsonResponse(data, safe=False)
 
-# @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-# def create_chat_session(request):
-#     user = request.user
-#     other_user_id = request.data.get('other_user_id')
-#     admin_user = User.objects.get(pk=other_user_id)
-#     chat_session, created = ChatSession.objects.get_or_create(admin=admin_user, user=user)
-#     return JsonResponse({'session_id': chat_session.id}, status=201)
+    elif request.method == 'POST':
+        contenido = request.POST.get('contenido')
+        mensaje = Mensaje.objects.create(
+            conversacion=get_object_or_404(Conversacion, id=id),
+            sender=request.user,
+            contenido=contenido,
+            leido=False
+        )
+        return JsonResponse({'id': mensaje.id, 'contenido': mensaje.contenido, 'sender': mensaje.sender.username, 'fecha_hora': mensaje.fecha_hora.isoformat()}, status=201)
+    
+def iniciar_conversacion(request):
+    usuario = request.user
+    # Asumiendo que el ID del propietario está enviado en el POST request (ajustar según la lógica de negocio)
+    propietario_id = request.POST.get('propietario_id')
+    propietario = get_object_or_404(Usuario, id=propietario_id, tipo_usuario='propietario')
 
-# @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-# def post_message(request):
-#     user = request.user
-#     session_id = request.data.get('session_id')
-#     content = request.data.get('content')
-#     chat_session = ChatSession.objects.get(pk=session_id)
-#     message = Message.objects.create(session=chat_session, sender=user, content=content)
-#     return JsonResponse(MessageSerializer(message).data, safe=False, status=201)
+    # Verificar si ya existe una conversación entre el cliente y el propietario
+    conversacion, created = Conversacion.objects.get_or_create(
+        propietario=propietario,
+        cliente=usuario.usuario
+    )
+
+    if created:
+        return JsonResponse({'message': 'Conversación iniciada.', 'id': conversacion.id}, status=201)
+    else:
+        return JsonResponse({'message': 'Conversación ya existe.', 'id': conversacion.id}, status=200)
