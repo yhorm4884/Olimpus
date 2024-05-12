@@ -124,11 +124,19 @@ div.MuiBox-root hr.MuiDivider-root.MuiDivider-fullWidth{
 }
 
 div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3 {
-  width: calc(98% + 24px);
+  padding-left: 40px;
+}
+
+div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3 div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3{
+  padding-right: 0;
 }
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary,
 div.MuiTypography-root.MuiTypography-h5.MuiTypography-gutterBottom,
 p.MuiTypography-root.MuiTypography-body2{
   font-family: 'Betm-Black' !important;
+}
+
+p.MuiTypography-root.MuiTypography-body2{
+  margin-left: 25px;
 }
