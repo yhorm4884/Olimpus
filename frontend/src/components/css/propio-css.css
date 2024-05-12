@@ -152,7 +152,8 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
 .MuiTypography-root.MuiTypography-h4,
 .MuiTypography-root.MuiTypography-h6,
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary,
-.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButton-colorPrimary{
+.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButton-colorPrimary,
+.MuiTypography-root.MuiTypography-subtitle1 {
   font-family: 'Betm-Black' !important;
 }
 
@@ -169,6 +170,7 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
 }
 
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root div:nth-child(2){
-  width: 78px !important;
-  margin: 40px !important;
+  margin: auto !important;
+  width: 240px !important;
+  border-radius: 20px !important;
 }
