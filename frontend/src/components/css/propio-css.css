@@ -157,8 +157,9 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
   font-family: 'Betm-Black' !important;
 }
 
-.rm-calendar-contained{
-  background-color: #e6e1cf;
+.rm-calendar-contained,
+.rw-calendar-header{
+  background-color: #e6e1cf !important;
 }
 
 .rw-calendar-transition.rw-calendar-month.rw-nav-view.rw-calendar-grid{
@@ -169,7 +170,7 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
   color: #fdc41b !important;
 }
 
-.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root div:nth-child(2){
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root div:nth-child(3){
   margin: auto !important;
   width: 240px !important;
   border-radius: 20px !important;
