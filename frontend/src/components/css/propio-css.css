@@ -127,6 +127,8 @@ div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-3 {
   width: calc(98% + 24px);
 }
 
-button{
-  font-family: 'Betm-Black';
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary,
+div.MuiTypography-root.MuiTypography-h5.MuiTypography-gutterBottom,
+p.MuiTypography-root.MuiTypography-body2{
+  font-family: 'Betm-Black' !important;
 }
