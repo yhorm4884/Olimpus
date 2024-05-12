@@ -439,6 +439,7 @@
   h5,
   .h5 {
     font-size: 1.25rem;
+    font-family: 'Betm-Black' !important;
   }
   
   h6,
@@ -476,10 +477,13 @@
   }
   
   hr {
+    border-radius: 30px;
+    background-color: #fec31f;
     margin-top: 2rem;
     margin-bottom: 2rem;
     border: 0;
     border-top: 0.0625rem solid rgba(0, 0, 0, 0.1);
+   padding: 2px;
   }
   
   small,
