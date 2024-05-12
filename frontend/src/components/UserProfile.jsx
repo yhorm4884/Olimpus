@@ -141,7 +141,7 @@ const UserProfile = () => {
   const minDate = new Date();
   minDate.setHours(0, 0, 0, 0); // Remover las horas para comparar solo fechas
 
-  
+
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -286,10 +286,10 @@ const UserProfile = () => {
               <Calendar
                 value={selectedDate}
                 onChange={handleDateChange}
-                // min={minDate}
-                // dayPropGetter={(date) => ({
-                  //className: date < minDate ? 'disabled-date' : '',
-                //})}
+              // min={minDate}
+              // dayPropGetter={(date) => ({
+              //className: date < minDate ? 'disabled-date' : '',
+              //})}
               />
             </Box>
             <Typography variant="h6" gutterBottom>
@@ -305,21 +305,27 @@ const UserProfile = () => {
       <Fab color="primary" aria-label="chat" onClick={toggleChat} sx={{ position: 'fixed', bottom: 16, right: 16 }}>
         <ChatBubbleOutlineIcon />
       </Fab>
-      <ChatModal open={showChat} onClose={() => setShowChat(false)} messages={messages} userId={userId} />
+      <ChatModal
+        open={showChat}
+        onClose={() => setShowChat(false)}
+        messages={messages}
+        setMessages={setMessages} // Asegúrate de pasar esta función
+        userId={userId}
+      />
     </Box>
   );
 };
 
-const ChatModal = ({ open, onClose, messages, userId }) => {
+const ChatModal = ({ open, onClose, messages, setMessages, userId }) => {
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([]);
+
   const handleSend = async () => {
     if (input.trim()) {
       try {
         const response = await axios.post(`https://backend.olimpus.arkania.es/usuarios/${userId}/mensajes/enviar`, {
           contenido: input
         });
-        setMessages([...messages, response.data]);
+        setMessages([...messages, response.data]); // Utiliza setMessages aquí para actualizar el estado
         setInput('');
       } catch (error) {
         console.error('Error al enviar mensaje:', error);
