@@ -16,14 +16,14 @@ const UserProfile = () => {
   const { userId } = useParams();
   const [userData, setUserData] = useState(null);
   const [activities, setActivities] = useState([]);
-  // const [selectedDateActivities, setSelectedDateActivities] = useState([]);
+  const [selectedDateActivities, setSelectedDateActivities] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isEditing, setIsEditing] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [showChat, setShowChat] = useState(false);
 
 
   const navigate = useNavigate();
@@ -53,8 +53,6 @@ const UserProfile = () => {
             photo: response.data.photo || '',
           });
           setActivities(response.data.actividades || []);
-          
-
 
         })
         .catch(error => console.error('Error fetching user data:', error));
@@ -115,22 +113,20 @@ const UserProfile = () => {
 
   const toggleChat = async () => {
     setShowChat(!showChat);
-    if (!showChat && userData.tipo_usuario === 'cliente' && userData.propietarioId) {
+    if (!showChat && userData.tipo_usuario === 'cliente') {
       try {
-        // Intenta cargar mensajes de una conversación existente
-        const response = await axios.get(`/api/conversaciones/entre/${userId}/${userData.propietarioId}`);
-        setMessages(response.data.messages || []);
+        const response = await axios.get(`https://backend.olimpus.arkania.es/usuarios/${userId}/conversaciones/`);
+        if (response.data.length > 0) {
+          setMessages(response.data[0].messages);
+        } else {
+          console.log('No existe conversación, iniciando una nueva');
+          await axios.post(`https://backend.olimpus.arkania.es/usuarios/iniciar-conversacion/`, { cliente_id: userId });
+          setMessages([]);
+        }
       } catch (error) {
-        // Si no hay mensajes/conversación, inicia una nueva
-        console.log('No existe conversación, iniciando una nueva');
-        await axios.post('/api/conversaciones/iniciar', { cliente_id: userId, propietario_id: userData.propietarioId });
+        console.error('Error al verificar o iniciar la conversación:', error);
       }
     }
-  };
-  
-  const determinarPropietarioId = () => {
-    // Retorna el ID del propietario basado en los datos del usuario
-    return userData?.propietarioId || null;
   };
 
   const handleAvatarChange = (event) => {
@@ -145,7 +141,7 @@ const UserProfile = () => {
   const minDate = new Date();
   minDate.setHours(0, 0, 0, 0); // Remover las horas para comparar solo fechas
 
-
+  
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -290,10 +286,10 @@ const UserProfile = () => {
               <Calendar
                 value={selectedDate}
                 onChange={handleDateChange}
-              // min={minDate}
-              // dayPropGetter={(date) => ({
-              //className: date < minDate ? 'disabled-date' : '',
-              //})}
+                // min={minDate}
+                // dayPropGetter={(date) => ({
+                  //className: date < minDate ? 'disabled-date' : '',
+                //})}
               />
             </Box>
             <Typography variant="h6" gutterBottom>
@@ -306,69 +302,57 @@ const UserProfile = () => {
         </Grid>
 
       </Paper>
-      {userData.tipo_usuario === 'cliente' && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={startConversation}
-          disabled={!chatPartnerId}
-        >
-          Iniciar Conversación con Propietario
-        </Button>
-      )}
       <Fab color="primary" aria-label="chat" onClick={toggleChat} sx={{ position: 'fixed', bottom: 16, right: 16 }}>
         <ChatBubbleOutlineIcon />
       </Fab>
-      <ChatModal open={showChat} onClose={() => setShowChat(false)} messages={messages} userId={userId} propietarioId={determinarPropietarioId()} />
+      <ChatModal open={showChat} onClose={() => setShowChat(false)} messages={messages} userId={userId} />
     </Box>
   );
 };
 
-const ChatMessage = ({ message, userId }) => {
-  const isCurrentUser = message.senderId === userId;
-  return (
-    <Box sx={{
-      display: 'flex',
-      justifyContent: isCurrentUser ? 'flex-end' : 'flex-start',
-      mb: 2,
-    }}>
-      <Paper sx={{
-        bgcolor: isCurrentUser ? 'primary.main' : 'grey.200',
-        color: isCurrentUser ? 'common.white' : 'text.primary',
-        p: 2,
-        maxWidth: '70%',
-        wordBreak: 'break-word',
-      }}>
-        <Typography variant="caption">{message.sender}</Typography>
-        <Typography variant="body1">{message.content}</Typography>
-      </Paper>
-    </Box>
-  );
-};
-
-const ChatModal = ({ open, onClose, messages, userId, propietarioId }) => {
+const ChatModal = ({ open, onClose, messages, userId }) => {
   const [input, setInput] = useState('');
 
   const handleSend = async () => {
     if (input.trim()) {
-      const response = await axios.post('/api/mensajes/enviar', {
-        contenido: input,
-        sender_id: userId,
-        conversacion_id: propietarioId // Asegúrate de que este ID sea correcto para la conversación
-      });
-      setMessages([...messages, response.data]);
-      setInput('');
+      try {
+        const response = await axios.post(`https://backend.olimpus.arkania.es/usuarios/${userId}/mensajes/enviar`, {
+          contenido: input
+        });
+        setMessages([...messages, response.data]);
+        setInput('');
+      } catch (error) {
+        console.error('Error al enviar mensaje:', error);
+      }
     }
   };
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '90%', bgcolor: 'background.paper', boxShadow: 24, p: 4, maxHeight: '80%', overflow: 'auto' }}>
+      <Box sx={{
+        position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+        width: '90%', bgcolor: 'background.paper', boxShadow: 24, p: 4, maxHeight: '80%', overflow: 'auto'
+      }}>
         <Typography id="chat-modal-title" variant="h6" color="primary" sx={{ mb: 2 }}>
           Chat
         </Typography>
         {messages.map((msg, index) => (
-          <ChatMessage key={index} message={msg} isCurrentUser={msg.senderId === userId} />
+          <Box sx={{
+            display: 'flex',
+            justifyContent: msg.senderId === userId ? 'flex-end' : 'flex-start',
+            mb: 2,
+          }}>
+            <Paper sx={{
+              bgcolor: msg.senderId === userId ? 'primary.main' : 'grey.200',
+              color: msg.senderId === userId ? 'common.white' : 'text.primary',
+              p: 2,
+              maxWidth: '70%',
+              wordBreak: 'break-word',
+            }}>
+              <Typography variant="caption">{msg.sender}</Typography>
+              <Typography variant="body1">{msg.content}</Typography>
+            </Paper>
+          </Box>
         ))}
         <Box display="flex" alignItems="center" mt={2}>
           <InputBase
