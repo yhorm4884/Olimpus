@@ -312,7 +312,7 @@ const UserProfile = () => {
 
 const ChatModal = ({ open, onClose, messages, userId }) => {
   const [input, setInput] = useState('');
-
+  const [messages, setMessages] = useState([]);
   const handleSend = async () => {
     if (input.trim()) {
       try {
