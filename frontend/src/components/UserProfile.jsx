@@ -161,15 +161,17 @@ const UserProfile = () => {
   const handleDateChange = async (date) => {
     setSelectedDate(date);
     try {
-      const formattedDate = date.toISOString().split('T')[0]; // Formatear la fecha en formato 'YYYY-MM-DD'
+      const utcDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)); // Convertir la fecha a UTC
+      const formattedDate = utcDate.toISOString().split('T')[0]; // Formatear la fecha en formato 'YYYY-MM-DD'
       const response = await axios.get(`https://backend.olimpus.arkania.es/activities/misactividades-date/${userId}/${formattedDate}/`);
-      console.log("fecha----",response)
+      console.log("fecha----", response);
       const activities = response.data.actividades;
       setSelectedDateActivities(activities);
     } catch (error) {
       console.error('Error fetching activities:', error);
     }
   };
+  
   
 
   const activityCards = selectedDateActivities.map((activity, index) => (

@@ -47,10 +47,11 @@ def mostrarActividadesFecha(request, user_id, date):
         return JsonResponse({'error': 'Formato de fecha no válido'}, status=400)
 
     # Filtrar las actividades por la empresa del usuario y la fecha seleccionada
+    # Utilizamos la función __date para comparar solo las fechas sin tener en cuenta la hora
     actividades_participadas = Actividad.objects.filter(
         empresa__in=empresas_usuario,
         participantes_actividad=usuario,
-        hora_entrada=fecha_seleccionada
+        hora_entrada__date=fecha_seleccionada
     )
 
     actividades = [{
