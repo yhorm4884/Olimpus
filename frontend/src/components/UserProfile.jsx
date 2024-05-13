@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Calendar from 'react-widgets/Calendar';
-import { Modal, InputBase, Paper, Typography, Avatar, Grid, Box, TextField, Button, Card, CardContent, IconButton, Fab, Badge } from '@mui/material';
-import { Edit, Notifications, Send, Block } from '@mui/icons-material';
+import { Modal, InputBase, Paper, Typography, Avatar, Grid, Box, TextField, Button, Card, CardContent, IconButton, Fab, Badge, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { Edit, Notifications, Send, Block, Close } from '@mui/icons-material';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import 'react-widgets/styles.css';
 import { Alert } from 'reactstrap';
@@ -26,6 +26,7 @@ const UserProfile = () => {
   const [messages, setMessages] = useState([]);
   const [notificationCount, setNotificationCount] = useState(0);
   const [notifications, setNotifications] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
 
 
 
