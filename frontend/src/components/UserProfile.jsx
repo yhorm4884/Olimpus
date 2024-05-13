@@ -65,9 +65,15 @@ const UserProfile = () => {
   }, [userId]);
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get(`https://backend.olimpus.arkania.es/api/notifications/count/${userId}/`);
-      const { count, notifications } = response.data;
+      const response_count = await axios.get(`https://backend.olimpus.arkania.es/notifications/count/${userId}/`);
+      
+      const count = response_count.data.notificaciones;
+      
       setNotificationCount(count);
+
+      const response_list = await axios.get(`https://backend.olimpus.arkania.es/notifications/client-list/${userId}/`);
+      
+      const notifications = response_list.data;
       setNotifications(notifications);
     } catch (error) {
       console.error('Error fetching notifications:', error);
@@ -152,9 +158,19 @@ const UserProfile = () => {
 
   
 
-  const handleDateChange = (date) => {
+  const handleDateChange = async (date) => {
     setSelectedDate(date);
+    try {
+      const formattedDate = date.toISOString().split('T')[0]; // Formatear la fecha en formato 'YYYY-MM-DD'
+      const response = await axios.get(`https://backend.olimpus.arkania.es/activities/misactividades-date/${userId}/${formattedDate}/`);
+      console.log("fecha----",response)
+      const activities = response.data.actividades;
+      setSelectedDateActivities(activities);
+    } catch (error) {
+      console.error('Error fetching activities:', error);
+    }
   };
+  
 
   const activityCards = selectedDateActivities.map((activity, index) => (
     <Card key={index} sx={{ minWidth: 275, mb: 2 }}>
@@ -403,7 +419,11 @@ const NotificationDialog = ({ open, onClose, notifications }) => {
                 <ListItemText
                   primary={notification.actividad_nombre}
                   secondary={notification.fecha_creacion}
+                  
                 />
+                <Typography variant="body2" >
+                  Estado: {notification.estado}
+                </Typography>
               </ListItem>
               <Divider />
             </React.Fragment>
@@ -413,4 +433,5 @@ const NotificationDialog = ({ open, onClose, notifications }) => {
     </Modal>
   );
 };
+
 export default UserProfile;

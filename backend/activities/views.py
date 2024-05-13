@@ -7,6 +7,7 @@ from activities.models import Actividad
 from django.http import JsonResponse
 from companies.models import Empresa
 from users.models import Usuario
+from datetime import datetime
 import json
 
 @csrf_exempt
@@ -27,6 +28,40 @@ def mostrarActividades(request, user_id):
         'lugar': actividad.lugar,
         'observaciones': actividad.observaciones,
         'empresa': actividad.empresa.nombre  # Asumiendo que quieres mostrar el nombre de la empresa
+    } for actividad in actividades_participadas]
+
+    return JsonResponse({'actividades': actividades})
+
+@csrf_exempt
+def mostrarActividadesFecha(request, user_id, date):
+    try:
+        usuario = Usuario.objects.get(pk=user_id)
+        empresas_usuario = Empresa.objects.filter(usuarios__id=usuario.id)
+    except Usuario.DoesNotExist:
+        return JsonResponse({'error': 'Usuario no encontrado'}, status=404)
+
+    # Convertir la cadena de fecha en un objeto de fecha
+    try:
+        fecha_seleccionada = datetime.strptime(date, '%Y-%m-%d').date()
+    except ValueError:
+        return JsonResponse({'error': 'Formato de fecha no válido'}, status=400)
+
+    # Filtrar las actividades por la empresa del usuario y la fecha seleccionada
+    actividades_participadas = Actividad.objects.filter(
+        empresa__in=empresas_usuario,
+        participantes_actividad=usuario,
+        fecha=fecha_seleccionada
+    )
+
+    actividades = [{
+        'codigo_actividad': actividad.codigo_actividad,
+        'nombre': actividad.nombre,
+        'hora_entrada': actividad.hora_entrada.isoformat(),
+        'hora_salida': actividad.hora_salida.isoformat(),
+        'personas': actividad.personas,
+        'lugar': actividad.lugar,
+        'observaciones': actividad.observaciones,
+        'empresa': actividad.empresa.nombre
     } for actividad in actividades_participadas]
 
     return JsonResponse({'actividades': actividades})
