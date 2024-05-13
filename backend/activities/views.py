@@ -50,7 +50,7 @@ def mostrarActividadesFecha(request, user_id, date):
     actividades_participadas = Actividad.objects.filter(
         empresa__in=empresas_usuario,
         participantes_actividad=usuario,
-        fecha=fecha_seleccionada
+        hora_entrada=fecha_seleccionada
     )
 
     actividades = [{
