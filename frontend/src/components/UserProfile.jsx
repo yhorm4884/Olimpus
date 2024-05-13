@@ -24,6 +24,9 @@ const UserProfile = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [notificationCount, setNotificationCount] = useState(0);
+  const [notifications, setNotifications] = useState([]);
+
 
 
   const navigate = useNavigate();
@@ -56,9 +59,27 @@ const UserProfile = () => {
 
         })
         .catch(error => console.error('Error fetching user data:', error));
+      fetchNotifications();
     }
   }, [userId]);
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get(`https://backend.olimpus.arkania.es/api/notifications/count/${userId}/`);
+      const { count, notifications } = response.data;
+      setNotificationCount(count);
+      setNotifications(notifications);
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  };
 
+  const handleNotificationsClick = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -249,14 +270,16 @@ const UserProfile = () => {
                     <IconButton color="primary" onClick={handleEditClick}>
                       <Edit />
                     </IconButton>
-                    <IconButton color="primary">
-                      <Badge color="secondary" badgeContent={1000} max={999}>
+                    <IconButton color="primary" onClick={handleNotificationsClick}>
+                      <Badge color="secondary" badgeContent={notificationCount} max={999}>
                         <Notifications />
                       </Badge>
                     </IconButton>
                     <IconButton color="primary" onClick={handleDisableUser}>
                       <Block />
                     </IconButton>
+                    <NotificationDialog open={openDialog} onClose={handleCloseDialog} notifications={notifications} />
+    
                   </Box>
                   {showAlert && (
                     <Alert color={error ? 'danger' : 'success'} style={{ margin: '16px 0' }}>
@@ -357,6 +380,34 @@ const ChatModal = ({ open, onClose, messages, onSendMessage, userId }) => {
             <Send />
           </IconButton>
         </Box>
+      </Box>
+    </Modal>
+  );
+};
+const NotificationDialog = ({ open, onClose, notifications }) => {
+  return (
+    <Modal open={open} onClose={onClose} aria-labelledby="notification-dialog-title">
+      <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper', boxShadow: 24, p: 2 }}>
+        <Typography variant="h6" id="notification-dialog-title" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          Notificaciones
+          <IconButton onClick={onClose}>
+            <Close />
+          </IconButton>
+        </Typography>
+        <Divider />
+        <List>
+          {notifications.map(notification => (
+            <React.Fragment key={notification.id}>
+              <ListItem>
+                <ListItemText
+                  primary={notification.actividad_nombre}
+                  secondary={notification.fecha_creacion}
+                />
+              </ListItem>
+              <Divider />
+            </React.Fragment>
+          ))}
+        </List>
       </Box>
     </Modal>
   );

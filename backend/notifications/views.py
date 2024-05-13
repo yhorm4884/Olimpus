@@ -106,3 +106,32 @@ def notificacion_update(request, notificacion_id):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+
+@csrf_exempt
+def notificaciones_count(request, user_id):
+    if request.method == 'GET':
+        usuario = Usuario.objects.get(id=user_id)
+        notificaciones = Notificacion.objects.filter(usuario_cliente=usuario).count()
+        
+        return JsonResponse({"notificaciones": str(notificaciones)}, safe=False)
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+
+@csrf_exempt
+def notificaciones_client_list(request, user_id):
+    if request.method == 'GET':
+        usuario = Usuario.objects.get(id=user_id)
+        notificaciones = Notificacion.objects.filter(usuario_cliente=usuario)
+        data = [
+            {
+                'id': n.id,
+                'actividad_nombre': n.actividad.nombre,
+                'usuario_cliente': n.usuario_cliente.user.username,
+                'estado': n.estado,
+                'fecha_creacion': n.fecha_creacion.strftime('%Y-%m-%d %H:%M')
+            } for n in notificaciones
+        ]
+        return JsonResponse(data, safe=False)
+    else:
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
