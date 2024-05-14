@@ -213,3 +213,34 @@ input{
   margin: 10px;
   margin-top: 20px;
 }
+
+body *{
+  font-family: 'Betm-Black' !important;
+}
+
+ul.MuiList-root.MuiList-padding {
+  background-color: transparent;
+}
+
+ul.MuiList-root.MuiList-padding li{
+  background-color: #e6e1cf;
+}
+
+.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8.MuiGrid-grid-lg-9 div.MuiBox-root{
+  background-color: transparent;
+}
+
+.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8.MuiGrid-grid-lg-9 div.MuiBox-root .MuiFormControl-root.MuiFormControl-marginNormal.MuiFormControl-fullWidth.MuiTextField-root{
+  background-color: #e6e1cf;
+  border-radius: 5px;
+}
+
+.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8.MuiGrid-grid-lg-9 div.MuiBox-root ul.MuiList-root.MuiList-padding{
+  background-color: transparent;
+}
+
+.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8.MuiGrid-grid-lg-9 div.MuiBox-root ul.MuiList-root.MuiList-padding li div{
+  background-color: #e6e1cf;
+  border-radius: 15px;
+  margin: 5px;
+}
