@@ -17,14 +17,9 @@ const CompanyEdit = ({ userId }) => {
 
   const handleInputChange = (e) => {
     const { name, value, checked, type } = e.target;
-    console.log(`Type of input: ${type}, Name: ${name}, Value: ${value}, Checked: ${checked}`); // Logging input changes
     if (type === 'file') {
       const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCompany(prev => ({ ...prev, photo: reader.result }));
-      };
-      reader.readAsDataURL(file);
+      setCompany(prev => ({ ...prev, photo: file }));
     } else if (type === 'checkbox') {
       setCompany(prev => ({ ...prev, [name]: checked }));
     } else {
@@ -32,21 +27,27 @@ const CompanyEdit = ({ userId }) => {
     }
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('nombre', company.nombre);
-    formData.append('estado', company.estado ? 'true' : 'false'); // Ensure proper string value for boolean
+    formData.append('estado', company.estado ? 'true' : 'false');
     formData.append('direccion', company.direccion);
     formData.append('descripcion', company.descripcion);
-    formData.append('photo', company.photo);
+    if (company.photo) {
+      formData.append('photo', company.photo);
+    }
 
-    console.log("Submitting the following data:", Object.fromEntries(formData)); // Log FormData content
-
-    axios.post(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData)
+    axios.post(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .then(() => alert('Empresa actualizada con éxito'))
       .catch(err => alert('Error al actualizar la empresa: ' + err.message));
   };
+
 
   return (
     <Paper style={{ padding: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
