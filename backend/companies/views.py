@@ -85,8 +85,9 @@ def empresa_detail(request, user_id):
         empresa.direccion = request.POST.get('direccion', empresa.direccion)
         empresa.descripcion = request.POST.get('descripcion', empresa.descripcion)
         if 'estado' in request.POST:
-            estado_str = request.POST.get('estado').lower()
+            estado_str = request.POST.get('estado').lower()  
             empresa.estado = estado_str == 'true'  
+ 
 
         
         if 'photo' in request.FILES:

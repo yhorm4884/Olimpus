@@ -10,8 +10,13 @@ const CompanyEdit = ({ userId }) => {
   useEffect(() => {
     axios.get(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`)
       .then(response => {
-        setCompany(response.data);
-        console.log("Initial data from backend:", response.data); // Logging initial data from backend
+        const data = response.data;
+        // Añadir el dominio al principio de la URL de la imagen si existe
+        if (data.photo) {
+          data.photo = `https://backend.olimpus.arkania.es${data.photo}`;
+        }
+        setCompany(data);
+        console.log("Initial data from backend:", data);
       });
   }, [userId]);
 
@@ -21,11 +26,13 @@ const CompanyEdit = ({ userId }) => {
       const file = e.target.files[0];
       setCompany(prev => ({ ...prev, photo: file }));
     } else if (type === 'checkbox') {
-      setCompany(prev => ({ ...prev, [name]: checked }));
+      setCompany(prev => ({ ...prev, [name]: checked }));  // Asegúrate que esto es lo que pasa
     } else {
       setCompany(prev => ({ ...prev, [name]: value }));
     }
+    console.log(`Updated ${name}:`, type === 'checkbox' ? checked : value);
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,17 +42,18 @@ const CompanyEdit = ({ userId }) => {
     formData.append('direccion', company.direccion);
     formData.append('descripcion', company.descripcion);
     if (company.photo instanceof File) {
-        formData.append('photo', company.photo);
+      formData.append('photo', company.photo);
     }
 
     axios.post(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     })
-    .then(() => alert('Empresa actualizada con éxito'))
-    .catch(err => alert('Error al actualizar la empresa: ' + err.message));
-};
+      .then(() => alert('Empresa actualizada con éxito'))
+      .catch(err => alert('Error al actualizar la empresa: ' + err.message));
+  };
+
 
 
 
