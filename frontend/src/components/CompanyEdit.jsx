@@ -5,12 +5,13 @@ import { Save as SaveIcon, PhotoCamera as PhotoCameraIcon } from '@mui/icons-mat
 
 const CompanyEdit = ({ userId }) => {
   const [company, setCompany] = useState({ nombre: '', estado: true, photo: '', ubicacion: '', descripcion: '' });
+  const fileInputRef = useRef(null);  // Define the ref here
 
   useEffect(() => {
     axios.get(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`)
       .then(response => {
         setCompany(response.data);
-        console.log(response.data)
+        console.log(response.data);
       });
   }, [userId]);
 
@@ -28,13 +29,17 @@ const CompanyEdit = ({ userId }) => {
     }
   };
 
+  const handleAvatarClick = () => {
+    fileInputRef.current.click();  // Programmatically click the file input when avatar is clicked
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('nombre', company.nombre);
     formData.append('estado', company.estado);
     formData.append('ubicacion', company.ubicacion);
-    formData.append('descripcion', company.descripcion); // Add descripcion to the formData
+    formData.append('descripcion', company.descripcion);
     formData.append('photo', company.photo);
     axios.post(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData)
       .then(() => alert('Empresa actualizada con éxito'))
@@ -45,7 +50,7 @@ const CompanyEdit = ({ userId }) => {
     <Paper style={{ padding: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="h6" style={{ alignSelf: 'start' }}>Editar Empresa</Typography>
       <IconButton onClick={handleAvatarClick} style={{ margin: '20px' }}>
-        <Avatar src={company.photo} style={{ width: 90, height  90 }} />
+        <Avatar src={company.photo} style={{ width: 90, height: 90 }} />
         <PhotoCameraIcon style={{ position: 'absolute', color: 'rgba(255, 255, 255, 0.7)' }} />
       </IconButton>
       <input
@@ -113,4 +118,3 @@ const CompanyEdit = ({ userId }) => {
 };
 
 export default CompanyEdit;
-
