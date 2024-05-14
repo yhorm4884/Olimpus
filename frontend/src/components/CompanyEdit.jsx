@@ -38,7 +38,7 @@ const CompanyEdit = ({ userId }) => {
     const formData = new FormData();
     formData.append('nombre', company.nombre);
     formData.append('estado', company.estado);
-    formData.append('ubicacion', company.ubicacion);
+    formData.append('ubicacion', company.direccion);
     formData.append('descripcion', company.descripcion);
     formData.append('photo', company.photo);
     axios.post(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData)

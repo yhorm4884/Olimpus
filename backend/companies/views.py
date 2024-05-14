@@ -12,6 +12,12 @@ import random
 import string
 from django.http import JsonResponse
 import stripe
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from .models import Empresa
+from users.models import Usuario
+from django.core.exceptions import ValidationError
 
 stripe.api_key = "sk_test_51PBBogCeiEB5qy1OvG85xg5TB7VS8IdY9SliIhcAsELju1EYV2X2mzuzbUcVw4wOhiaQPV3a8D7okSboJxhwY0A700wh486jwP"
 
@@ -53,12 +59,6 @@ def register_empresa_view(request):
     else:
         return JsonResponse({'error': 'Solicitud inválida'}, status=405)
 
-from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
-from .models import Empresa
-from users.models import Usuario
-from django.core.exceptions import ValidationError
 
 @csrf_exempt
 def empresa_detail(request, user_id):
