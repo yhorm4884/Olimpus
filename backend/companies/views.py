@@ -62,49 +62,48 @@ def register_empresa_view(request):
 
 @csrf_exempt
 def empresa_detail(request, user_id):
+    usuario = get_object_or_404(Usuario, id=user_id, tipo_usuario='propietario')
+    
     if request.method == 'GET':
-        try:
-            usuario = get_object_or_404(Usuario, id=user_id, tipo_usuario='propietario')
-            empresa = get_object_or_404(Empresa, usuarios=usuario)
-            empresa_data = {
-                'id_empresa': empresa.id_empresa,
-                'codigo_empresa': empresa.codigo_empresa,
-                'nombre': empresa.nombre,
-                'cif': empresa.cif,
-                'direccion': empresa.direccion,
-                'estado': empresa.estado,
-                'descripcion': empresa.descripcion,
-                'photo': empresa.photo.url if empresa.photo else None
-            }
-            return JsonResponse(empresa_data)
-        except Usuario.DoesNotExist:
-            return JsonResponse({'error': 'Usuario no encontrado'}, status=404)
-        except Empresa.DoesNotExist:
-            return JsonResponse({'error': 'Empresa no encontrada'}, status=404)
+        empresa = get_object_or_404(Empresa, usuarios=usuario)
+        empresa_data = {
+            'id_empresa': empresa.id_empresa,
+            'codigo_empresa': empresa.codigo_empresa,
+            'nombre': empresa.nombre,
+            'cif': empresa.cif,
+            'direccion': empresa.direccion,
+            'estado': empresa.estado,
+            'descripcion': empresa.descripcion,
+            'photo': empresa.photo.url if empresa.photo else None
+        }
+        return JsonResponse(empresa_data)
 
     elif request.method == 'POST':
-        usuario = get_object_or_404(Usuario, id=user_id, tipo_usuario='propietario')
         empresa = get_object_or_404(Empresa, usuarios=usuario)
 
         empresa.nombre = request.POST.get('nombre', empresa.nombre)
-        empresa.estado = request.POST.get('estado', empresa.estado) == 'True'
         empresa.direccion = request.POST.get('direccion', empresa.direccion)
-        empresa.codigo_empresa = request.POST.get('codigo_empresa', empresa.codigo_empresa)
-        empresa.cif = request.POST.get('cif', empresa.cif)
-        empresa.photo = request.FILES.get('photo')
-        # Manejar la carga de archivos
+        empresa.descripcion = request.POST.get('descripcion', empresa.descripcion)
+        empresa.estado = request.POST.get('estado', empresa.estado) == 'True'
+        
         if 'photo' in request.FILES:
-            
-            empresa.photo = request.FILES.get('photo')
-
-        # Opcional: Validar CIF si decides habilitar validación nuevamente
-        # try:
-        #     validar_cif(empresa.cif)
-        # except ValidationError as e:
-        #     return JsonResponse({'error': str(e)}, status=400)
+            empresa.photo = request.FILES['photo']
 
         empresa.save()
-        return JsonResponse({'message': 'Datos de la empresa actualizados con éxito'}, status=200)
+
+        return JsonResponse({
+            'message': 'Datos de la empresa actualizados con éxito',
+            'updated_data': {
+                'nombre': empresa.nombre,
+                'direccion': empresa.direccion,
+                'descripcion': empresa.descripcion,
+                'estado': empresa.estado,
+                'photo': empresa.photo.url if empresa.photo else None
+            }
+        }, status=200)
+
+    else:
+        return JsonResponse({'error': 'Método no soportado'}, status=405)
 
 
     

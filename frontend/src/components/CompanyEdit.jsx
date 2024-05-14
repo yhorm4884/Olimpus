@@ -25,8 +25,10 @@ const CompanyEdit = ({ userId }) => {
         setCompany(prev => ({ ...prev, photo: reader.result }));
       };
       reader.readAsDataURL(file);
+    } else if (type === 'checkbox') {
+      setCompany(prev => ({ ...prev, [name]: checked }));
     } else {
-      setCompany(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+      setCompany(prev => ({ ...prev, [name]: value }));
     }
   };
 
@@ -34,7 +36,7 @@ const CompanyEdit = ({ userId }) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('nombre', company.nombre);
-    formData.append('estado', company.estado);
+    formData.append('estado', company.estado ? 'true' : 'false'); // Ensure proper string value for boolean
     formData.append('direccion', company.direccion);
     formData.append('descripcion', company.descripcion);
     formData.append('photo', company.photo);
@@ -72,7 +74,7 @@ const CompanyEdit = ({ userId }) => {
           onChange={handleInputChange}
         />
         <TextField
-          label="Ubicación de la empresa"
+          label="Dirección de la empresa"
           name="direccion"
           variant="outlined"
           fullWidth
