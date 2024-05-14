@@ -222,7 +222,7 @@ ul.MuiList-root.MuiList-padding {
   background-color: transparent;
 }
 
-ul.MuiList-root.MuiList-padding li{
+ul.MuiList-root.MuiList-padding div{
   background-color: #e6e1cf;
 }
 
