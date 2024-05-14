@@ -73,6 +73,7 @@ def empresa_detail(request, user_id):
                 'cif': empresa.cif,
                 'direccion': empresa.direccion,
                 'estado': empresa.estado,
+                'descripcion': empresa.descripcion,
                 'photo': empresa.photo.url if empresa.photo else None
             }
             return JsonResponse(empresa_data)

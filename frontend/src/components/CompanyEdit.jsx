@@ -4,19 +4,20 @@ import { Avatar, TextField, Button, Paper, Typography, IconButton } from '@mui/m
 import { Save as SaveIcon, PhotoCamera as PhotoCameraIcon } from '@mui/icons-material';
 
 const CompanyEdit = ({ userId }) => {
-  const [company, setCompany] = useState({ nombre: '', estado: true, photo: '', ubicacion: '', descripcion: '' });
-  const fileInputRef = useRef(null);  // Define the ref here
+  const [company, setCompany] = useState({ nombre: '', estado: true, photo: '', direccion: '', descripcion: '' });
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     axios.get(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`)
       .then(response => {
         setCompany(response.data);
-        console.log(response.data);
+        console.log("Initial data from backend:", response.data); // Logging initial data from backend
       });
   }, [userId]);
 
   const handleInputChange = (e) => {
     const { name, value, checked, type } = e.target;
+    console.log(`Type of input: ${type}, Name: ${name}, Value: ${value}, Checked: ${checked}`); // Logging input changes
     if (type === 'file') {
       const file = e.target.files[0];
       const reader = new FileReader();
@@ -29,18 +30,17 @@ const CompanyEdit = ({ userId }) => {
     }
   };
 
-  const handleAvatarClick = () => {
-    fileInputRef.current.click();  // Programmatically click the file input when avatar is clicked
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('nombre', company.nombre);
     formData.append('estado', company.estado);
-    formData.append('ubicacion', company.direccion);
+    formData.append('direccion', company.direccion);
     formData.append('descripcion', company.descripcion);
     formData.append('photo', company.photo);
+
+    console.log("Submitting the following data:", Object.fromEntries(formData)); // Log FormData content
+
     axios.post(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData)
       .then(() => alert('Empresa actualizada con éxito'))
       .catch(err => alert('Error al actualizar la empresa: ' + err.message));
@@ -49,7 +49,7 @@ const CompanyEdit = ({ userId }) => {
   return (
     <Paper style={{ padding: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="h6" style={{ alignSelf: 'start' }}>Editar Empresa</Typography>
-      <IconButton onClick={handleAvatarClick} style={{ margin: '20px' }}>
+      <IconButton onClick={() => fileInputRef.current.click()} style={{ margin: '20px' }}>
         <Avatar src={company.photo} style={{ width: 90, height: 90 }} />
         <PhotoCameraIcon style={{ position: 'absolute', color: 'rgba(255, 255, 255, 0.7)' }} />
       </IconButton>
@@ -73,11 +73,11 @@ const CompanyEdit = ({ userId }) => {
         />
         <TextField
           label="Ubicación de la empresa"
-          name="ubicacion"
+          name="direccion"
           variant="outlined"
           fullWidth
           margin="normal"
-          value={company.ubicacion || ''}
+          value={company.direccion || ''}
           onChange={handleInputChange}
         />
         <TextField
