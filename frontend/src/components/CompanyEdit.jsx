@@ -27,26 +27,26 @@ const CompanyEdit = ({ userId }) => {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('nombre', company.nombre);
-    formData.append('estado', company.estado ? 'true' : 'false');
+    formData.append('estado', company.estado.toString()); // Convertir booleano a string
     formData.append('direccion', company.direccion);
     formData.append('descripcion', company.descripcion);
-    if (company.photo) {
-      formData.append('photo', company.photo);
+    if (company.photo instanceof File) {
+        formData.append('photo', company.photo);
     }
 
     axios.post(`https://backend.olimpus.arkania.es/companies/empresa/${userId}/`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
     })
-      .then(() => alert('Empresa actualizada con éxito'))
-      .catch(err => alert('Error al actualizar la empresa: ' + err.message));
-  };
+    .then(() => alert('Empresa actualizada con éxito'))
+    .catch(err => alert('Error al actualizar la empresa: ' + err.message));
+};
+
 
 
   return (
