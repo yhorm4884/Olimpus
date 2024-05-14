@@ -175,3 +175,41 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
   width: 240px !important;
   border-radius: 20px !important;
 }
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl{
+  border-radius: 10px !important;
+  border: 1px solid #2d9ffb !important;
+}
+
+input{
+  font-family: 'Betm-Black' !important;
+}
+
+.MuiFormControl-root.MuiTextField-root{
+  border: 1px solid #e6e1cf;
+  background-color: #e6e1cf;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.MuiFormControl-root.MuiTextField-root fieldset{
+  display: none;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary{
+  background-color: #2d9ffb;
+  margin: 10px;
+  margin-top: 20px;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedSecondary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorSecondary.MuiButton-root.MuiButton-contained.MuiButton-containedSecondary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorSecondary{
+  background-color: rgb(219 68 68);
+  margin: 10px;
+  margin-top: 20px;
+  font-family: 'Betm-Black';
+}
+
+.MuiButtonBase-root MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary{
+  margin: 10px;
+  margin-top: 20px;
+}
