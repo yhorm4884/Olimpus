@@ -6,8 +6,6 @@
   font-style: normal;
 }
 
-
-
 body{
   background: -webkit-gradient(linear, left top, left bottom, from(#13547a), to(#80d0c7)) fixed;
 }
@@ -245,6 +243,6 @@ ul.MuiList-root.MuiList-padding li div{
   margin: 5px;
 }
 
-.MuiTypography-root.MuiTypography-body1.MuiBreadcrumbs-root div{
+.MuiTypography-root.MuiTypography-body.MuiBreadcrumbs-root div{
   overflow: hidden;
 }
