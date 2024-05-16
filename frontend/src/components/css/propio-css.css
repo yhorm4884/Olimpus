@@ -176,11 +176,6 @@ div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation3{
   border-radius: 20px !important;
 }
 
-.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl{
-  border-radius: 10px !important;
-  border: 1px solid #2d9ffb !important;
-}
-
 input{
   font-family: 'Betm-Black' !important;
 }
@@ -192,8 +187,13 @@ input{
   margin: 10px;
 }
 
-.MuiFormControl-root.MuiTextField-root fieldset{
-  display: none;
+.MuiFormControl-root.MuiTextField-root fieldset {
+    display: none;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation fieldset {
+    border: 2px solid #2d9ffb;
+    display: block;
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary{
@@ -239,8 +239,12 @@ ul.MuiList-root.MuiList-padding div{
   background-color: transparent;
 }
 
-.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8.MuiGrid-grid-lg-9 div.MuiBox-root ul.MuiList-root.MuiList-padding li div{
+ul.MuiList-root.MuiList-padding li div{
   background-color: #e6e1cf;
   border-radius: 15px;
   margin: 5px;
+}
+
+.MuiTypography-root.MuiTypography-body1.MuiBreadcrumbs-root div{
+  overflow: hidden;
 }
